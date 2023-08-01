@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\PendaftaranController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+//API pendaftaran
+Route::prefix('v1')->controller(PendaftaranController::class)->group(function () {
+    Route::get('/febba411-89e8-4fb3-9f55-85c56dcff41d/pendaftaran', 'getAllData');
+    Route::post('/396d6585-16ae-4d04-9549-c499e52b75ea/pendaftaran/create', 'createData');
+    Route::get('/9d97457b-1922-4f4a-b3fa-fcba980633a2/pendaftaran/get/{uuid}', 'getDataByUuid');
+    Route::put('/4a3f479a-eb2e-498f-aa7b-e7d6e3f0c5f3/pendaftaran/update/{uuid}', 'updateData');
+    Route::delete('/83df59b0-7c1a-4944-8fbb-2c06670dfa01/pendaftaran/delete/{uuid}', 'deleteData');
+    Route::get('/febba411-89e8-4fb3-9f55-85c56dcff41d/wa/{email}', 'toLinksWa');
 });
