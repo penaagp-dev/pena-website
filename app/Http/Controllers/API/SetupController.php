@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use Ramsey\Uuid\Uuid;
 use App\Models\SetupModel;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
+use Symfony\Component\Console\Input\Input;
 
 class SetupController extends Controller
 {
@@ -58,7 +59,7 @@ class SetupController extends Controller
             $data = new SetupModel();
             $data->uuid = Uuid::uuid4()->toString();
             $data->title = $request->input('title');
-            $data->deskripsi = $request->input('deskripsi');
+            $data->deskripsi =clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
                 $extention = $file->getClientOriginalExtension();
@@ -133,7 +134,7 @@ class SetupController extends Controller
         try {
             $data = SetupModel::where('uuid', $uuid)->firstOrFail();
             $data->title = $request->input('title');
-            $data->deskripsi = $request->input('deskripsi');
+            $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
                 $extention = $file->getClientOriginalExtension();
