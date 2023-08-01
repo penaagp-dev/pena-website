@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('uuid');
             $table->string('title');
-            $table->string('descripsi');
-            $table->string('gambar');
+            $table->string('deskripsi');
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

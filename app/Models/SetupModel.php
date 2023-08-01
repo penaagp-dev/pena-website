@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class SetupModel extends Model
 {
     use HasFactory;
-    protected $table='tbl_setup';
+    protected $table='tb_setup';
     protected $fillable = [
         'id',
         'uuid',
         'title',
         'deskripsi',
-        'gambar'
+        'gambar',
+        'created_at',
+        'updated_at',
     ];
 }
