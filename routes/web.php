@@ -26,4 +26,8 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/cms/pendaftaran', function () {
+    return view('pendaftaran');
+});
+
 
