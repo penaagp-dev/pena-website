@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('tanggal_lahir');
             $table->enum('agama',['islam','kristen','hindu','buddha','khonghucu','atheis'])->default('atheis');
             $table->string('email');
-            $table->enum('jurusan',['Teknik Informatika','Sistem Informasi'])->default('Teknik Informatika');
-            $table->string('angkatan');
+            $table->enum('jurusan',['TI','SI'])->default('TI');
+            $table->enum('semester', ['1','3'])->default('1');
+            $table->enum('jenis_kelamin',['L','P'])->default('L');
             $table->string('no_hp');
             $table->text('alamat');
             $table->text('alasan_masuk');
