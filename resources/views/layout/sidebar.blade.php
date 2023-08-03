@@ -37,6 +37,12 @@
             <p>Setup</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="/cms/pendaftaran" class="nav-link" id="setup">
+            <i class="fa-solid fa-gear mr-2"></i>
+            <p>Pendaftaran</p>
+          </a>
+        </li>
        
        
       </ul>
