@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Mail\WaMail;
 use App\Models\PendaftaranModel;
-use Illuminate\Http\Client\ResponseSequence;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -36,18 +36,42 @@ class PendaftaranController extends Controller
 
     public function createData(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'nama' => 'required',
-            'tanggal_lahir' => 'required|date',
-            'agama' => 'required',
-            'email' => 'required|email',
-            'jurusan' => 'required',
-            'angkatan' => 'required',
-            'no_hp' => 'required|digits:12',
-            'alamat' => 'required',
-            'alasan_masuk' => 'required',
-            'gambar' => 'required|mimes:jpg,jpeg,png'
-        ]);
+        $validation = Validator::make(
+            $request->all(),
+            [
+                'nama' => 'required',
+                'tanggal_lahir' => 'required|date',
+                'agama' => 'required',
+                'email' => 'required|email',
+                'jurusan' => 'required|in:TI,SI',
+                'semester' => 'required|in:1,3',
+                'jenis_kelamin' => 'required|in:L,P',
+                'no_hp' => 'required|digits:12',
+                'alamat' => 'required',
+                'alasan_masuk' => 'required',
+                'gambar' => 'required|mimes:jpg,jpeg,png'
+            ],
+            [
+                'nama.required' => 'Form nama tidak boleh kosong',
+                'tanggal_lahir' => 'Form tanggal lahir tidak boleh kosong',
+                'tanggal_lahir.date' => 'Format harus date !',
+                'agama.required' => 'Form agama tidak boleh kosong',
+                'email' => 'Form email tidak boleh kosong',
+                'email.email' => 'Format harus email !',
+                'jurusan.required' => 'Form jurusan tidak boleh kosong',
+                'jurusan.in' => 'Jangan mengubah format yang sudah ditetapkan !',
+                'semester.required' => 'Form angkatan tidak boleh kosong',
+                'semester.in' => 'Jangan mengubah format semester !',
+                'jenis_kelamin.required' => 'Form jenis kelamin tidak boleh kosong',
+                'jenis_kelamin.in' => 'Jangan mengubah format jenis kelamin !',
+                'no_hp' => 'Form nomor hp tidak boleh kosong',
+                'no_hp.digits' => 'Maximal nomor 12 digit',
+                'alamat.required' => 'Form alamat tidak boleh kosong',
+                'alasan_masuk.required' => 'Form alasan masuk tidak boleh kosong',
+                'gambar' => 'Gambar tidak boleh kosong',
+                'gambar.mimes' => 'Format wajib jpg,jpeg,png'
+            ]
+        );
 
         if ($validation->fails()) {
             return response()->json([
@@ -65,7 +89,8 @@ class PendaftaranController extends Controller
             $data->agama = $request->input('agama');
             $data->email = $request->input('email');
             $data->jurusan = $request->input('jurusan');
-            $data->angkatan = $request->input('angkatan');
+            $data->semester = $request->input('semester');
+            $data->jenis_kelamin = $request->input('jenis_kelamin');
             $data->no_hp = $request->input('no_hp');
             $data->alamat = clean($request->input('alamat'));
             $data->alasan_masuk = clean($request->input('alasan_masuk'));
@@ -129,6 +154,7 @@ class PendaftaranController extends Controller
                 'message' => 'Data not found'
             ]);
         } else {
+            $data->tanggal_lahir = Carbon::createFromFormat('d F Y', $data->tanggal_lahir)->format('Y-m-d');
             return response()->json([
                 'code' => 200,
                 'message' => 'Success get data',
@@ -155,19 +181,42 @@ class PendaftaranController extends Controller
                 ]);
             }
 
-            $validation = Validator::make($request->all(), [
-                'nama' => 'required',
-                'tanggal_lahir' => 'required|date',
-                'agama' => 'required',
-                'email' => 'required|email',
-                'jurusan' => 'required',
-                'angkatan' => 'required',
-                'no_hp' => 'required|digits:12',
-                'alamat' => 'required',
-                'alasan_masuk' => 'required',
-                'gambar' => 'mimes:jpg,jpeg,png'
-            ]);
-    
+            $validation = Validator::make(
+                $request->all(),
+                [
+                    'nama' => 'required',
+                    'tanggal_lahir' => 'required|date',
+                    'agama' => 'required',
+                    'email' => 'required|email',
+                    'jurusan' => 'required|in:TI,SI',
+                    'semester' => 'required|in:1,3',
+                    'jenis_kelamin' => 'required|in:L,P',
+                    'no_hp' => 'required|digits:12',
+                    'alamat' => 'required',
+                    'alasan_masuk' => 'required',
+                    'gambar' => 'mimes:jpg,jpeg,png'
+                ],
+                [
+                    'nama.required' => 'Form nama tidak boleh kosong',
+                    'tanggal_lahir' => 'Form tanggal lahir tidak boleh kosong',
+                    'tanggal_lahir.date' => 'Format harus date !',
+                    'agama.required' => 'Form agama tidak boleh kosong',
+                    'email' => 'Form email tidak boleh kosong',
+                    'email.email' => 'Format harus email !',
+                    'jurusan.required' => 'Form jurusan tidak boleh kosong',
+                    'jurusan.in' => 'Jangan mengubah format yang sudah ditetapkan !',
+                    'semester.required' => 'Form angkatan tidak boleh kosong',
+                    'semester.in' => 'Jangan mengubah format semester !',
+                    'jenis_kelamin.required' => 'Form jenis kelamin tidak boleh kosong',
+                    'jenis_kelamin.in' => 'Jangan mengubah format jenis kelamin !',
+                    'no_hp' => 'Form nomor hp tidak boleh kosong',
+                    'no_hp.digits' => 'Maximal nomor 12 digit',
+                    'alamat.required' => 'Form alamat tidak boleh kosong',
+                    'alasan_masuk.required' => 'Form alasan masuk tidak boleh kosong',
+                    'gambar.mimes' => 'Format wajib jpg,jpeg,png'
+                ]
+            );
+
             if ($validation->fails()) {
                 return response()->json([
                     'code' => 422,
@@ -181,7 +230,8 @@ class PendaftaranController extends Controller
             $data->agama = $request->input('agama');
             $data->email = $request->input('email');
             $data->jurusan = $request->input('jurusan');
-            $data->angkatan = $request->input('angkatan');
+            $data->semester = $request->input('semester');
+            $data->jenis_kelamin = $request->input('jenis_kelamin');
             $data->no_hp = $request->input('no_hp');
             $data->alamat = clean($request->input('alamat'));
             $data->alasan_masuk = clean($request->input('alasan_masuk'));
