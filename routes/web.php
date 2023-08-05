@@ -25,9 +25,10 @@ Route::get('/gallery', function () {
 Route::get('/login', function () {
     return view('login');
 });
+Route::get('/cms/setup', function () {
+    return view('setup');
+});
 
 Route::get('/cms/pendaftaran', function () {
     return view('pendaftaran');
 });
-
-
