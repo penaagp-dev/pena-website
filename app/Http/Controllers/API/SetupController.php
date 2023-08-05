@@ -17,12 +17,12 @@ class SetupController extends Controller
     public function getAllData()
     {
         $data = SetupModel::all();
-        if($data->isEmpty()){
+        if ($data->isEmpty()) {
             return response()->json([
                 'code' => 404,
                 'message' => 'Data not found'
             ]);
-        }else{
+        } else {
             return response()->json([
                 'code' => 200,
                 'message' => 'Get all data successfully',
@@ -37,21 +37,21 @@ class SetupController extends Controller
             $request->all(),
             [
                 'title' => 'required',
-                'deskripsi'=>'required',
-                'gambar'=> 'mimes:png,jpg,jpeg',
+                'deskripsi' => 'required',
+                'gambar' => 'mimes:png,jpg,jpeg',
             ],
             [
-                'title.required'=>'Form title tidak boleh kosong',
-                'deskripsi.required'=>'Form deskripsi tidak boleh kosong',
-                'gambar.mimes'=>'Gambar harus dalam format PNG, JPG, atau JPEG '
+                'title.required' => 'Form title tidak boleh kosong',
+                'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
+                'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG '
             ]
         );
 
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()->json([
-                'code' =>422,
-                'message' =>'Check your validation',
-                'errors' =>$validation->errors()
+                'code' => 422,
+                'message' => 'Check your validation',
+                'errors' => $validation->errors()
             ]);
         }
 
@@ -59,7 +59,7 @@ class SetupController extends Controller
             $data = new SetupModel();
             $data->uuid = Uuid::uuid4()->toString();
             $data->title = $request->input('title');
-            $data->deskripsi =clean($request->input('deskripsi'));
+            $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
                 $extention = $file->getClientOriginalExtension();
@@ -110,28 +110,36 @@ class SetupController extends Controller
 
     public function updateDataByUuid(Request $request, $uuid)
     {
-        $validation = Validator::make(
-            $request->all(),
-            [
-                'title' => 'required',
-                'deskripsi' => 'required',
-                'gambar' => 'mimes:png,jpg,jpeg',
-            ],
-            [
-                'title.required' => 'Form title tidak boleh kosong',
-                'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
-                'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG '
-            ]
-        );
-
-        if ($validation->fails()) {
+        if (!Uuid::isValid($uuid)) {
             return response()->json([
-                'code' => 422,
-                'message' => 'Check your validation',
-                'errors' => $validation->errors()
+                'message' => 'UUID failed'
             ]);
         }
+
         try {
+
+            $validation = Validator::make(
+                $request->all(),
+                [
+                    'title' => 'required',
+                    'deskripsi' => 'required',
+                    'gambar' => 'mimes:png,jpg,jpeg',
+                ],
+                [
+                    'title.required' => 'Form title tidak boleh kosong',
+                    'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
+                    'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG '
+                ]
+            );
+
+            if ($validation->fails()) {
+                return response()->json([
+                    'code' => 422,
+                    'message' => 'Check your validation',
+                    'errors' => $validation->errors()
+                ]);
+            }
+
             $data = SetupModel::where('uuid', $uuid)->firstOrFail();
             $data->title = $request->input('title');
             $data->deskripsi = clean($request->input('deskripsi'));
@@ -196,7 +204,7 @@ class SetupController extends Controller
 
         return response()->json([
             'code' => 200,
-            'message' =>'Delete data successfuly'
+            'message' => 'Delete data successfuly'
         ]);
     }
 }
