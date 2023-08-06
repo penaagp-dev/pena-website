@@ -118,6 +118,14 @@ class SetupController extends Controller
 
         try {
 
+            $data = SetupModel::where('uuid', $uuid)->first();
+            if (!$data) {
+                return response()->json([
+                    'code' => 404,
+                    'message' => 'Data not found'
+                ]);
+            }
+
             $validation = Validator::make(
                 $request->all(),
                 [
@@ -140,7 +148,6 @@ class SetupController extends Controller
                 ]);
             }
 
-            $data = SetupModel::where('uuid', $uuid)->firstOrFail();
             $data->title = $request->input('title');
             $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
