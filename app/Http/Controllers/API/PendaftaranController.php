@@ -41,7 +41,7 @@ class PendaftaranController extends Controller
             [
                 'nama' => 'required',
                 'tanggal_lahir' => 'required|date',
-                'agama' => 'required',
+                'agama' => 'required|in:islam,kristen,hindu,buddha,khonghucu,atheis',
                 'email' => 'required|email',
                 'jurusan' => 'required|in:TI,SI',
                 'semester' => 'required|in:1,3',
@@ -86,12 +86,12 @@ class PendaftaranController extends Controller
             $data->uuid = Uuid::uuid4();
             $data->nama = clean($request->input('nama'));
             $data->tanggal_lahir = $request->input('tanggal_lahir');
-            $data->agama = $request->input('agama');
+            $data->agama = clean($request->input('agama'));
             $data->email = $request->input('email');
-            $data->jurusan = $request->input('jurusan');
-            $data->semester = $request->input('semester');
-            $data->jenis_kelamin = $request->input('jenis_kelamin');
-            $data->no_hp = $request->input('no_hp');
+            $data->jurusan = clean($request->input('jurusan'));
+            $data->semester = clean($request->input('semester'));
+            $data->jenis_kelamin = clean($request->input('jenis_kelamin'));
+            $data->no_hp = clean($request->input('no_hp'));
             $data->alamat = clean($request->input('alamat'));
             $data->alasan_masuk = clean($request->input('alasan_masuk'));
             if ($request->hasFile('gambar')) {
@@ -186,7 +186,7 @@ class PendaftaranController extends Controller
                 [
                     'nama' => 'required',
                     'tanggal_lahir' => 'required|date',
-                    'agama' => 'required',
+                    'agama' => 'required|in:islam,kristen,hindu,buddha,khonghucu,atheis',
                     'email' => 'required|email',
                     'jurusan' => 'required|in:TI,SI',
                     'semester' => 'required|in:1,3',
@@ -227,12 +227,12 @@ class PendaftaranController extends Controller
 
             $data->nama = clean($request->input('nama'));
             $data->tanggal_lahir = $request->input('tanggal_lahir');
-            $data->agama = $request->input('agama');
+            $data->agama = clean($request->input('agama'));
             $data->email = $request->input('email');
-            $data->jurusan = $request->input('jurusan');
-            $data->semester = $request->input('semester');
-            $data->jenis_kelamin = $request->input('jenis_kelamin');
-            $data->no_hp = $request->input('no_hp');
+            $data->jurusan = clean($request->input('jurusan'));
+            $data->semester = clean($request->input('semester'));
+            $data->jenis_kelamin = clean($request->input('jenis_kelamin'));
+            $data->no_hp = clean($request->input('no_hp'));
             $data->alamat = clean($request->input('alamat'));
             $data->alasan_masuk = clean($request->input('alasan_masuk'));
             if ($request->hasFile('gambar')) {
