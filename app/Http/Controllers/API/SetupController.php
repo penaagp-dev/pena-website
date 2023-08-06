@@ -58,7 +58,7 @@ class SetupController extends Controller
         try {
             $data = new SetupModel();
             $data->uuid = Uuid::uuid4()->toString();
-            $data->title = $request->input('title');
+            $data->title = clean($request->input('title'));
             $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
@@ -148,7 +148,7 @@ class SetupController extends Controller
                 ]);
             }
 
-            $data->title = $request->input('title');
+            $data->title = clean($request->input('title'));
             $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
