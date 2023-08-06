@@ -308,7 +308,7 @@
                                 console.log(data);
                                 showModal(true);
                                 $('#uuid').val(data.data.uuid);
-                                $('#title').val(data.data.title);
+                                $('#title').val(stripHtmlTags(data.data.title));
                                 $('#deskripsi').val(stripHtmlTags(data.data.deskripsi));
                                 $('#gambar').html(data.data.gambar);
                                 $('#preview').attr('src',
