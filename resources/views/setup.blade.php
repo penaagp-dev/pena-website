@@ -308,8 +308,8 @@
                                 console.log(data);
                                 showModal(true);
                                 $('#uuid').val(data.data.uuid);
-                                $('#title').val(stripHtmlTags(data.data.title));
-                                $('#deskripsi').val(data.data.deskripsi);
+                                $('#title').val(data.data.title);
+                                $('#deskripsi').val(stripHtmlTags(data.data.deskripsi));
                                 $('#gambar').html(data.data.gambar);
                                 $('#preview').attr('src',
                                     "{{ asset('uploads/Setup') }}/" +
@@ -338,6 +338,7 @@
                         $('#title').val('');
                         $('#deskripsi').val('');
                         $('#gambar').val('');
+                        $('#preview').attr('src', '').hide();
                         $('#gambar-label').text('Image');
                     }
 
