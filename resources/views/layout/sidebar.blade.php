@@ -8,11 +8,11 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    
+
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-       
+
         <li class="nav-item">
           <a href="/" class="nav-link" id="dashboard">
             <i class="fa-solid fa-house mr-2"></i>
@@ -32,7 +32,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/setup" class="nav-link" id="setup">
+          <a href="/cms/setup" class="nav-link" id="setup">
             <i class="fa-solid fa-gear mr-2"></i>
             <p>Setup</p>
           </a>
@@ -43,8 +43,8 @@
             <p>Pendaftaran</p>
           </a>
         </li>
-       
-       
+
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

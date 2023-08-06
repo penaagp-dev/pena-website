@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\PendaftaranController;
-use App\Http\Controllers\Api\SetupController;
+use App\Http\Controllers\API\SetupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
