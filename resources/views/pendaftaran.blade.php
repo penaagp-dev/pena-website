@@ -392,12 +392,12 @@
                                 $('#uuid').val(data.data.uuid);
                                 $('#nama').val(stripHtmlTags(data.data.nama));
                                 $('#email').val(data.data.email);
-                                $('#agama').val(data.data.agama);
-                                $('#jenis_kelamin').val(data.data.jenis_kelamin);
-                                $('#jurusan').val(data.data.jurusan);
-                                $('#no_hp').val(data.data.no_hp);
+                                $('#agama').val(stripHtmlTags(data.data.agama));
+                                $('#jenis_kelamin').val(stripHtmlTags(data.data.jenis_kelamin));
+                                $('#jurusan').val(stripHtmlTags(data.data.jurusan));
+                                $('#no_hp').val(stripHtmlTags(data.data.no_hp));
                                 $('#tanggal_lahir').val(data.data.tanggal_lahir);
-                                $('#semester').val(data.data.semester);
+                                $('#semester').val(stripHtmlTags(data.data.semester));
                                 $('#alamat').val(stripHtmlTags(data.data.alamat));
                                 $('#alasan_masuk').val(stripHtmlTags(data.data
                                     .alasan_masuk));
