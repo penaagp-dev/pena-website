@@ -312,7 +312,7 @@
                                 $('#deskripsi').val(stripHtmlTags(data.data.deskripsi));
                                 $('#gambar').html(data.data.gambar);
                                 $('#preview').attr('src',
-                                    "{{ asset('uploads/Setup') }}/" +
+                                    "{{ asset('uploads/setup') }}/" +
                                     data.data
                                     .gambar);
                                 // Tampilkan nama file gambar pada label
