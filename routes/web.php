@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/gallery', function () {
+Route::get('gallery', function () {
     return view('gallery');
 });
 
