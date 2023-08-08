@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SetupController;
+use App\Http\Controllers\API\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,12 @@ Route::prefix('v2')->controller(SetupController::class)->group(function () {
     Route::post('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update/{uuid}', 'updateDataByUuid');
     Route::delete('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete/{uuid}', 'deleteData');
 });
+//Api Admin
+Route::prefix('v3')->controller(AdminController::class)->group(function () {
+    Route::get('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin', 'getAllData');
+    Route::post('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin/create', 'createData');
+    Route::get('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin/get/{uuid}', 'getDataByUuid');
+    Route::post('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin/update/{uuid}', 'updateDataByUuid');
+    Route::delete('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin/delete/{uuid}', 'deleteData');
+});
+
