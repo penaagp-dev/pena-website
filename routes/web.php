@@ -14,11 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('gallery', function () {
+Route::get('/Admin', function () {
+    return view('Admin');
+});
+
+Route::get('/gallery', function () {
     return view('gallery');
 });
 
