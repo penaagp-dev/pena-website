@@ -43,6 +43,7 @@ class GaleryController extends Controller
             [
                 'nama.required' => 'Form nama tidak boleh kosong',
                 'jabatan.required' => 'Form jabatan tidak boleh kosong',
+                'gambar.required' => 'Gambar tidak boleh kosong',
                 'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG '
             ]
         );
