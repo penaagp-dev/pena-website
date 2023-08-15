@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AdminController;
+use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SetupController;
 use App\Http\Controllers\API\GalleryController;
@@ -40,7 +41,7 @@ Route::prefix('v2')->controller(SetupController::class)->group(function () {
     Route::delete('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete/{uuid}', 'deleteData');
 });
 //API Gallery
-Route::prefix('v3')->controller(GalleryController::class)->group(function () {
+Route::prefix('v4')->controller(GalleryController::class)->group(function () {
     Route::get('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/gallery', 'getAllData');
     Route::post('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/gallery/create', 'createData');
     Route::get('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/gallery/get/{uuid}', 'getDataByUuid');
@@ -49,10 +50,17 @@ Route::prefix('v3')->controller(GalleryController::class)->group(function () {
 });
 //Api Admin
 Route::prefix('v3')->controller(AdminController::class)->group(function () {
-    Route::get('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin', 'getAllData');
-    Route::post('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin/create', 'createData');
-    Route::get('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin/get/{uuid}', 'getDataByUuid');
-    Route::post('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin/update/{uuid}', 'updateDataByUuid');
-    Route::delete('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/Admin/delete/{uuid}', 'deleteData');
+    Route::get('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin', 'getAllData');
+    Route::post('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin/create', 'createData');
+    Route::get('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin/get/{uuid}', 'getDataByUuid');
+    Route::post('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin/update/{uuid}', 'updateDataByUuid');
+    Route::delete('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin/delete/{uuid}', 'deleteData');
 });
-
+//Api News
+Route::prefix('v5')->controller(NewsController::class)->group(function () {
+    Route::get('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news', 'getAllData');
+    Route::post('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news/create', 'createData');
+    Route::get('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news/get/{uuid}', 'getDataByUuid');
+    Route::post('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news/update/{uuid}', 'updateDataByUuid');
+    Route::delete('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news/delete/{uuid}', 'deleteData');
+});
