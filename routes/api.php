@@ -4,7 +4,7 @@ use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SetupController;
-use App\Http\Controllers\API\GalleryController;
+use App\Http\Controllers\API\GaleryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,13 +40,13 @@ Route::prefix('v2')->controller(SetupController::class)->group(function () {
     Route::post('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update/{uuid}', 'updateDataByUuid');
     Route::delete('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete/{uuid}', 'deleteData');
 });
-//API Gallery
-Route::prefix('v4')->controller(GalleryController::class)->group(function () {
-    Route::get('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/gallery', 'getAllData');
-    Route::post('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/gallery/create', 'createData');
-    Route::get('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/gallery/get/{uuid}', 'getDataByUuid');
-    Route::post('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/gallery/update/{uuid}', 'updateDataByUuid');
-    Route::delete('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/gallery/delete/{uuid}', 'deleteData');
+//API Galery
+Route::prefix('v4')->controller(GaleryController::class)->group(function () {
+    Route::get('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery', 'getAllData');
+    Route::post('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/create', 'createData');
+    Route::get('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/get/{uuid}', 'getDataByUuid');
+    Route::post('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/update/{uuid}', 'updateDataByUuid');
+    Route::delete('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/delete/{uuid}', 'deleteData');
 });
 //Api Admin
 Route::prefix('v3')->controller(AdminController::class)->group(function () {

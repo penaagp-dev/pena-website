@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use Ramsey\Uuid\Uuid;
-use App\Models\GalleryModel;
+use App\Models\GaleryModel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Input\Input;
 
-class GalleryController extends Controller
+class GaleryController extends Controller
 {
     public function getAllData()
     {
-        $data = GalleryModel::all();
+        $data = GaleryModel::all();
         if ($data->isEmpty()) {
             return response()->json([
                 'code' => 404,
@@ -38,11 +38,12 @@ class GalleryController extends Controller
             [
                 'nama' => 'required',
                 'jabatan' => 'required',
-                'gambar' => 'mimes:png,jpg,jpeg',
+                'gambar' => 'required|mimes:png,jpg,jpeg',
             ],
             [
                 'nama.required' => 'Form nama tidak boleh kosong',
                 'jabatan.required' => 'Form jabatan tidak boleh kosong',
+                'gambar.required' => 'Gambar tidak boleh kosong',
                 'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG '
             ]
         );
@@ -56,16 +57,16 @@ class GalleryController extends Controller
         }
 
         try {
-            $data = new GalleryModel();
+            $data = new GaleryModel();
             $data->uuid = Uuid::uuid4()->toString();
             $data->nama = clean($request->input('nama'));
             $data->jabatan = clean($request->input('jabatan'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
                 $extention = $file->getClientOriginalExtension();
-                $filename = 'GALLERY-' . Str::random(15) . '.' . $extention;
-                Storage::makeDirectory('uploads/gallery/');
-                $file->move(public_path('uploads/gallery/'), $filename);
+                $filename = 'GALERY-' . Str::random(15) . '.' . $extention;
+                Storage::makeDirectory('uploads/galery/');
+                $file->move(public_path('uploads/galery/'), $filename);
                 $data->gambar = $filename;
             }
             $data->save();
@@ -93,7 +94,7 @@ class GalleryController extends Controller
             ]);
         }
 
-        $data = GalleryModel::where('uuid', $uuid)->first();
+        $data = GaleryModel::where('uuid', $uuid)->first();
         if (!$data) {
             return response()->json([
                 'code' => 400,
@@ -118,7 +119,7 @@ class GalleryController extends Controller
 
         try {
 
-            $data = GalleryModel::where('uuid', $uuid)->first();
+            $data = GaleryModel::where('uuid', $uuid)->first();
             if (!$data) {
                 return response()->json([
                     'code' => 404,
@@ -153,10 +154,10 @@ class GalleryController extends Controller
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
                 $extention = $file->getClientOriginalExtension();
-                $filename = 'GALLERY-' . Str::random(15) . '.' . $extention;
-                Storage::makeDirectory('uploads/gallery/');
-                $file->move(public_path('uploads/gallery/'), $filename);
-                $old_file_path = public_path('uploads/gallery/') . $data->gambar;
+                $filename = 'GALERY-' . Str::random(15) . '.' . $extention;
+                Storage::makeDirectory('uploads/galery/');
+                $file->move(public_path('uploads/galery/'), $filename);
+                $old_file_path = public_path('uploads/galery/') . $data->gambar;
                 if (file_exists($old_file_path)) {
                     unlink($old_file_path);
                 }
@@ -183,12 +184,12 @@ class GalleryController extends Controller
         if (!Uuid::isValid($uuid)) {
             return response()->json([
                 'code' => 404,
-                'message' => 'Data Not Found',
+                'message' => 'Uuid failed',
             ]);
         }
 
         try {
-            $data = GalleryModel::where('uuid', $uuid)->first();
+            $data = GaleryModel::where('uuid', $uuid)->first();
             if (!$data) {
                 return response()->json([
                     'code' => 404,
@@ -196,7 +197,7 @@ class GalleryController extends Controller
                 ]);
             }
 
-            $filePath = 'uploads/gallery/' . $data->gambar;
+            $filePath = 'uploads/galery/' . $data->gambar;
             if (File::exists($filePath)) {
                 File::delete($filePath);
             }
