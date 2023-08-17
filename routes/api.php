@@ -58,9 +58,9 @@ Route::prefix('v3')->controller(AdminController::class)->group(function () {
 });
 //Api News
 Route::prefix('v5')->controller(NewsController::class)->group(function () {
-    Route::get('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news', 'getAllData');
-    Route::post('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news/create', 'createData');
-    Route::get('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news/get/{uuid}', 'getDataByUuid');
-    Route::post('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news/update/{uuid}', 'updateDataByUuid');
-    Route::delete('/nfhrydjt-98gd-5248-c9uj-bdy47fhw4cj7/news/delete/{uuid}', 'deleteData');
+    Route::get('/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news', 'getAllData');
+    Route::post('/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/create', 'createData');
+    Route::get('/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/get/{uuid}', 'getDataByUuid');
+    Route::post('/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/update/{uuid}', 'updateDataByUuid');
+    Route::delete('/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/delete/{uuid}', 'deleteData');
 });
