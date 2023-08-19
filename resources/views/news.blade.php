@@ -83,7 +83,7 @@
                                     <div class="form-group fill">
                                         <input type="hidden" name="uuid" id="uuid" value="">
                                         <label>Link</label>
-                                        <input id="link" name="link" type="url" class="form-control"
+                                        <input id="link" name="link" type="text" class="form-control"
                                             placeholder="input here....." autocomplete="off">
                                     </div>
                                     <div class="form-group fill">
