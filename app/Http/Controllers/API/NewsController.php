@@ -212,7 +212,6 @@ class NewsController extends Controller
             ]);
         }
 
-
         try {
             $data = NewsModel::where('uuid', $uuid)->first();
             if (!$data) {
