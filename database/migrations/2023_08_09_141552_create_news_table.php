@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('gambar');
             $table->string('link')->nullable();
-            $table->string('tgl_update');
+            $table->string('tgl_upload');
             $table->timestamps();
         });
     }

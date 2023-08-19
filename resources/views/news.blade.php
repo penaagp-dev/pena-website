@@ -83,13 +83,13 @@
                                     <div class="form-group fill">
                                         <input type="hidden" name="uuid" id="uuid" value="">
                                         <label>Link</label>
-                                        <input id="link" name="link" type="text" class="form-control"
+                                        <input id="link" name="link" type="url" class="form-control"
                                             placeholder="input here....." autocomplete="off">
                                     </div>
                                     <div class="form-group fill">
                                         <input type="hidden" name="uuid" id="uuid" value="">
-                                        <label>Tanggal Update</label>
-                                        <input id="tgl_update" name="tgl_update" type="date" class="form-control"
+                                        <label>Tanggal Upload</label>
+                                        <input id="tgl_upload" name="tgl_upload" type="date" class="form-control"
                                             placeholder="input here...." autocomplete="off">
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
                                 tableBody += "<td>" + item.deskripsi + "</td>";
                                 tableBody += "<td> <img src='http://127.0.0.1:8000/uploads/news/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
                                 tableBody += "<td>" + item.link + "</td>";
-                                tableBody += "<td>" + item.tgl_update + "</td>";
+                                tableBody += "<td>" + item.tgl_upload + "</td>";
                                 tableBody += "<td>" +
                                     "<button type='button' class='btn btn-primary edit-modal' data-toggle='modal' data-target='#EditModal' " +
                                     "data-uuid='" + item.uuid + "'>" +
@@ -188,9 +188,9 @@
                                 formData.delete('gambar');
                             }
                             $('#loading-overlay').show();
-                            var selectedDate = moment($('#tgl_update').val(), 'YYYY-MM-DD').format(
+                            var selectedDate = moment($('#tgl_upload').val(), 'YYYY-MM-DD').format(
                                 'DD MMMM YYYY');
-                            formData.set('tgl_update', selectedDate);
+                            formData.set('tgl_upload', selectedDate);
                             $.ajax({
                                 type: "POST",
                                 url: `{{ url('api/v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/update') }}/` + uuid,
@@ -249,9 +249,9 @@
                                 }
                             });
                         } else {
-                              var selectedDate = moment($('#tgl_update').val(), 'YYYY-MM-DD').format(
+                              var selectedDate = moment($('#tgl_upload').val(), 'YYYY-MM-DD').format(
                                 'DD MMMM YYYY');
-                              formData.set('tgl_update', selectedDate);
+                              formData.set('tgl_upload', selectedDate);
                             $('#loading-overlay').show();
                             $.ajax({
                                 type: 'POST',
@@ -337,7 +337,7 @@
                                     data.data
                                     .gambar);
                                 $('#link').val(stripHtmlTags(data.data.link));
-                                $('#tgl_update').val(data.data.tgl_update);
+                                $('#tgl_upload').val(data.data.tgl_upload);
                                 // Tampilkan nama file gambar pada label
                                 var fileName = data.data.gambar.split('/').pop();
                                 $('#gambar-label').text(fileName);
@@ -364,7 +364,7 @@
                         $('#preview').attr('src', '').hide();
                         $('#gambar-label').text('Image');
                         $('#link').val('');
-                        $('#tgl_update').val('');
+                        $('#tgl_upload').val('');
                     }
 
                     // Fungsi reset modal
@@ -433,4 +433,5 @@
                 });
         })
     </script>
-@endsection
+    @endsection
+

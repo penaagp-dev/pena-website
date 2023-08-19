@@ -41,7 +41,7 @@ class NewsController extends Controller
                  'deskripsi' => 'required',
                  'gambar' => 'required|mimes:png,jpg,jpeg',
                  'link' => 'required',
-                 'tgl_update' => 'required|date',
+                 'tgl_upload' => 'required|date',
              ],
              [
                  'title.required' => 'Form title tidak boleh kosong',
@@ -50,8 +50,8 @@ class NewsController extends Controller
                  'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG ',
                  
                  'link.required' => 'Form link tidak boleh kosong',
-                 'tgl_update' => 'Form tanggal update tidak boleh kosong',
-                 'tgl_update.date' => 'Format harus date !'
+                 'tgl_upload' => 'Form tanggal update tidak boleh kosong',
+                 'tgl_upload.date' => 'Format harus date !'
              ]
          );
 
@@ -77,7 +77,7 @@ class NewsController extends Controller
                 $data->gambar = $filename;
             }
             $data->link = clean($request->input('link'));
-            $data->tgl_update = $request->input('tgl_update');
+            $data->tgl_upload = $request->input('tgl_upload');
             $data->save();
         } catch (\Throwable $th) {
             return response()->json([
@@ -111,7 +111,7 @@ class NewsController extends Controller
                 'message' => 'Data not found',
             ]);
         } else {
-            $data->tgl_update = Carbon::createFromFormat('d F Y', $data->tgl_update)->format('Y-m-d');
+            $data->tgl_upload = Carbon::createFromFormat('d F Y', $data->tgl_upload)->format('Y-m-d');
             return response()->json([
                 'code' => 200,
                 'message' => 'Get data by UUID successfully',
@@ -147,15 +147,15 @@ class NewsController extends Controller
                     'deskripsi' => 'required',
                     'gambar' => 'mimes:png,jpg,jpeg',
                     'link' => 'required',
-                    'tgl_update' => 'required|date',
+                    'tgl_upload' => 'required|date',
                 ],
                 [
                     'title.required' => 'Form title tidak boleh kosong',
                     'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
                     'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG ',
                     'link.required' => 'Form link tidak boleh kosong',
-                    'tgl_update' => 'Form tanggal update tidak boleh kosong',
-                    'tgl_update.date' => 'Format harus date !'
+                    'tgl_upload' => 'Form tanggal update tidak boleh kosong',
+                    'tgl_upload.date' => 'Format harus date !'
                 ]
             
             );
@@ -181,6 +181,8 @@ class NewsController extends Controller
                     unlink($old_file_path);
                 }
                 $data->gambar = $filename;
+                $data->link = clean($request->input('link'));
+                $data->tgl_upload = $request->input('tgl_upload');
             }
             $data->save();
         } catch (\Throwable $th) {
