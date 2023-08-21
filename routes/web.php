@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\PendaftaranController;
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/login', [AuthController::class, 'login']);
 
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout', [AuthController::class, 'logout']);
+});
 
 Route::get('/', function () {
     return view('dashboard');
