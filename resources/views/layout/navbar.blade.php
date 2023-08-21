@@ -55,11 +55,9 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
           success: function(response) {
-            localStorage.removeItem('access_token');
             window.location.href = '/login';
           },
           error: function(xhr, status, error) {
-            console.log(xhr, status, error, '<-- error logout');
             alert('Error: Failed to logout. Please try again.');
           }
         });
