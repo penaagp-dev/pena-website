@@ -24,10 +24,6 @@ Route::get('/news', function () {
     return view('news');
 });
 
-Route::get('/Admin', function () {
-    return view('Admin');
-});
-
 Route::get('/gallery', function () {
     return view('gallery');
 });
