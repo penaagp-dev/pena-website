@@ -1,6 +1,6 @@
 @extends('layout.base')
 @section('title')
-    Galery
+    Gallery
 @endsection
 @section('content')
     <div id="loading-overlay" class="loading-overlay" style="display: none;">
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-   
+    {{-- modal updert data --}}
     <div class="modal fade" id="GaleryModel" tabindex="-1" role="dialog" aria-labelledby="GaleryModelLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -342,7 +342,7 @@
                     }
 
                     // Fungsi reset modal
-                    $('#GaleriModel').on('hidden.bs.modal', function() {
+                    $('#GaleryModel').on('hidden.bs.modal', function() {
                         isEditMode = false;
                         resetModal();
                         $('.modal-title').text('Tambah Data');
