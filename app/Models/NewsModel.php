@@ -16,7 +16,7 @@ class NewsModel extends Model
         'deskripsi',
         'gambar',
         'link',
-        'tgl_update',
+        'tgl_upload',
         'created_at',
         'update_at',
     ];
