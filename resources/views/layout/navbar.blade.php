@@ -17,7 +17,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
+        <a class="dropdown-item" id="logoutButton">
           <i class="fa-solid fa-right-from-bracket ms-2"></i> Logout
         </a>
         <div class="dropdown-divider"></div>
@@ -32,3 +32,39 @@
 
   </ul>
 </nav>
+
+<script>
+const urlLogout = 'a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout'
+$(document).ready(function() {
+  $('#logoutButton').click(function(e) {
+    Swal.fire({
+      title: 'Yakin ingin Logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel',
+      resolveButton: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        e.preventDefault();
+        $.ajax({
+          url: `{{ url('${urlLogout}') }}`,
+          method: 'POST',
+          dataType: 'json',
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          success: function(response) {
+            localStorage.removeItem('access_token');
+            window.location.href = '/login';
+          },
+          error: function(xhr, status, error) {
+            console.log(xhr, status, error, '<-- error logout');
+            alert('Error: Failed to logout. Please try again.');
+          }
+        });
+      }
+    });
+  });
+});
+</script>
