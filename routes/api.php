@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SetupController;
@@ -48,14 +47,7 @@ Route::prefix('v4')->controller(GaleryController::class)->group(function () {
     Route::post('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/update/{uuid}', 'updateDataByUuid');
     Route::delete('/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/delete/{uuid}', 'deleteData');
 });
-//Api Admin
-Route::prefix('v3')->controller(AdminController::class)->group(function () {
-    Route::get('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin', 'getAllData');
-    Route::post('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin/create', 'createData');
-    Route::get('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin/get/{uuid}', 'getDataByUuid');
-    Route::post('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin/update/{uuid}', 'updateDataByUuid');
-    Route::delete('/gftr6749-57eh-7834-b3w6-yfn74idk84h6/admin/delete/{uuid}', 'deleteData');
-});
+
 //Api News
 Route::prefix('v5')->controller(NewsController::class)->group(function () {
     Route::get('/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news', 'getAllData');
