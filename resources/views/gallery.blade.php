@@ -109,7 +109,7 @@
                                 tableBody += "<td>" + (index + 1) + "</td>";
                                 tableBody += "<td>" + item.nama + "</td>";
                                 tableBody += "<td>" + item.jabatan + "</td>";
-                                tableBody += "<td> <img src='http://127.0.0.1:8000/uploads/galery/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
+                                tableBody += "<td> <img src='uploads/galery/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
                                 tableBody += "<td>" +
                                     "<button type='button' class='btn btn-primary edit-modal' data-toggle='modal' data-target='#EditModal' " +
                                     "data-uuid='" + item.uuid + "'>" +
