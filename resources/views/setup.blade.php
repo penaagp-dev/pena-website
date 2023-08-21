@@ -110,7 +110,13 @@
                                 tableBody += "<td>" + (index + 1) + "</td>";
                                 tableBody += "<td>" + item.title + "</td>";
                                 tableBody += "<td>" + item.deskripsi + "</td>";
-                                tableBody += "<td>" + item.gambar + "</td>";
+                                tableBody += "<td>";
+                                    if (item.gambar) {
+                                        tableBody += "<img src='/uploads/setup/" + item.gambar + "' style='width:50px;height:50px;'>";
+                                    } else {
+                                        tableBody += "<i class='fa-solid fa-face-sad-tear fa-xl'></i> <span>Empty Image</span>";
+                                    }
+                                tableBody += "</td>";
                                 tableBody += "<td>" +
                                     "<button type='button' class='btn btn-primary edit-modal' data-toggle='modal' data-target='#EditModal' " +
                                     "data-uuid='" + item.uuid + "'>" +

@@ -157,7 +157,7 @@ class SetupController extends Controller
                 Storage::makeDirectory('uploads/setup/');
                 $file->move(public_path('uploads/setup/'), $filename);
                 $old_file_path = public_path('uploads/setup/') . $data->gambar;
-                if (file_exists($old_file_path)) {
+                if (file_exists($old_file_path) && is_file($old_file_path)) {
                     unlink($old_file_path);
                 }
                 $data->gambar = $filename;
