@@ -32,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -113,7 +113,7 @@
                         "autoWidth": false,
                     });
                     $.ajax({
-                        url: `{{ url('api/v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news') }}` ,
+                        url: `{{ url('v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news') }}` ,
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
@@ -193,7 +193,7 @@
                             formData.set('tgl_upload', selectedDate);
                             $.ajax({
                                 type: "POST",
-                                url: `{{ url('api/v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/update') }}/` + uuid,
+                                url: `{{ url('v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/update') }}/` + uuid,
                                 data: formData,
                                 dataType: 'json',
                                 contentType: false,
@@ -255,7 +255,7 @@
                             $('#loading-overlay').show();
                             $.ajax({
                                 type: 'POST',
-                                url: `{{ url('api/v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/create') }}`,
+                                url: `{{ url('v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/create') }}`,
                                 data: formData,
                                 dataType: 'JSON',
                                 contentType: false,
@@ -322,7 +322,7 @@
                         });
 
                         $.ajax({
-                            url: `{{ url('api/v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/get') }}/` + uuid,
+                            url: `{{ url('v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/get') }}/` + uuid,
                             type: 'GET',
                             dataType: 'JSON',
                             success: function(data) {
@@ -390,7 +390,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             $.ajax({
-                                url: `{{ url('api/v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/delete') }}/` +
+                                url: `{{ url('v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/delete') }}/` +
                                     uuid,
                                 type: 'DELETE',
                                 data: {

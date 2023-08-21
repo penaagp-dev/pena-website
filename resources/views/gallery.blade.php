@@ -98,7 +98,7 @@
                         "autoWidth": false,
                     });
                     $.ajax({
-                        url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery') }}` ,
+                        url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery') }}` ,
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
@@ -174,7 +174,7 @@
 
                             $.ajax({
                                 type: "POST",
-                                url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/update') }}/` +uuid,
+                                url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/update') }}/` +uuid,
                                 data: formData,
                                 dataType: 'json',
                                 contentType: false,
@@ -233,7 +233,7 @@
                             $('#loading-overlay').show();
                             $.ajax({
                                 type: 'POST',
-                                url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/create') }}`,
+                                url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/create') }}`,
                                 data: formData,
                                 dataType: 'JSON',
                                 contentType: false,
@@ -300,7 +300,7 @@
                         });
 
                         $.ajax({
-                            url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/get') }}/` + uuid,
+                            url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/get') }}/` + uuid,
                             type: 'GET',
                             dataType: 'JSON',
                             success: function(data) {
@@ -364,7 +364,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             $.ajax({
-                                url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/delete') }}/` +
+                                url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/delete') }}/` +
                                     uuid,
                                 type: 'DELETE',
                                 data: {
