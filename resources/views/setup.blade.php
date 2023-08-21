@@ -99,7 +99,7 @@
                         "autoWidth": false,
                     });
                     $.ajax({
-                        url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup') }}` ,
+                        url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup') }}` ,
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
@@ -181,7 +181,7 @@
 
                             $.ajax({
                                 type: "POST",
-                                url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update') }}/` + uuid,
+                                url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update') }}/` + uuid,
                                 data: formData,
                                 dataType: 'json',
                                 contentType: false,
@@ -240,7 +240,7 @@
                             $('#loading-overlay').show();
                             $.ajax({
                                 type: 'POST',
-                                url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/create') }}`,
+                                url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/create') }}`,
                                 data: formData,
                                 dataType: 'JSON',
                                 contentType: false,
@@ -307,7 +307,7 @@
                         });
 
                         $.ajax({
-                            url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/get') }}/` + uuid,
+                            url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/get') }}/` + uuid,
                             type: 'GET',
                             dataType: 'JSON',
                             success: function(data) {
@@ -371,7 +371,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             $.ajax({
-                                url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete') }}/` +
+                                url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete') }}/` +
                                     uuid,
                                 type: 'DELETE',
                                 data: {
