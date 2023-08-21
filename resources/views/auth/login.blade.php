@@ -62,8 +62,6 @@ $(document).ready(function() {
       contentType: false,
       processData: false,
       success: function(data) {
-        console.log(data, '<-- jika berhasil login');
-        localStorage.setItem('token', data.access_token);
         Swal.fire({
           title: 'Success',
           text: 'Berhasil Login',
@@ -75,7 +73,6 @@ $(document).ready(function() {
         });
       },
       error: function(data) {
-        console.log(data, '<-- error login');
         Swal.fire({
           title: 'Error',
           html: 'Email atau password salah',
