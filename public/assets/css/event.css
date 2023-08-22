@@ -11,10 +11,10 @@ swiper-slide {
   background: #fff;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
+  width: 400px;
   min-height: 400px;
   max-height: fit-content;
-  width: 400px;
   border-radius: 8px;
   padding: 10px;
   margin-left: 20px;
@@ -47,9 +47,10 @@ swiper-slide img {
     width: fit-content;
   }
 }
-@media (min-width : 2000px){
+@media (max-width : 2000px){
   swiper-container{
-    left: 8%;
-    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 } */
