@@ -39,7 +39,7 @@ $(document).ready(function() {
   $('#logoutButton').click(function(e) {
     Swal.fire({
       title: 'Yakin ingin Logout?',
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Yes',
       cancelButtonText: 'Cancel',

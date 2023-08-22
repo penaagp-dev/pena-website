@@ -27,7 +27,6 @@ Route::middleware('guest')->group(function () {
     Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/login', [AuthController::class, 'login']);
 });
 
-
 Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/cms/dashboard', function () {
         return view('dashboard');
@@ -87,5 +86,13 @@ Route::middleware(['web', 'auth'])->group(function () {
     });
 
 
+
+Route::get('/cms/setup', function () {
+    return view('setup');
+});
+
+
     Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout', [AuthController::class, 'logout']);
 });
+
+

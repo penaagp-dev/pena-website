@@ -117,14 +117,13 @@
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
-                            console.log(response);
                             var tableBody = "";
                             $.each(response.data, function(index, item) {
                                 tableBody += "<tr>";
                                 tableBody += "<td>" + (index + 1) + "</td>";
                                 tableBody += "<td>" + item.title + "</td>";
                                 tableBody += "<td>" + item.deskripsi + "</td>";
-                                tableBody += "<td> <img src='http://127.0.0.1:8000/uploads/news/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
+                                tableBody += "<td> <img src='uploads/news/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
                                 tableBody += "<td>" + item.link + "</td>";
                                 tableBody += "<td>" + item.tgl_upload + "</td>";
                                 tableBody += "<td>" +
@@ -398,7 +397,7 @@
                                     "uuid": uuid
                                 },
                                 success: function(response) {
-                                    console.log(response);
+    
                                     if (response.code === 200) {
                                         Swal.fire({
                                             title: 'Data berhasil dihapus',
@@ -433,5 +432,6 @@
                 });
         })
     </script>
-    @endsection
+   @endsection 
+   
 
