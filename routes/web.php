@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\GaleryController;
+use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\API\PendaftaranController;
+use App\Http\Controllers\Api\SetupController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,25 +17,29 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Rute login (gunakan middleware 'guest' untuk memastikan pengguna yang sudah terotentikasi tidak dapat mengaksesnya)
+Route::middleware(['checkLoginStatus', 'guest'])->group(function () {
+    Route::get('/cms/login', function () {
+        return view('auth.login');
+    });
 
-Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/login', [AuthController::class, 'login']);
+    Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/login', [AuthController::class, 'login']);
+});
 
-Route::middleware(['web', 'auth'])->group(function () {
-    Route::get('/', function () {
+
+Route::middleware(['web', 'auth', 'checkLoginStatus'])->group(function () {
+    Route::get('/cms/dashboard', function () {
         return view('dashboard');
     });
 
-    Route::get('/news', function () {
+    Route::get('/cms/news', function () {
         return view('news');
     });
 
-    Route::get('/gallery', function () {
+    Route::get('/cms/gallery', function () {
         return view('gallery');
     });
 
-    Route::get('/login', function () {
-        return view('login');
-    });
     Route::get('/cms/setup', function () {
         return view('setup');
     });
@@ -40,6 +47,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/cms/pendaftaran', function () {
         return view('pendaftaran');
     });
+
     //API pendaftaran
     Route::prefix('v1')->controller(PendaftaranController::class)->group(function () {
         Route::get('/febba411-89e8-4fb3-9f55-85c56dcff41d/pendaftaran', 'getAllData');
