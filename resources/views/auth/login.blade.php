@@ -8,7 +8,7 @@
             <span class="h1"><b>Admin Web PENA</b></span>
           </div>
           <div class="card-body">
-      
+
             <form method="post" id="loginForm">
               @csrf
               <div class="input-group mb-3">
@@ -35,8 +35,8 @@
                 <!-- /.col -->
               </div>
             </form>
-      
-            
+
+
           </div>
           <!-- /.card-body -->
         </div>
@@ -64,18 +64,18 @@ $(document).ready(function() {
       success: function(data) {
         Swal.fire({
           title: 'Success',
-          text: 'Berhasil Login',
+          text: 'Login Successfully',
           icon: 'success',
           showCancelButton: false,
           confirmButtonText: 'OK'
         }).then(function() {
-          window.location.href = '/';
+          window.location.href = '/cms/dashboard';
         });
       },
       error: function(data) {
         Swal.fire({
           title: 'Error',
-          html: 'Email atau password salah',
+          html: 'Login Failed',
           icon: 'error',
           timer: 5000,
           showConfirmButton: true

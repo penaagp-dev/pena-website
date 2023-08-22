@@ -10,7 +10,7 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap 4 -->
@@ -36,24 +36,22 @@
 <script src="{{ asset('assets/dist/js/pages/dashboard.js')}}"></script>
 
 <script>
-  const getId = (id) => document.getElementById(id)
-
-  const checkActiveMenu = () => {
-    const currentUrl = window.location.href;
-    const url = new URL(currentUrl);
-    const routePath = url.pathname;   // route name
-
-    if (routePath === '/') {
-      getId('dashboard').classList.add('active')
-    } else if(routePath === '/gallery') {
-      getId('gallery').classList.add('active')
-    } else if(routePath === '/news') {
-      getId('news').classList.add('active')
-    } else if(routePath === '/setup') {
-      getId('setup').classList.add('active')
+  const currentUrl = window.location.pathname;
+  const menuItems = [
+    { id: 'dashboard', url: '/cms/dashboard' },
+    { id: 'gallery', url: '/cms/gallery' },
+    { id: 'news', url: '/cms/news' },
+    { id: 'setup', url: '/cms/setup' },
+    { id: 'pendaftaran', url: '/cms/pendaftaran' },
+  ];
+  menuItems.forEach(item => {
+    if (item.url === currentUrl) {
+        const menuItem = document.getElementById(item.id);
+        if (menuItem) {
+            menuItem.classList.add('active');
+        }
     }
-  }
-  checkActiveMenu()
+  });
 
 </script>
 
