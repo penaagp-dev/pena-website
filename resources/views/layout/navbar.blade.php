@@ -15,7 +15,7 @@
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="fa-solid fa-right-from-bracket"></i>
       </a>
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="cursor: pointer">
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" id="logoutButton">
           <i class="fa-solid fa-right-from-bracket ms-2"></i> Logout
@@ -47,6 +47,16 @@ $(document).ready(function() {
     }).then((result) => {
       if (result.isConfirmed) {
         e.preventDefault();
+        var loadingSwal = Swal.fire({
+          title: 'Loading...',
+          html: 'Please wait while processing...',
+          allowOutsideClick: false,
+          showCancelButton: false,
+          showConfirmButton: false,
+          onBeforeOpen: () => {
+            Swal.showLoading();
+          }
+        });
         $.ajax({
           url: `{{ url('${urlLogout}') }}`,
           method: 'POST',
@@ -55,10 +65,16 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
           success: function(response) {
+            loadingSwal.close();
             window.location.href = '/cms/login';
           },
           error: function(xhr, status, error) {
-            alert('Error: Failed to logout. Please try again.');
+            loadingSwal.close();
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Failed to logout. Please try again.',
+            })
           }
         });
       }
