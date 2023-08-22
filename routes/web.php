@@ -85,12 +85,5 @@ Route::middleware(['web', 'auth'])->group(function () {
         Route::delete('/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news/delete/{uuid}', 'deleteData');
     });
 
-
-
-    Route::get('/cms/setup', function () {
-        return view('setup');
-    });
-
-
     Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout', [AuthController::class, 'logout']);
 });
