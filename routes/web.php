@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\PendaftaranController;
+use App\Http\Controllers\Api\SetupController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,7 @@ Route::middleware(['web', 'auth'])->group(function () {
         Route::get('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup', 'getAllData');
         Route::post('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/create', 'createData');
         Route::get('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/get/{uuid}', 'getDataByUuid');
+        Route::get('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/{title}', 'getDataByTitle');
         Route::post('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update/{uuid}', 'updateDataByUuid');
         Route::delete('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete/{uuid}', 'deleteData');
     });

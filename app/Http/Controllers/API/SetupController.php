@@ -58,7 +58,7 @@ class SetupController extends Controller
         try {
             $data = new SetupModel();
             $data->uuid = Uuid::uuid4()->toString();
-            $data->title = clean($request->input('title'));
+            $data->title = $request->input('title');
             $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
@@ -108,6 +108,23 @@ class SetupController extends Controller
         }
     }
 
+    public function getDataByTitle($title)
+    {
+        $data = SetupModel::where('title', $title)->first();
+        if (!$data) {
+            return response()->json([
+                'code' => 400,
+                'message' => 'Data not found',
+            ]);
+        } else {
+            return response()->json([
+                'code' => 200,
+                'message' => 'Get data by Title successfully',
+                'data' => $data
+            ]);
+        }
+    }
+
     public function updateDataByUuid(Request $request, $uuid)
     {
         if (!Uuid::isValid($uuid)) {
@@ -148,7 +165,7 @@ class SetupController extends Controller
                 ]);
             }
 
-            $data->title = clean($request->input('title'));
+            $data->title = $request->input('title');
             $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
