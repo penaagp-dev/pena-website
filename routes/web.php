@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\API\GaleryController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\API\PendaftaranController;
@@ -47,7 +48,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/cms/pendaftaran', function () {
         return view('pendaftaran');
     });
-
+    // Api dashboard
+    Route::get('/27fb9214-0f07-4240-b684-6009fd37a385/dashboard/count', [DashboardController::class, 'countData']);
     //API pendaftaran
     Route::prefix('v1')->controller(PendaftaranController::class)->group(function () {
         Route::get('/febba411-89e8-4fb3-9f55-85c56dcff41d/pendaftaran', 'getAllData');
