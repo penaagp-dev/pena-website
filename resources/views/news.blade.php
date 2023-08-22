@@ -117,7 +117,6 @@
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
-                            console.log(response);
                             var tableBody = "";
                             $.each(response.data, function(index, item) {
                                 tableBody += "<tr>";
@@ -398,7 +397,7 @@
                                     "uuid": uuid
                                 },
                                 success: function(response) {
-                                    console.log(response);
+    
                                     if (response.code === 200) {
                                         Swal.fire({
                                             title: 'Data berhasil dihapus',

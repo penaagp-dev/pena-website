@@ -40,6 +40,4 @@ Route::get('/cms/pendaftaran', function () {
     return view('pendaftaran');
 });
 
-Route::get('/cms/latihan', function () {
-    return view('latihan');
-});
+
