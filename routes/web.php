@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\GaleryController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\API\PendaftaranController;
