@@ -6,6 +6,7 @@ use Ramsey\Uuid\Uuid;
 use App\Models\SetupModel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Mews\Purifier\Facades\Purifier;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -58,7 +59,7 @@ class SetupController extends Controller
         try {
             $data = new SetupModel();
             $data->uuid = Uuid::uuid4()->toString();
-            $data->title = $request->input('title');
+            $data->title = clean($request->input('title'));
             $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
@@ -110,11 +111,15 @@ class SetupController extends Controller
 
     public function getDataByTitle($title)
     {
-        $data = SetupModel::where('title', $title)->first();
+
+        $decodedTitle = urldecode($title);
+        $cleanCode = Purifier::clean($decodedTitle);
+        $data = SetupModel::where('title', $cleanCode)->first();
+
         if (!$data) {
             return response()->json([
                 'code' => 400,
-                'message' => 'Data not found',
+                'message' => 'Data not found or title invalid',
             ]);
         } else {
             return response()->json([
@@ -124,6 +129,7 @@ class SetupController extends Controller
             ]);
         }
     }
+
 
     public function updateDataByUuid(Request $request, $uuid)
     {
@@ -165,7 +171,7 @@ class SetupController extends Controller
                 ]);
             }
 
-            $data->title = $request->input('title');
+            $data->title = clean($request->input('title'));
             $data->deskripsi = clean($request->input('deskripsi'));
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
