@@ -53,7 +53,18 @@ $(document).ready(function() {
   formTambah.on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
-    $('#loading-overlay').show();
+    
+    var loadingSwal = Swal.fire({
+      title: 'Loading...',
+      html: 'Please wait while processing...',
+      allowOutsideClick: false,
+      showCancelButton: false,
+      showConfirmButton: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     $.ajax({
       type: 'POST',
       url: `{{ url('${apiUrl}') }}`,
@@ -62,6 +73,7 @@ $(document).ready(function() {
       contentType: false,
       processData: false,
       success: function(data) {
+        loadingSwal.close();
         Swal.fire({
           title: 'Success',
           text: 'Login Successfully',
@@ -73,6 +85,7 @@ $(document).ready(function() {
         });
       },
       error: function(data) {
+        loadingSwal.close();
         Swal.fire({
           title: 'Error',
           html: 'Login Failed',
@@ -80,8 +93,8 @@ $(document).ready(function() {
           timer: 5000,
           showConfirmButton: true
         });
-        }
-      });
+      }
+    });
   });
 });
 </script>
