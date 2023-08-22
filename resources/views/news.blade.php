@@ -124,7 +124,7 @@
                                 tableBody += "<td>" + (index + 1) + "</td>";
                                 tableBody += "<td>" + item.title + "</td>";
                                 tableBody += "<td>" + item.deskripsi + "</td>";
-                                tableBody += "<td> <img src='http://127.0.0.1:8000/uploads/news/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
+                                tableBody += "<td> <img src='uploads/news/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
                                 tableBody += "<td>" + item.link + "</td>";
                                 tableBody += "<td>" + item.tgl_upload + "</td>";
                                 tableBody += "<td>" +
@@ -433,5 +433,6 @@
                 });
         })
     </script>
-    @endsection
+   @endsection 
+   
 
