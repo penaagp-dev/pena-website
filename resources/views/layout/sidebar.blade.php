@@ -39,7 +39,7 @@
         </li>
         <li class="nav-item">
           <a href="/cms/pendaftaran" class="nav-link" id="pendaftaran">
-            <i class="fa-solid fa-gear mr-2"></i>
+           <i class="fa-solid fa-user-plus"></i>
             <p>Pendaftaran</p>
           </a>
         </li>
