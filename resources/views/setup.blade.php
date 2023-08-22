@@ -99,7 +99,7 @@
                         "autoWidth": false,
                     });
                     $.ajax({
-                        url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup') }}` ,
+                        url: `{{ url('/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup') }}` ,
                         method: "GET",
                         dataType: "json",
                         success: function(response) {

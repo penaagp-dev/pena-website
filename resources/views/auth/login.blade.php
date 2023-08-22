@@ -8,7 +8,7 @@
             <span class="h1"><b>Admin Web PENA</b></span>
           </div>
           <div class="card-body">
-      
+
             <form method="post" id="loginForm">
               @csrf
               <div class="input-group mb-3">
@@ -35,8 +35,8 @@
                 <!-- /.col -->
               </div>
             </form>
-      
-            
+
+
           </div>
           <!-- /.card-body -->
         </div>
@@ -53,7 +53,18 @@ $(document).ready(function() {
   formTambah.on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
-    $('#loading-overlay').show();
+    
+    var loadingSwal = Swal.fire({
+      title: 'Loading...',
+      html: 'Please wait while processing...',
+      allowOutsideClick: false,
+      showCancelButton: false,
+      showConfirmButton: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     $.ajax({
       type: 'POST',
       url: `{{ url('${apiUrl}') }}`,
@@ -62,26 +73,28 @@ $(document).ready(function() {
       contentType: false,
       processData: false,
       success: function(data) {
+        loadingSwal.close();
         Swal.fire({
           title: 'Success',
-          text: 'Berhasil Login',
+          text: 'Login Successfully',
           icon: 'success',
           showCancelButton: false,
           confirmButtonText: 'OK'
         }).then(function() {
-          window.location.href = '/';
+          window.location.href = '/cms/dashboard';
         });
       },
       error: function(data) {
+        loadingSwal.close();
         Swal.fire({
           title: 'Error',
-          html: 'Email atau password salah',
+          html: 'Login Failed',
           icon: 'error',
           timer: 5000,
           showConfirmButton: true
         });
-        }
-      });
+      }
+    });
   });
 });
 </script>
