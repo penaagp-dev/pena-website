@@ -63,6 +63,7 @@ Route::middleware(['web', 'auth'])->group(function () {
         Route::get('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup', 'getAllData');
         Route::post('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/create', 'createData');
         Route::get('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/get/{uuid}', 'getDataByUuid');
+        Route::get('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/{title}', 'getDataByTitle')->where('title', '.*<p>.*');;
         Route::post('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update/{uuid}', 'updateDataByUuid');
         Route::delete('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete/{uuid}', 'deleteData');
     });
@@ -86,12 +87,10 @@ Route::middleware(['web', 'auth'])->group(function () {
 
 
 
-Route::get('/cms/setup', function () {
-    return view('setup');
-});
+    Route::get('/cms/setup', function () {
+        return view('setup');
+    });
 
 
     Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout', [AuthController::class, 'logout']);
 });
-
-
