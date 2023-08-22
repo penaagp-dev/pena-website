@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Rute login (gunakan middleware 'guest' untuk memastikan pengguna yang sudah terotentikasi tidak dapat mengaksesnya)
-Route::middleware(['checkLoginStatus', 'guest'])->group(function () {
+Route::middleware('guest')->group(function () {
     Route::get('/cms/login', function () {
         return view('auth.login');
     });
@@ -27,7 +27,7 @@ Route::middleware(['checkLoginStatus', 'guest'])->group(function () {
 });
 
 
-Route::middleware(['web', 'auth', 'checkLoginStatus'])->group(function () {
+Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/cms/dashboard', function () {
         return view('dashboard');
     });
