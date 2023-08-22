@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/visi.css')}}" />
     <!-- icon -->
     <link rel="icon" href="{{('assets/img/pena.png')}}" />
+    {{-- jquery --}}
+    <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
   </head>
 
   <body>
