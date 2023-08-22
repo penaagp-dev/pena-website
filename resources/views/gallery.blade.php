@@ -1,6 +1,6 @@
 @extends('layout.base')
 @section('title')
-    Galery
+    Gallery
 @endsection
 @section('content')
     <div id="loading-overlay" class="loading-overlay" style="display: none;">
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-   
+    {{-- modal updert data --}}
     <div class="modal fade" id="GaleryModel" tabindex="-1" role="dialog" aria-labelledby="GaleryModelLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -98,18 +98,17 @@
                         "autoWidth": false,
                     });
                     $.ajax({
-                        url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery') }}` ,
+                        url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery') }}` ,
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
-                            console.log(response);
                             var tableBody = "";
                             $.each(response.data, function(index, item) {
                                 tableBody += "<tr>";
                                 tableBody += "<td>" + (index + 1) + "</td>";
                                 tableBody += "<td>" + item.nama + "</td>";
                                 tableBody += "<td>" + item.jabatan + "</td>";
-                                tableBody += "<td> <img src='http://127.0.0.1:8000/uploads/galery/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
+                                tableBody += "<td> <img src='/uploads/galery/"+ item.gambar +"' style='width:100px;height:100px;'> </td>";
                                 tableBody += "<td>" +
                                     "<button type='button' class='btn btn-primary edit-modal' data-toggle='modal' data-target='#EditModal' " +
                                     "data-uuid='" + item.uuid + "'>" +
@@ -174,7 +173,7 @@
 
                             $.ajax({
                                 type: "POST",
-                                url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/update') }}/` +uuid,
+                                url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/update') }}/` +uuid,
                                 data: formData,
                                 dataType: 'json',
                                 contentType: false,
@@ -233,7 +232,7 @@
                             $('#loading-overlay').show();
                             $.ajax({
                                 type: 'POST',
-                                url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/create') }}`,
+                                url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/create') }}`,
                                 data: formData,
                                 dataType: 'JSON',
                                 contentType: false,
@@ -300,7 +299,7 @@
                         });
 
                         $.ajax({
-                            url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/get') }}/` + uuid,
+                            url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/get') }}/` + uuid,
                             type: 'GET',
                             dataType: 'JSON',
                             success: function(data) {
@@ -342,7 +341,7 @@
                     }
 
                     // Fungsi reset modal
-                    $('#GaleriModel').on('hidden.bs.modal', function() {
+                    $('#GaleryModel').on('hidden.bs.modal', function() {
                         isEditMode = false;
                         resetModal();
                         $('.modal-title').text('Tambah Data');
@@ -364,7 +363,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             $.ajax({
-                                url: `{{ url('api/v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/delete') }}/` +
+                                url: `{{ url('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery/delete') }}/` +
                                     uuid,
                                 type: 'DELETE',
                                 data: {

@@ -1,0 +1,19 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.form-wrap{
+  padding: 50px 0px;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrap-form{
+  background-color: rgb(233, 233, 233);
+  max-width: fit-content;
+  /* height: 400px; */
+  border-radius: 8px;
+}
+.form{
+  padding: 20px;
+}

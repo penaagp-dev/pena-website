@@ -99,7 +99,7 @@
                         "autoWidth": false,
                     });
                     $.ajax({
-                        url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup') }}` ,
+                        url: `{{ url('/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup') }}` ,
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
@@ -110,7 +110,13 @@
                                 tableBody += "<td>" + (index + 1) + "</td>";
                                 tableBody += "<td>" + item.title + "</td>";
                                 tableBody += "<td>" + item.deskripsi + "</td>";
-                                tableBody += "<td>" + item.gambar + "</td>";
+                                tableBody += "<td>";
+                                    if (item.gambar) {
+                                        tableBody += "<img src='/uploads/setup/" + item.gambar + "' style='width:50px;height:50px;'>";
+                                    } else {
+                                        tableBody += "<i class='fa-solid fa-face-sad-tear fa-xl'></i> <span>Empty Image</span>";
+                                    }
+                                tableBody += "</td>";
                                 tableBody += "<td>" +
                                     "<button type='button' class='btn btn-primary edit-modal' data-toggle='modal' data-target='#EditModal' " +
                                     "data-uuid='" + item.uuid + "'>" +
@@ -175,7 +181,7 @@
 
                             $.ajax({
                                 type: "POST",
-                                url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update') }}/` + uuid,
+                                url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update') }}/` + uuid,
                                 data: formData,
                                 dataType: 'json',
                                 contentType: false,
@@ -234,7 +240,7 @@
                             $('#loading-overlay').show();
                             $.ajax({
                                 type: 'POST',
-                                url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/create') }}`,
+                                url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/create') }}`,
                                 data: formData,
                                 dataType: 'JSON',
                                 contentType: false,
@@ -301,7 +307,7 @@
                         });
 
                         $.ajax({
-                            url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/get') }}/` + uuid,
+                            url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/get') }}/` + uuid,
                             type: 'GET',
                             dataType: 'JSON',
                             success: function(data) {
@@ -365,7 +371,7 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             $.ajax({
-                                url: `{{ url('api/v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete') }}/` +
+                                url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete') }}/` +
                                     uuid,
                                 type: 'DELETE',
                                 data: {

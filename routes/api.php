@@ -4,6 +4,7 @@ use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\PendaftaranController;
 use App\Http\Controllers\API\SetupController;
 use App\Http\Controllers\API\GaleryController;
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
