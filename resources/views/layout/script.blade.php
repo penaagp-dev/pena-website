@@ -10,7 +10,7 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Bootstrap 4 -->
@@ -43,15 +43,16 @@
     const url = new URL(currentUrl);
     const routePath = url.pathname;   // route name
 
-    if (routePath === '/') {
+    if (routePath === '/cms/dashboard') {
       getId('dashboard').classList.add('active')
-    } else if(routePath === '/gallery') {
+    } else if(routePath === '/cms/gallery') {
       getId('gallery').classList.add('active')
-    } else if(routePath === '/news') {
+    } else if(routePath === '/cms/news') {
       getId('news').classList.add('active')
-    } else if(routePath === '/setup') {
+    } else if(routePath === '/cms/setup') {
       getId('setup').classList.add('active')
-    }
+    }else if(routePath === '/cms/pendaftaran') {
+      getId('pendaftaran').classList.add('active')
   }
   checkActiveMenu()
 

@@ -23,7 +23,7 @@
         <div class="dropdown-divider"></div>
       </div>
     </li>
-    
+
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen" href="#" role="button">
         <i class="fas fa-expand-arrows-alt"></i>
@@ -55,7 +55,7 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
           success: function(response) {
-            window.location.href = '/login';
+            window.location.href = '/cms/login';
           },
           error: function(xhr, status, error) {
             alert('Error: Failed to logout. Please try again.');

@@ -14,19 +14,19 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
         <li class="nav-item">
-          <a href="/" class="nav-link" id="dashboard">
+          <a href="/cms/dashboard" class="nav-link" id="dashboard">
             <i class="fa-solid fa-house mr-2"></i>
             <p>Dashboard</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/gallery" class="nav-link" id="gallery">
+          <a href="/cms/gallery" class="nav-link" id="gallery">
             <i class="fa-solid fa-image mr-2"></i>
             <p>Gallery</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/news" class="nav-link" id="news">
+          <a href="/cms/news" class="nav-link" id="news">
             <i class="fa-solid fa-newspaper mr-2"></i>
             <p>News</p>
           </a>
@@ -38,7 +38,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/cms/pendaftaran" class="nav-link" id="setup">
+          <a href="/cms/pendaftaran" class="nav-link" id="pendaftaran">
             <i class="fa-solid fa-gear mr-2"></i>
             <p>Pendaftaran</p>
           </a>
