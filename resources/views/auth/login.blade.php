@@ -5,7 +5,8 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
           <div class="card-header text-center">
-            <span class="h1"><b>Admin Web PENA</b></span>
+            <img src="{{ asset('assets/dist/img/pena.png')}}" class="w-25" alt=""> <br>
+            <span class="h1"><b>PENA</b></span>
           </div>
           <div class="card-body">
 
