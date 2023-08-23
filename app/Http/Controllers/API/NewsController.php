@@ -40,7 +40,7 @@ class NewsController extends Controller
                  'title' => 'required',
                  'deskripsi' => 'required',
                  'gambar' => 'required|mimes:png,jpg,jpeg',
-                 'link' => 'required|url',
+                 'link' => 'nullable:url',
                  'tgl_upload' => 'required|date',
              ],
              [
@@ -48,10 +48,8 @@ class NewsController extends Controller
                  'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
                  'gambar.required' => 'Form gambar tidak boleh kosong',
                  'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG ',
-                 
-                 'link' => 'Form link tidak boleh kosong',
                  'link.url' => 'Format harus URL... !',
-                 'tgl_upload' => 'Form tanggal update tidak boleh kosong',
+                 'tgl_upload.required' => 'Form tanggal update tidak boleh kosong',
                  'tgl_upload.date' => 'Format harus date !'
              ]
          );
@@ -146,15 +144,14 @@ class NewsController extends Controller
                 [
                     'title' => 'required',
                     'deskripsi' => 'required',
-                    'gambar' => 'mimes:png,jpg,jpeg',
-                    'link' => 'required|url',
+                    'gambar' => 'required|mimes:png,jpg,jpeg',
+                    'link' => 'nullable:url',
                     'tgl_upload' => 'required|date',
                 ],
                 [
                     'title.required' => 'Form title tidak boleh kosong',
                     'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
                     'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG ',
-                    'link' => 'Form link tidak boleh kosong',
                     'link.url' => 'Format harus URL.....!',
                     'tgl_upload' => 'Form tanggal update tidak boleh kosong',
                     'tgl_upload.date' => 'Format harus date !'

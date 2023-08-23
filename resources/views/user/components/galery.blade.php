@@ -1,7 +1,7 @@
 <div id="galery" class="galery-wrap">
   <h1 class="text-center text-dark p-4" style="background: rgb(240, 240, 240); margin: 0">Pengurus inti dan Pembina</h1>
   <div class="galery pb-5" id="galleryData">
-
+  
   </div>
 </div>
 
