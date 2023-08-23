@@ -122,7 +122,7 @@ class PendaftaranController extends Controller
 
     public function toLinksWa()
     {
-        return redirect('https://chat.whatsapp.com/CnbFsEig9SWE9a7KEHhrtU')->with([
+        return redirect('https://chat.whatsapp.com/FX3ayRMM6wqGSmKDSXR7GS')->with([
             'message' => 'success',
             'code' => 200
         ]);
