@@ -150,7 +150,7 @@
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Konfirmasi email kamu</h1>
+              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Join to whatsapp group</h1>
             </td>
           </tr>
         </table>
@@ -176,7 +176,7 @@
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Mohon klik button di bawah ini untuk join ke Whatsapp grub</p>
+              <p style="margin: 0;">klik button di bawah ini untuk join ke Whatsapp grub</p>
             </td>
           </tr>
           <!-- end copy -->
@@ -190,7 +190,7 @@
                     <table border="0" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                          <a href="{{ $waSendLink }}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verification</a>
+                          <a href="{{ $waSendLink }}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Gabung sekarang</a>
                         </td>
                       </tr>
                     </table>
@@ -204,7 +204,7 @@
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Terimakasih sudah memilih PENA sebagai tujuan anda untuk 3 tahun kedepan, mari bersama - sama kita ciptakan sebuah enofasi yang  .... </p>
+              <p style="margin: 0;">Terimakasih sudah memilih PENA sebagai tujuan anda untuk 3 tahun kedepan, mari bersama - sama menciptakan generasi muda yang berkualitas </p>
   
             </td>
           </tr>
