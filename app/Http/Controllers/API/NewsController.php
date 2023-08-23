@@ -34,33 +34,33 @@ class NewsController extends Controller
 
     public function createData(Request $request)
     {
-         $validation = Validator::make(
-             $request->all(),
-             [
-                 'title' => 'required',
-                 'deskripsi' => 'required',
-                 'gambar' => 'required|mimes:png,jpg,jpeg',
-                 'link' => 'nullable:url',
-                 'tgl_upload' => 'required|date',
-             ],
-             [
-                 'title.required' => 'Form title tidak boleh kosong',
-                 'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
-                 'gambar.required' => 'Form gambar tidak boleh kosong',
-                 'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG ',
-                 'link.url' => 'Format harus URL... !',
-                 'tgl_upload.required' => 'Form tanggal update tidak boleh kosong',
-                 'tgl_upload.date' => 'Format harus date !'
-             ]
-         );
+        $validation = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required',
+                'deskripsi' => 'required',
+                'gambar' => 'required|mimes:png,jpg,jpeg',
+                'link' => 'nullable:url',
+                'tgl_upload' => 'required|date',
+            ],
+            [
+                'title.required' => 'Form title tidak boleh kosong',
+                'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
+                'gambar.required' => 'Form gambar tidak boleh kosong',
+                'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG ',
+                'link.url' => 'Format harus URL... !',
+                'tgl_upload.required' => 'Form tanggal update tidak boleh kosong',
+                'tgl_upload.date' => 'Format harus date !'
+            ]
+        );
 
-         if ($validation->fails()) {
-             return response()->json([
-                 'code' => 422,
-                 'message' => 'Check your validation',
-                 'errors' => $validation->errors()
-             ]);
-         }
+        if ($validation->fails()) {
+            return response()->json([
+                'code' => 422,
+                'message' => 'Check your validation',
+                'errors' => $validation->errors()
+            ]);
+        }
 
         try {
             $data = new NewsModel;
@@ -144,7 +144,7 @@ class NewsController extends Controller
                 [
                     'title' => 'required',
                     'deskripsi' => 'required',
-                    'gambar' => 'required|mimes:png,jpg,jpeg',
+                    'gambar' => 'mimes:png,jpg,jpeg',
                     'link' => 'nullable:url',
                     'tgl_upload' => 'required|date',
                 ],
@@ -156,7 +156,7 @@ class NewsController extends Controller
                     'tgl_upload' => 'Form tanggal update tidak boleh kosong',
                     'tgl_upload.date' => 'Format harus date !'
                 ]
-            
+
             );
 
             if ($validation->fails()) {
@@ -230,7 +230,7 @@ class NewsController extends Controller
                 'errors' => $th->getMessage()
             ]);
         }
-        
+
 
         return response()->json([
             'code' => 200,
