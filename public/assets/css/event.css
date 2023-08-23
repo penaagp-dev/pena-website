@@ -56,3 +56,12 @@ p {
   margin: 0;
   font-size: 1rem;
 }
+.slider-container::-webkit-scrollbar {
+  height: 0px;
+}
+
+.slider-container::-webkit-scrollbar-thumb {
+  background-color: #888; 
+  height: 0px;
+  border-radius: 5px; 
+}
