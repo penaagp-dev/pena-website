@@ -5,7 +5,7 @@
         </div>
         <div class="w-100 bg-transparent content-about">
             <p class="mt-3 fs-1 fw-bold bg-transparent" id="titleAbout">About</p>
-            <p id="deskripsiAbout" class="fs-4 fw-normal text-body" style="text-align: justify;" ></p>
+            <p id="deskripsiAbout" class="fw-normal text-body" style="text-align: justify;font-size:20px;" ></p>
         </div>
     </div>
 </section>

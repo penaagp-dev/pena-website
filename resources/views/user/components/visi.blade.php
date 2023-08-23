@@ -1,8 +1,8 @@
 <div class="visi">
     <div class="visi-wrapper container">
       <div class="visi-text w-100">
-        <h1 class="display-5 fw-semibold" style="max-width: 600px;">Visi Misi</h1>
-        <p id="visiMisi" class="fs-4 fw-normal" style="text-align: justify;">
+        <h1 class="display-5 fw-semibold" style="max-width: 600px;margin-left:-5px;">Visi Misi</h1>
+        <p id="visiMisi" class="fw-normal" style="text-align: justify;font-size:20px;">
 
         </p>
       </div>
