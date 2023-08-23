@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Rute login (gunakan middleware 'guest' untuk memastikan pengguna yang sudah terotentikasi tidak dapat mengaksesnya)
+
+Route::get('/', function () {
+    return view('user.index');
+});
+
 Route::middleware('guest')->group(function () {
     Route::get('/cms/login', function () {
         return view('auth.login');

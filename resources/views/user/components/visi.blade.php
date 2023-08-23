@@ -2,14 +2,37 @@
     <div class="visi-wrapper container">
       <div class="visi-text w-100">
         <h1 class="display-5 fw-semibold" style="max-width: 600px;">Visi Misi</h1>
-        <p class="fs-4 fw-normal" style="text-align: justify;">
-          Menciptakan kader yang siap saji dan berdaya saing dalam bidang IT serta mencipatakan lingkungan kekeluargaan didalam maupun diluar rumah
-          Menciptakan kader yang siap saji dan berdaya saing dalam bidang IT serta mencipatakan lingkungan kekeluargaan didalam maupun diluar rumah
-          Menciptakan kader yang siap saji dan berdaya saing dalam bidang IT serta mencipatakan lingkungan kekeluargaan didalam maupun diluar rumah
+        <p id="visiMisi" class="fs-4 fw-normal" style="text-align: justify;">
+
         </p>
       </div>
       <div class="img-visi w-100">
-        <img src="{{ asset('assets/img/undraw_visionary_technology_re_jfp7.svg')}}" class="img-fluid" alt="image" />
+        <img id="imgVisiMisi" src="" class="img-fluid" alt="image" />
       </div>
     </div>
   </div>
+<script>
+$(document).ready(function(){
+  $.ajax({
+    url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/') }}/` +'<p>visimisi</p>',
+    method: "GET",
+    dataType: "json",
+    success: function(response) {
+        console.log(response);
+        if (response.data) {
+            var item = response.data;
+            $("#imgVisiMisi").attr('src', `/uploads/setup/${item.gambar}`);
+            var deskripsi = item.deskripsi;
+            var deskripsiTanpaTag = deskripsi.replace(/<\/?[^>]+(>|$)/g, "");
+            $("#visiMisi").text(deskripsiTanpaTag);
+        } else {
+            console.log("Data tidak ditemukan");
+        }
+    },
+    error: function() {
+      console.log("Failed to get data from the server");
+    }
+  });
+});
+</script>
+
