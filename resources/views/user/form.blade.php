@@ -124,7 +124,7 @@
                         name="alasan_masuk"></textarea>
                 </div>
                 <div class="d-flex justify-content-between pt-5 pb-4">
-                    <a class="btn btn-secondary" href="index.html" role="button"><i
+                    <a class="btn btn-secondary" href='{{url('/')}}' role="button"><i
                             class="fa-solid fa-angle-left me-2"></i>back</a>
                     <button class="btn btn-primary">Submit <i class="fa-solid fa-paper-plane ms-2"></i></button>
                 </div>
