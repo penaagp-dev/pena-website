@@ -10,24 +10,21 @@
                 <img src="{{ asset('assets/img/pena.png')}}" class="footer-logo" alt="Laplace" />
               </a>
             </div>
-            <p class="text-light">tetap semangat dan jangan lupa bernafas heheheheheheh</p>
+            <p class="text-light">Tetap semangat dan jangan lupa bernafas.</p>
           </div>
         </section>
         <section>
           <ul>
             <h3>Sosial Media</h3>
             <span class="sosial-link">
-              <a href="#" title="instagram">
+              <a href="https://instagram.com/pena_stmikadhiguna" target="_blank" title="instagram">
                 <i class="fa-brands fa-instagram fa-xl"></i>
               </a>
-              <a href="#" title="facebook">
+              <a href="https://web.facebook.com/penastmikadhiguna" target="_blank" title="facebook">
                 <i class="fa-brands fa-facebook fa-xl"></i>
               </a>
-              <a href="#" title="youtube">
+              <a href="https://www.youtube.com/@penaofficial3731" target="_blank" title="youtube">
                 <i class="fa-brands fa-youtube fa-xl"></i>
-              </a>
-              <a href="#" title="twitter">
-                <i class="fa-brands fa-twitter fa-xl"></i>
               </a>
             </span>
             <span class="#">
@@ -37,7 +34,7 @@
               <a href="">
                 <i class="fa-brands fa-whatsapp"></i>
               </a>
-              <a id="footerContact" href="" style="text-decoration: underline;">Click</a>
+              <a id="footerContact" href="" target="_blank" style="text-decoration: underline;">Click</a>
             </span>
         </section>
         <section>
@@ -76,7 +73,7 @@ $(document).ready(function(){
         if (response.data) {
             var item = response.data;
             var footerContact= item.deskripsi.replace(/<[^>]+>/g, '');
-            $("#footerContact").attr('href', footerContact);
+            $("#footerContact").attr('href', `https://wa.me/${footerContact}?text=Hallo kak, mau tanya seputaran PENA dong...`);
         } else {
             console.log("Data tidak ditemukan");
         }
