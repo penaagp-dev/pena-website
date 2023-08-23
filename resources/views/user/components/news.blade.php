@@ -1,22 +1,24 @@
 <div class="event" id="event">
     <h1 class="d-flex justify-content-center pt-5 fw-bold text-white">News</h1>
     <div class="slider-container">
-      <div class="slider">
-        <div class="card-event" style="width: 18rem;">
-          <div class="card-image">
-            <img src="https://www.westend61.de/images/0001392297pw/scenic-view-of-landscape-against-sky-during-sunset-EYF05064.jpg" class="card-img-top mt-3" alt="..." style="height: 200px; object-fit: cover;">
-          </div>
-          <div class="card-body p-2">
-            <h5 class="card-title fw-semibold">Card title</h5>
-            <p class="card-text p-2">
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </p>
-            <div class="d-flex justify-content-center align-items-center gap-4">
-              <a href="#" class="btn btn-primary">visit site</a>
-              <a data-bs-toggle="modal" data-bs-target="#newsModal" class="btn btn-primary">read more</a>
+        <div class="slider">
+            <div class="card-event" style="width: 18rem;">
+                <div class="card-image">
+                    <img src="https://www.westend61.de/images/0001392297pw/scenic-view-of-landscape-against-sky-during-sunset-EYF05064.jpg" class="card-img-top mt-3" alt="..." style="height: 200px; object-fit: cover;">
+                </div>
+                <div class="card-body p-2">
+                    <h5 class="card-title fw-semibold">Card title</h5>
+                    <p class="card-text p-2">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                    </p>
+                    <div class="d-flex justify-content-center align-items-center gap-4">
+                        <a href="#" class="btn btn-primary">visit site</a>
+                        <a data-bs-toggle="modal" data-bs-target="#newsModal" class="btn btn-primary">read more</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
+    </div>
 </div>
 
 <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="" aria-hidden="true">
@@ -49,6 +51,6 @@
     </div>
 </div>
 <script>
-    
+
 </script>
 

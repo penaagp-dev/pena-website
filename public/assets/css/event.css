@@ -1,67 +1,90 @@
-.event{
-  background-color: rgb(90, 203, 255);
+/* Set background color for the event container */
+.event {
+    background-color: rgb(90, 203, 255);
 }
+
+/* Style for the slider container */
 .slider-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow: hidden;
-  height: 500px;
-  white-space: wrap;
-  overflow-x: auto;
-  background-color: rgb(90, 203, 255);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    background-color: rgb(90, 203, 255);
 }
 
+/* Style for the slider itself */
 .slider {
-  display: flex;
-  transition: transform 0.3s ease-in-out;
-  justify-content: center;
-  align-items: center;
-  height: 500px;
-  scroll-snap-type: x mandatory;
-  /* display: inline-block; */
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    height: 500px;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+
+    /* Hide scrollbar on Chrome, Safari, and Opera */
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
 }
 
+/* Hide scrollbar for browsers that support scrollbar-width */
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+/* Style for individual event cards */
 .card-event {
-  width: 300px;
-  padding: 20px;
-  margin: 0 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  background-color: white;
-  border-radius: 8px;
-  height: fit-content;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  /* vertical-align: top; */
+    width: 300px;
+    padding: 20px;
+    margin: 0 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    height: fit-content;
+    flex-shrink: 0;
+    scroll-snap-align: start;
 }
 
+/* Style for card images inside the event card */
 .card-image img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  object-fit: cover;
-  transition: 3s;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: 3s;
 }
-.card-event:hover .card-image img{
-  transform: scale(1.1);
+
+/* Zoom in card image on hover */
+.card-event:hover .card-image img {
+    transform: scale(1.1);
 }
+
+/* Style for headings */
 h2 {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
+/* Style for paragraphs */
 p {
-  margin: 0;
-  font-size: 1rem;
-}
-.slider-container::-webkit-scrollbar {
-  height: 0px;
+    margin: 0;
+    font-size: 1rem;
 }
 
-.slider-container::-webkit-scrollbar-thumb {
-  background-color: #888; 
-  height: 0px;
-  border-radius: 5px; 
+/* Hide scrollbar on all browsers */
+.slider-container::-webkit-scrollbar {
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer 10+ */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 600px) {
+    .card-event {
+        width: 90%; /* Change card width for smaller screens */
+    }
 }
