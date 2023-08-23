@@ -84,6 +84,15 @@
     </div>
 </div>
 <script>
-    
+    $(document).ready(function (){
+        $ajax({
+            url: `{{url('v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news')}}`,
+            method: "GET",
+            dataType: "json",
+            success: function(response) {
+                
+            }
+        })
+    })
 </script>
 

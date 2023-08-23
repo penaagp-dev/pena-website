@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\GaleryController;
-use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\PendaftaranController;
-use App\Http\Controllers\Api\SetupController;
+use App\Http\Controllers\API\SetupController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -87,3 +87,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout', [AuthController::class, 'logout']);
 });
+
+    Route::get('/', function () {
+        return view('user.index');
+    });
