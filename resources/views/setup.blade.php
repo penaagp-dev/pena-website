@@ -61,8 +61,13 @@
                                     <div class="form-group fill">
                                         <input type="hidden" name="uuid" id="uuid" value="">
                                         <label>Title</label>
-                                        <input id="title" name="title" type="text" class="form-control"
-                                            placeholder="input here..." autocomplete="off">
+                                        <select class="form-control" id="title" name="title">
+                                            <option selected="" disabled="">-Pilih-</option>
+                                            <option value="about">About</option>
+                                            <option value="visimisi">Visi Misi</option>
+                                            <option value="footerAlamat">Alamat</option>
+                                            <option value="footerContact">Link Kontact WA</option>
+                                        </select>
                                     </div>
                                     <div class="form-group fill">
                                         <input type="hidden" name="uuid" id="uuid" value="">
@@ -262,7 +267,23 @@
                                             timer: 5000,
                                             showConfirmButton: true
                                         });
-                                    } else {
+                                    } else if(data.code === 403) {
+                                        let error = data.errors;
+                                        let errorMessage = "Maaf, Anda tidak dapat membuat lebih dari 4 data.";
+
+                                        $.each(error, function(key, value) {
+                                            errorMessage += value[0] + "<br>";
+                                        });
+
+                                        Swal.fire({
+                                            title: 'Error',
+                                            html: errorMessage,
+                                            icon: 'error',
+                                            timer: 5000,
+                                            showConfirmButton: true
+                                        });
+                                    }
+                                    else {
                                         console.log(data);
                                         $('#loading-overlay').hide();
                                         Swal.fire({

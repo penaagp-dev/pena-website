@@ -76,20 +76,19 @@
       <!-- <div class="home-shadow"></div> -->
     </section>
 
-    
-    @extends('user.components.footer')
-    @extends('user.components.galery')
-    @extends('user.components.visi')
-    @extends('user.components.news')
 
+    @extends('user.components.footer')
+    @extends('user.components.visi')
+    @extends('user.components.galery')
+    @extends('user.components.news')
     @extends('user.components.about')
 
 
-    
-    
 
-    
-    
+
+
+
+
     <!-- Modal -->
 
     <!-- contact end -->
@@ -120,7 +119,7 @@
           }
         }
       }
-      
+
       limitText("card-text", 75);
     </script>
     <script>

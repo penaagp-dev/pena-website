@@ -37,12 +37,13 @@ class SetupController extends Controller
         $validation = Validator::make(
             $request->all(),
             [
-                'title' => 'required',
+                'title' => 'required|unique:setup',
                 'deskripsi' => 'required',
                 'gambar' => 'mimes:png,jpg,jpeg',
             ],
             [
                 'title.required' => 'Form title tidak boleh kosong',
+                'title.unique' => 'Title sudah digunakan',
                 'deskripsi.required' => 'Form deskripsi tidak boleh kosong',
                 'gambar.mimes' => 'Gambar harus dalam format PNG, JPG, atau JPEG '
             ]
@@ -53,6 +54,13 @@ class SetupController extends Controller
                 'code' => 422,
                 'message' => 'Check your validation',
                 'errors' => $validation->errors()
+            ]);
+        }
+        $dataCount = SetupModel::count();
+        if ($dataCount >= 4) {
+            return response()->json([
+                'code' => 403,
+                'message' => 'Maaf, Anda tidak dapat membuat lebih dari 4 data.',
             ]);
         }
 

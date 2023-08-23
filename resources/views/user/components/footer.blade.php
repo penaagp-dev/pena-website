@@ -30,14 +30,14 @@
                 <i class="fa-brands fa-twitter fa-xl"></i>
               </a>
             </span>
-            <span class="Wa">
+            <span class="#">
               <div class="wa-contact">
                 <p class="text-light fw-semibold fs-5">Contact</p>
               </div>
-              <a href="#">
+              <a href="">
                 <i class="fa-brands fa-whatsapp"></i>
               </a>
-              <a href="" style="text-decoration: underline;">Click</a>
+              <a id="footerContact" href="" style="text-decoration: underline;">Click</a>
             </span>
         </section>
         <section>
@@ -61,8 +61,50 @@
       <section class="footer-botom">
         <small>PENA <span class="year" id="year"></span>, all right reserved</small>
         <span class="footer-botom-links">
-          <p class="text-white">address here</p>
+          <p id="footerDeskripsi" class="text-white"></p>
         </span>
       </section>
     </div>
   </footer>
+<script>
+$(document).ready(function(){
+  $.ajax({
+    url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/') }}/` +'<p>footerContact</p>',
+    method: "GET",
+    dataType: "json",
+    success: function(response) {
+        if (response.data) {
+            var item = response.data;
+            var footerContact= item.deskripsi.replace(/<[^>]+>/g, '');
+            $("#footerContact").attr('href', footerContact);
+        } else {
+            console.log("Data tidak ditemukan");
+        }
+    },
+    error: function() {
+      console.log("Failed to get data from the server");
+    }
+  });
+});
+</script>
+<script>
+$(document).ready(function(){
+  $.ajax({
+    url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/') }}/` +'<p>footerAlamat</p>',
+    method: "GET",
+    dataType: "json",
+    success: function(response) {
+        if (response.data) {
+            var item = response.data;
+            var footerDeskripsi= item.deskripsi.replace(/<[^>]+>/g, '');
+            $("#footerDeskripsi")[0].innerText = footerDeskripsi;
+        } else {
+            console.log("Data tidak ditemukan");
+        }
+    },
+    error: function() {
+      console.log("Failed to get data from the server");
+    }
+  });
+});
+</script>
