@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         User::create(array(
             'id' => rand(100, 500),
             'uuid' => 'b0f692cf-5679-4948-8ddb-190d7c96c209',
-            'name' => 'Admin Pena',
+            'name' => 'Admin PENAKU',
             'email' => 'penakuagp@gmail.com',
-            'password' => Hash::make('testing00'),
+            'password' => Hash::make('7Owarz4t1XvJ&%%AR359'),
         ));
     }
 }
