@@ -61,8 +61,29 @@
       <section class="footer-botom">
         <small>PENA <span class="year" id="year"></span>, all right reserved</small>
         <span class="footer-botom-links">
-          <p class="text-white">address here</p>
+          <p id="footerDeskripsi" class="text-white"></p>
         </span>
       </section>
     </div>
   </footer>
+  <script>
+$(document).ready(function(){
+  $.ajax({
+    url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/') }}/` +'<p>footer</p>',
+    method: "GET",
+    dataType: "json",
+    success: function(response) {
+        if (response.data) {
+            var item = response.data;
+            var footerDeskripsi= item.deskripsi.replace(/<[^>]+>/g, '');
+            $("#footerDeskripsi")[0].innerText = footerDeskripsi;
+        } else {
+            console.log("Data tidak ditemukan");
+        }
+    },
+    error: function() {
+      console.log("Failed to get data from the server");
+    }
+  });
+});
+</script>

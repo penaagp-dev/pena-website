@@ -18,13 +18,11 @@ $(document).ready(function(){
     method: "GET",
     dataType: "json",
     success: function(response) {
-        console.log(response);
         if (response.data) {
             var item = response.data;
             $("#imgVisiMisi").attr('src', `/uploads/setup/${item.gambar}`);
-            var deskripsi = item.deskripsi;
-            var deskripsiTanpaTag = deskripsi.replace(/<\/?[^>]+(>|$)/g, "");
-            $("#visiMisi").text(deskripsiTanpaTag);
+            var deskripsi = item.deskripsi.replace(/<[^>]+>/g, '');
+            $("#visiMisi")[0].innerText = deskripsi;
         } else {
             console.log("Data tidak ditemukan");
         }

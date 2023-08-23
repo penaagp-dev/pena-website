@@ -13,7 +13,7 @@
 <script>
 $(document).ready(function(){
   $.ajax({
-   url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/') }}/` +'<p>about</p>',
+    url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/') }}/` +'<p>about</p>',
     method: "GET",
     dataType: "json",
     success: function(response) {
@@ -21,9 +21,8 @@ $(document).ready(function(){
         if (response.data) {
             var item = response.data;
             $("#imageAbout").attr('src', `/uploads/setup/${item.gambar}`);
-            var deskripsi = item.deskripsi;
-            var deskripsiTanpaTag = deskripsi.replace(/<\/?[^>]+(>|$)/g, "");
-            $("#deskripsiAbout").text(deskripsiTanpaTag);
+            var deskripsi = item.deskripsi.replace(/<[^>]+>/g, '');
+            $("#deskripsiAbout")[0].innerText = deskripsi;
         } else {
             console.log("Data tidak ditemukan");
         }
@@ -33,5 +32,6 @@ $(document).ready(function(){
     }
   });
 });
+
 </script>
 
