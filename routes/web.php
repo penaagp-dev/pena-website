@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('user.index');
 });
 
+Route::get('/register', function () {
+    return view('user.form');
+});
+
 Route::middleware('guest')->group(function () {
     Route::get('/cms/login', function () {
         return view('auth.login');
