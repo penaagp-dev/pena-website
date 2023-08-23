@@ -183,9 +183,9 @@ class NewsController extends Controller
                     unlink($old_file_path);
                 }
                 $data->gambar = $filename;
-                $data->link = clean($request->input('link'));
-                $data->tgl_upload = $request->input('tgl_upload');
             }
+            $data->link = clean($request->input('link'));
+            $data->tgl_upload = $request->input('tgl_upload');
             $data->save();
         } catch (\Throwable $th) {
             return response()->json([
