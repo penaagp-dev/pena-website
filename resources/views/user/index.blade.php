@@ -43,7 +43,7 @@
     <span class="full-navbar" id="start">
       <span class="title">
         <span class="wrapper">
-          <a href="index.html">
+          <a href="#">
             <img src="{{ asset('assets/img/pena.png')}}" class="logo" alt="kedai" />
           </a>
           <img class="menu-btn" src="{{ asset('assets/img/burger-menu.svg')}}" alt="Burger menu" title="burger menu" onclick="togglemenu(this)" />
