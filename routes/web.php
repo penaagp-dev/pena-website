@@ -34,13 +34,17 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/login', [AuthController::class, 'login']);
 });
+
+Route::get('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/{title}',[SetupController::class,  'getDataByTitle'])->where('title', '.*<p>.*');
+
 Route::post('v1/febba411-89e8-4fb3-9f55-85c56dcff41d/pendaftaran', [PendaftaranController::class, 'createData']);
-Route::get('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup', [SetupController::class, 'getAllData']);
+
+ Route::get('v1/febba411-89e8-4fb3-9f55-85c56dcff41d/wa/{email}',[PendaftaranController::class, 'toLinksWa']);
 Route::get('v4/ee9p0ebt-r030-0308-d14r-any5rt4ed9o0/galery', [GaleryController::class, 'getAllData']);
 Route::get('v5/nfhrydjt-9863-5248-c9uj-bdy47fhw4cj7/news', [NewsController::class, 'getAllData']);
 
 
-Route::middleware(['web', 'auth'])->group(function () {
+Route::middleware(['web','auth'])->group(function () {
     Route::get('/cms/dashboard', function () {
         return view('dashboard');
     });
@@ -68,13 +72,14 @@ Route::middleware(['web', 'auth'])->group(function () {
         Route::get('/9d97457b-1922-4f4a-b3fa-fcba980633a2/pendaftaran/get/{uuid}', 'getDataByUuid');
         Route::post('/4a3f479a-eb2e-498f-aa7b-e7d6e3f0c5f3/pendaftaran/update/{uuid}', 'updateData');
         Route::delete('/83df59b0-7c1a-4944-8fbb-2c06670dfa01/pendaftaran/delete/{uuid}', 'deleteData');
-        Route::get('/febba411-89e8-4fb3-9f55-85c56dcff41d/wa/{email}', 'toLinksWa');
+       
     });
+    
+    Route::get('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup', [SetupController::class, 'getAllData']);
     //API setup
     Route::prefix('v2')->controller(SetupController::class)->group(function () {
         Route::post('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/create', 'createData');
         Route::get('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/get/{uuid}', 'getDataByUuid');
-        Route::get('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/{title}', 'getDataByTitle')->where('title', '.*<p>.*');;
         Route::post('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/update/{uuid}', 'updateDataByUuid');
         Route::delete('/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/delete/{uuid}', 'deleteData');
     });
@@ -97,6 +102,3 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout', [AuthController::class, 'logout']);
 });
 
-    Route::get('/', function () {
-        return view('user.index');
-    });
