@@ -186,7 +186,7 @@
                             $('#loading-overlay').hide();
                             Swal.fire({
                                 title: 'Success',
-                                text: 'Data Success Create',
+                                text: 'Success registrasi Silahkan check email anda untuk bergabung ke whatsapp grub',
                                 icon: 'success',
                                 showCancelButton: false,
                                 confirmButtonText: 'OK'
