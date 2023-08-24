@@ -72,7 +72,7 @@
                         <div class="modal-body" style="text-indent: 24px; text-align: justify;">${item.deskripsi}</div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <a href="${stripHtmlTags(item.link)}" target="_blank" type="button" class="btn btn-primary">Visit site</a>
+                            <a href="${stripHtmlTags(item.link)}" target="_blank" type="button" class="btn btn-primary visit-site-btn">Visit site</a>
                         </div>
                     </div>
                 </div>
