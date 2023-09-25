@@ -179,7 +179,6 @@
                                 contentType: false,
                                 processData: false,
                                 success: function(data) {
-                                    console.log(data);
                                     $('#loading-overlay').hide();
                                     if (data.message === 'Check your validation') {
                                         let error = data.errors;
@@ -303,7 +302,6 @@
                             type: 'GET',
                             dataType: 'JSON',
                             success: function(data) {
-                                console.log(data);
                                 showModal(true);
                                 $('#uuid').val(data.data.uuid);
                                 $('#nama').val(stripHtmlTags(data.data.nama));
@@ -371,7 +369,6 @@
                                     "uuid": uuid
                                 },
                                 success: function(response) {
-                                    console.log(response);
                                     if (response.code === 200) {
                                         Swal.fire({
                                             title: 'Data berhasil dihapus',

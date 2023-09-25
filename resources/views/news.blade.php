@@ -1,4 +1,4 @@
-@extends('layout/base')
+@extends('layout.base')
 @section('title')
     News
 @endsection
@@ -198,7 +198,6 @@
                                 contentType: false,
                                 processData: false,
                                 success: function(data) {
-                                    console.log(data);
                                     $('#loading-overlay').hide();
                                     if (data.message === 'Check your validation') {
                                         let error = data.errors;
@@ -216,7 +215,6 @@
                                             showConfirmButton: true
                                         });
                                     } else {
-                                        console.log(data);
                                         $('#loading-overlay').hide();
                                         Swal.fire({
                                             title: 'Success',
@@ -277,7 +275,6 @@
                                             showConfirmButton: true
                                         });
                                     } else {
-                                        console.log(data);
                                         $('#loading-overlay').hide();
                                         Swal.fire({
                                             title: 'Success',
@@ -325,7 +322,6 @@
                             type: 'GET',
                             dataType: 'JSON',
                             success: function(data) {
-                                console.log(data);
                                 showModal(true);
                                 $('#uuid').val(data.data.uuid);
                                 $('#title').val(stripHtmlTags(data.data.title));

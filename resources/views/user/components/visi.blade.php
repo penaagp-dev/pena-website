@@ -23,8 +23,6 @@ $(document).ready(function(){
             $("#imgVisiMisi").attr('src', `/uploads/setup/${item.gambar}`);
             var deskripsi = item.deskripsi.replace(/<[^>]+>/g, '');
             $("#visiMisi")[0].innerText = deskripsi;
-        } else {
-            console.log("Data tidak ditemukan");
         }
     },
     error: function() {

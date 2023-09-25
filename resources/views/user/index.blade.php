@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+       <meta name="description" content="Pena adalah Organisasi intra kampus yang berkomitmen pada pengembangan perangkat lunak (Programming Engineering dan Networking) untuk mendukung mahasiswa dalam mengasah minat dan potensi mereka di bidang IT. " >
+           <meta name="author" content="PENA" >
+            <meta name="keywords" content="penakuofficial" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>PENA</title>
     <link rel="stylesheet" href="{{ asset('assets/css/loader.css')}}">
     <!-- bootstrap -->
@@ -21,8 +24,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/about.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/visi.css')}}" />
     <!-- icon -->
-    <link rel="icon" href="{{('assets/img/pena.png')}}" />
-    {{-- jquery --}}
+    <link rel="shortcut icon" href="{{('assets/img/pena.png')}}" type="image/x-icon">
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
   </head>
 

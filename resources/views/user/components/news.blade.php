@@ -49,7 +49,7 @@
                 </div>
                 <div class="card-body p-2">
                     <h5 class="card-title fw-semibold">${limitTextCard(item.title, 25)}</h5>
-                    <p class="card-text p-2">${limitTextCard(item.deskripsi, 30)}</p>
+                    <p class="card-text ">${limitTextCard(item.deskripsi, 30)}</p>
                     <div class="d-flex justify-content-center align-items-center gap-4 pt-4">
                         <a href="${stripHtmlTags(item.link)}" target="_blank" class="btn btn-primary visit-site-btn">visit site</a>
                         <a data-bs-toggle="modal" data-bs-target="#newsModal${index}" class="btn btn-primary">read more</a>
@@ -69,7 +69,7 @@
                             </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" style="text-indent: 24px; text-align: justify;">${item.deskripsi}</div>
+                        <div class="modal-body" style="text-align: justify;">${item.deskripsi}</div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <a href="${stripHtmlTags(item.link)}" target="_blank" type="button" class="btn btn-primary visit-site-btn">Visit site</a>

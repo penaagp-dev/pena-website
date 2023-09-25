@@ -17,7 +17,6 @@ $(document).ready(function(){
     method: "GET",
     dataType: "json",
     success: function(response) {
-        console.log(response);
         if (response.data) {
             var item = response.data;
             $("#imageAbout").attr('src', `/uploads/setup/${item.gambar}`);

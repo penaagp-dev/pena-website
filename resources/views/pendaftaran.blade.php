@@ -1,4 +1,4 @@
-@extends('layout/base')
+@extends('layout.base')
 @section('title')
     Pendaftaran
 @endsection

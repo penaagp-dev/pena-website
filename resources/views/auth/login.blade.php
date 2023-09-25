@@ -47,7 +47,6 @@
 </div>
 
 <script>
-const apiUrl = 'a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/login'
 
 $(document).ready(function() {
   var formTambah = $('#loginForm');
@@ -68,7 +67,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: 'POST',
-      url: `{{ url('${apiUrl}') }}`,
+      url: '{{ url('a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/login') }}',
       data: formData,
       dataType: 'JSON',
       contentType: false,

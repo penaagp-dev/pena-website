@@ -74,9 +74,7 @@ $(document).ready(function(){
             var item = response.data;
             var footerContact= item.deskripsi.replace(/<[^>]+>/g, '');
             $("#footerContact").attr('href', `https://wa.me/${footerContact}?text=Hallo kak, mau tanya seputaran PENA dong...`);
-        } else {
-            console.log("Data tidak ditemukan");
-        }
+        } 
     },
     error: function() {
       console.log("Failed to get data from the server");
@@ -95,9 +93,7 @@ $(document).ready(function(){
             var item = response.data;
             var footerDeskripsi= item.deskripsi.replace(/<[^>]+>/g, '');
             $("#footerDeskripsi")[0].innerText = footerDeskripsi;
-        } else {
-            console.log("Data tidak ditemukan");
-        }
+        } 
     },
     error: function() {
       console.log("Failed to get data from the server");

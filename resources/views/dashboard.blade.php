@@ -1,4 +1,4 @@
-@extends('layout/base')
+@extends('layout.base')
 @section('title')
 @section('content')
 <section class="content">

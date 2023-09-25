@@ -23,9 +23,9 @@ Route::get('/', function () {
     return view('user.index');
 });
 
-Route::get('/register', function () {
-    return view('user.form');
-});
+// Route::get('/register', function () {
+//     return view('user.form');
+// });
 
 Route::middleware('guest')->group(function () {
     Route::get('/cms/login', function () {
@@ -102,3 +102,6 @@ Route::middleware(['web','auth'])->group(function () {
     Route::post('/a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout', [AuthController::class, 'logout']);
 });
 
+    Route::get('/', function () {
+        return view('user.index');
+    });

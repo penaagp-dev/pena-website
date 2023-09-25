@@ -26,27 +26,34 @@
                 <input type="hidden" name="uuid" id="uuid">
                 <div class="mb-3">
                     <label class="form-label">Nama Lengkap</label>
+                    <span class="text-danger d-block" style="font-size: 13px;" id="nama-error"></span>
                     <input type="text" class="form-control" id="nama" placeholder="Nama Lengkap" name="nama">
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput2" class="form-label">Tanggal Lahir</label>
+                    <span class="text-danger d-block" style="font-size: 13px;" id="tanggal_lahir-error"></span>
                     <input type="date" class="form-control" id="tanggal_lahir" placeholder="Tanggal lahir"
                         name="tanggal_lahir">
+
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Nomor Whatsapp</label>
+                    <span class="text-danger d-block" style="font-size: 13px;" id="no_hp-error"></span>
                     <input type="number" class="form-control" id="no_hp" placeholder="Nomor Whatsapp"
                         name="no_hp">
+
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Email</label>
+                    <span class="text-danger d-block" style="font-size: 13px;" id="email-error"></span>
                     <input type="email" class="form-control" id="email" placeholder="Email@gmail.com"
                         name="email">
+
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Agama</label>
+                    <span class="text-danger d-block" style="font-size: 13px;" id="agama-error"></span>
                     <select class="form-select" aria-label="Default select example" name="agama">
-                        <option selected>Agama</option>
                         <option value="islam">Islam</option>
                         <option value="kristen">Kristen</option>
                         <option value="hindu">Hindu</option>
@@ -57,15 +64,20 @@
 
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label">Alamat</label>
+                    <span class="text-danger d-block" style="font-size: 13px;" id="alamat-error"></span>
                     <input type="text" class="form-control" id="alamat" placeholder="Alamat" name="alamat">
                 </div>
                 <label for="formGroupExampleInput" class="form-label">Foto selfie</label>
+                <span class="text-danger d-block" style="font-size: 13px;" id="gambar-error"></span>
                 <div class="input-group mb-3">
                     <input type="file" class="form-control" id="gambar" name="gambar">
                 </div>
                 <table>
                     <tbody class="Semester">
-                        <td class="pb-3">Jenis Kelamin</td>
+                        <tr>
+                            <td class="pt-3">Jenis Kelamin</td>
+                        </tr>
+                        <td class="pt-2 "> <span class="text-danger d-block" style="font-size: 13px;" id="jenis_kelamin-error"></span></td>
                         <tr>
                             <td>
                                 <div class="form-check form-check-inline">
@@ -82,7 +94,10 @@
                                 </div>
                             </td>
                         </tr>
-                        <td class="pb-3 pt-3">Semester</td>
+                        <tr>
+                            <td class="pt-3">Semester</td>
+                        </tr>
+                        <td class="pt-2 "> <span class="text-danger d-block" style="font-size: 13px;" id="semester-error"></span></td>
                         <tr>
                             <td>
                                 <div class="form-check form-check-inline">
@@ -99,7 +114,10 @@
                                 </div>
                             </td>
                         </tr>
-                        <td class="pb-3 pt-3">Jurusan</td>
+                        <tr>
+                            <td class="pt-3">Jurusan</td>
+                        </tr>
+                        <td class="pt-2 "> <span class="text-danger d-block" style="font-size: 13px;" id="jurusan-error"></span></td>
                         <tr>
                             <td>
                                 <div class="form-check form-check-inline">
@@ -120,17 +138,18 @@
                 </table>
                 <div class="mb-3 mt-4">
                     <label for="formGroupExampleInput" class="form-label">Alasan Bergabung</label>
+                    <span class="text-danger d-block" style="font-size: 13px;" id="alasan_masuk-error"></span>
                     <textarea class="form-control" cols="20" rows="10" placeholder="Alasan Bergabung" style="resize: none;"
                         name="alasan_masuk"></textarea>
+
                 </div>
                 <div class="d-flex justify-content-between pt-5 pb-4">
-                    <a class="btn btn-secondary" href='{{url('/')}}' role="button"><i
+                    <a class="btn btn-secondary" href='{{ url('/') }}' role="button"><i
                             class="fa-solid fa-angle-left me-2"></i>back</a>
                     <button class="btn btn-primary">Submit <i class="fa-solid fa-paper-plane ms-2"></i></button>
                 </div>
+            </form>
         </div>
-        </form>
-    </div>
     </div>
     <script src="{{ asset('assets/js/loader.js') }}"></script>
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
@@ -138,7 +157,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         $(document).ready(function() {
-            // fungsi create and update
             $('#formTambah').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
@@ -156,6 +174,8 @@
                         Swal.showLoading();
                     }
                 });
+
+                $('.text-danger ').html('');
                 $.ajax({
                     type: 'POST',
                     url: '{{ url('v1/febba411-89e8-4fb3-9f55-85c56dcff41d/pendaftaran') }}',
@@ -174,12 +194,10 @@
                                 errorMessage += value[0] + "<br>";
                             });
 
-                            Swal.fire({
-                                title: 'Error',
-                                html: errorMessage,
-                                icon: 'error',
-                                timer: 5000,
-                                showConfirmButton: true
+                             $.each(error, function(key, value) {
+                                errorMessage += value[0] + "<br>";
+                                $("#" + key + "-error").html('<i class="fas fa-exclamation-circle"></i> ' + value[0]);
+                                $("#" + key + "-error i").css("display", "inline");
                             });
                         } else {
                             console.log(data);
@@ -206,13 +224,11 @@
                             errorMessage += value[0] + "<br>";
                         });
 
-                        Swal.fire({
-                            title: 'Error',
-                            html: errorMessage,
-                            icon: 'error',
-                            timer: 5000,
-                            showConfirmButton: true
-                        });
+ $.each(error, function(key, value) {
+                                errorMessage += value[0] + "<br>";
+                                $("#" + key + "-error").html('<i class="fas fa-exclamation-circle"></i> ' + value[0]);
+                                $("#" + key + "-error i").css("display", "inline");
+                            });
                     }
                 });
             });
