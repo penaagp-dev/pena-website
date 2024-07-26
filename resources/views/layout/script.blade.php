@@ -34,6 +34,9 @@
 <script src="{{ asset('assets/dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('assets/dist/js/pages/dashboard.js')}}"></script>
+<script src="{{ asset('helper/helper.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </body>
 </html>
