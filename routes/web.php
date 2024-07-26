@@ -16,6 +16,7 @@ Route::prefix('v1')->group(function() {
         Route::get('/', 'getAllData');
         Route::post('/create', 'createData');
         Route::post('/update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
     });
 });
 
