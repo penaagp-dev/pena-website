@@ -59,7 +59,7 @@
                     <div class="px-4">
                         <div class="logo mt-1 ml-1 flex justify-center items-center">
                             <img src="{{ asset('assets/img/pena.png') }}" alt="logo" class="w-10 h-10 my-3 sm:my-0">
-                            <!-- <h3 class="ml-2 text-xl font-bold text-white">PENAKU</h3> -->
+                            <h3 class="ml-2 text-xl font-bold text-white">PENAKU</h3>
                         </div>
                     </div>
                     <div class="flex items-center px-4">
