@@ -1,17 +1,21 @@
-<div class="visi">
-    <div class="visi-wrapper container">
-      <div class="visi-text w-100">
-        <h1 class="display-5 fw-semibold" style="max-width: 600px;margin-left:-5px;">Visi Misi</h1>
-        <p id="visiMisi" class="fw-normal" style="text-align: justify;font-size:20px;">
-
-        </p>
-      </div>
-      <div class="img-visi w-100">
-        <img id="imgVisiMisi" src="" class="img-fluid" alt="image" />
-      </div>
+<!-- Visi & Misi Start -->
+<section class="pt-32 pb-32 dark:bg-black">
+    <div class="container">
+        <div class="flex flex-wrap justify-center lg:justify-between items-center">
+            <div class="w-full lg:w-5/12 px-4 mb-10 lg:mb-0">
+                <h1 class="font-bold text-center lg:text-center text-2xl uppercase text-black mb-5 dark:text-white">VISI</h1>
+                <p class="font-medium text-center lg:text-center text-base max-w-xl lg:text-lg dark:text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ratione, nisi quia dicta animi possimus ex tempore dolores accusamus amet?</p>
+            </div>
+            <div class="hidden lg:block border-l border-slate-800 h-64 mx-4"></div>
+            <div class="w-full lg:w-5/12 px-4">
+                <h1 class="font-bold text-center lg:text-center text-2xl uppercase text-black mb-5 dark:text-white">MISI</h1>
+                <p class="font-medium text-center lg:text-center text-base max-w-xl lg:text-lg dark:text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti ratione, nisi quia dicta animi possimus ex tempore dolores accusamus amet?</p>
+            </div>
+        </div>
     </div>
-  </div>
-<script>
+</section>
+        <!-- Visi & Misi End -->
+<!-- <script>
 $(document).ready(function(){
   $.ajax({
     url: `{{ url('v2/dd0af7cb-a745-4810-a12c-cefa8a4b24d8/setup/getbytitle/') }}/` +'<p>visimisi</p>',
@@ -30,5 +34,5 @@ $(document).ready(function(){
     }
   });
 });
-</script>
+</script> -->
 

@@ -1,4 +1,4 @@
-<div class="event" id="event">
+<!-- <div class="event" id="event">
     <h1 class="d-flex justify-content-center pt-5 fw-bold text-white">News</h1>
     <div class="slider-container">
         <div class="slider" id="newsData">
@@ -88,5 +88,5 @@
       });
 
     });
-</script>
+</script> -->
 
