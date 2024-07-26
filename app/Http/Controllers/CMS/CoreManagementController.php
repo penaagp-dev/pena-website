@@ -22,5 +22,10 @@ class CoreManagementController extends Controller
     public function updateData(CoreManagementRequest $request, $id){
         return $this->coreManagementRepositories->updateData($request, $id);
     }
+
+    public function deleteData($id)
+    {
+        return $this->coreManagementRepositories->deleteData($id);
+    }
     
 }
