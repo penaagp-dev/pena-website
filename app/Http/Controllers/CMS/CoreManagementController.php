@@ -15,8 +15,17 @@ class CoreManagementController extends Controller
         $this->coreManagementRepositories = $coreManagementRepositories;
     }
 
+    public function getAllData()
+    {
+        return $this->coreManagementRepositories->getAllData();
+    }
+
     public function createData(CoreManagementRequest $request){
         return $this->coreManagementRepositories->createData($request);
+    }
+
+    public function getDataById($id){
+        return $this->coreManagementRepositories->getDataById($id);
     }
 
     public function updateData(CoreManagementRequest $request, $id){
