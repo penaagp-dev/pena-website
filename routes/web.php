@@ -15,11 +15,12 @@ Route::prefix('v1')->group(function() {
     Route::prefix('core-management')->controller(CoreManagementController::class)->group(function() {
         Route::get('/', 'getAllData');
         Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
         Route::post('/update/{id}', 'updateData');
         Route::delete('/delete/{id}', 'deleteData');
     });
 });
 
-Route::fallback(function () {
-    return view('frontend');
-});
+// Route::fallback(function () {
+//     return view('frontend');
+// });
