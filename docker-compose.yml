@@ -1,7 +1,7 @@
 version: '3.8'
 services:
     app:
-        container_name: e-skincare
+        container_name: e-penav2
         build:
             context: .
             dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
         - node
 
     database:
-        container_name: e-skincare-database
+        container_name: e-penav2-database
         image: mysql:8.0
         volumes:
             - dbdata:/var/lib/mysql
@@ -28,7 +28,7 @@ services:
             - 33061:3306
 
     node:
-        container_name: e-skincare-node
+        container_name: e-penav2-node
         image: node:20-alpine
         volumes:
         - .:/app
@@ -39,7 +39,7 @@ services:
         - 5173:5173
 
     phpmyadmin:
-        container_name: e-skincare-phpmyadmin
+        container_name: e-penav2-phpmyadmin
         image: phpmyadmin/phpmyadmin
         environment:
             PMA_HOST: database
