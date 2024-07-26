@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Http\Controllers\CMS;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CoreManagement\CoreManagementRequest;
+use App\Repositories\CoreManagementRepositories;
+use Illuminate\Http\Request;
+
+class CoreManagementController extends Controller
+{
+    protected $coreManagementRepositories;
+    public function __construct(CoreManagementRepositories $coreManagementRepositories)
+    {
+        $this->coreManagementRepositories = $coreManagementRepositories;
+    }
+
+    public function createData(CoreManagementRequest $request){
+        return $this->coreManagementRepositories->createData($request);
+    }
+
+    public function updateData(CoreManagementRequest $request, $id){
+        return $this->coreManagementRepositories->updateData($request, $id);
+    }
+    
+}

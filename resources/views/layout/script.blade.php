@@ -35,25 +35,5 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('assets/dist/js/pages/dashboard.js')}}"></script>
 
-<script>
-  const currentUrl = window.location.pathname;
-  const menuItems = [
-    { id: 'dashboard', url: '/cms/dashboard' },
-    { id: 'gallery', url: '/cms/gallery' },
-    { id: 'news', url: '/cms/news' },
-    { id: 'setup', url: '/cms/setup' },
-    { id: 'pendaftaran', url: '/cms/pendaftaran' },
-  ];
-  menuItems.forEach(item => {
-    if (item.url === currentUrl) {
-        const menuItem = document.getElementById(item.id);
-        if (menuItem) {
-            menuItem.classList.add('active');
-        }
-    }
-  });
-
-</script>
-
 </body>
 </html>
