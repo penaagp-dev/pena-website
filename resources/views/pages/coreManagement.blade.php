@@ -22,4 +22,5 @@
     </div>
 
     <x-coremanagement.core-management-modal></x-coremanagement.core-management-modal>
+    <script type="module" src="{{ asset('js/coremanagement/coremanagement.controller.js') }}"></script>
 @endsection
