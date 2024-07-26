@@ -97,5 +97,20 @@ class CoreManagementRepositories implements CoreManagementInterfaces
 
     public function deleteData($id)
     {
+        try {
+            $data = $this->coreManagementModal->find($id);
+            if(!$data){
+                return $this->dataNotFound();
+            }
+            $file = $data->photo;
+            if(file_exists(public_path('uploads/coremanagement/' . $file))){
+                unlink(public_path('uploads/coremanagement/' . $file));
+            }
+
+            $data->delete();
+            return $this->delete();
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage());
+        }
     }
 }
