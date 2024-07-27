@@ -46,7 +46,7 @@ class CoreManagementRepositories implements CoreManagementInterfaces
                     $data->photo = ImageHandler::uploadImage($request->file('photo'), 'uploads/coremanagement', 'PENGURUS-INTI-');
                 }
                 $data->save();
-                return $this->success($data, 'success create data pengurus inti', 200);
+                return $this->success($data, 'success','success create data pengurus inti');
             }
         } catch (\Throwable $th) {
             return $this->error($th->getMessage());
@@ -57,7 +57,7 @@ class CoreManagementRepositories implements CoreManagementInterfaces
     {
         $data = $this->coreManagementModal->find($id);
         if ($data) {
-            return $this->success($data, 'success get data pengurus inti by id', 200);
+            return $this->success($data,'success','success get data pengurus inti by id');
         } else {
             return $this->dataNotFound();
         }
@@ -88,7 +88,7 @@ class CoreManagementRepositories implements CoreManagementInterfaces
                 }
                 $data->save();
 
-                return $this->success($data, 'success update data', 200);
+                return $this->success($data,'success', 'success update data');
             }
         } catch (\Throwable $th) {
             return $this->error($th->getMessage());
