@@ -26,7 +26,7 @@ class CoreManagementRequest extends FormRequest
         return [
             'name' => 'required',
             'jabatan' => 'required|in:ketua_umum,waketum,seketaris,bendahara,pembina',
-            'photo' => 'required'
+            'photo' => 'required|mimes:png,jpg,jpeg'
         ];
     }
 
