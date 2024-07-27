@@ -14,7 +14,7 @@
                         <th>Nama</th>
                         <th>Jabatan</th>
                         <th>Gambar</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </tr>
                 </x-slot>
             </x-base-table>
