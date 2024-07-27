@@ -25,8 +25,8 @@
                  <li class="nav-item ">
                      <a href="{{ url('/cms/admin/core-management') }}"
                          class="nav-link {{ request()->is('cms/admin/core-management') ? 'active' : '' }}">
-                         <i class="nav-icon fa-solid fa-home"></i>
-                         <p>Dashboard</p>
+                         <i class="nav-icon fa-solid fa-user"></i>
+                         <p>Pengurus Inti</p>
                      </a>
                  </li>
 
