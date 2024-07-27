@@ -21,6 +21,6 @@ Route::prefix('v1')->group(function() {
     });
 });
 
-// Route::fallback(function () {
-//     return view('frontend');
-// });
+Route::fallback(function () {
+    return view('frontend');
+});
