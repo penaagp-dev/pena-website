@@ -30,7 +30,7 @@ php artisan key:generate
 ### Migration table and seeder
 
 ```bash
-php artisan migrate::fresh --seed
+php artisan migrate:fresh --seed
 ```
 
 ### Run Project
