@@ -66,7 +66,6 @@ $(document).ready(function () {
         $(this).valid()
     })
     function checkingEdit() {   
-        $('#modal-title').html("Edit Data")
         return $('#id').val() ? true : false
     }
 

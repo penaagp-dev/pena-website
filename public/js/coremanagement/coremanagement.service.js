@@ -89,6 +89,7 @@ class coremanagementService {
         try {
             const response = await axios.get(`${appUrl}/v1/core-management/get/${id}`)
             const responseData = await response.data
+            $('#modal-title').html("Edit Data")
             $('#id').val(responseData.data.id)
             $('#name').val(responseData.data.name)
             $('#jabatan').val(responseData.data.jabatan)
