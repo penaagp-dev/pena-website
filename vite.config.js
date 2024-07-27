@@ -10,8 +10,11 @@ export default defineConfig({
         }),
         react(),
     ],
-    server: {
-        host: '0.0.0.0',
-        port: 5173
-    }
+
+    // Enable if you using docker
+
+    // server: {
+    //     host: '0.0.0.0',
+    //     port: 5173
+    // }
 });
