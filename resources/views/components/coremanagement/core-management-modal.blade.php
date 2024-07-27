@@ -26,11 +26,11 @@
                                     <label>Jabatan</label>
                                     <select name="jabatan" id="jabatan" class="form-control">
                                         <option value="" selected disabled hidden>Choose here</option>
-                                        <option value="ketua_umum">Ketua Umum</option>
+                                        <option value="ketua umum">Ketua Umum</option>
                                         <option value="pembina">Pembina</option>
                                         <option value="bendahara">Bendahara</option>
-                                        <option value="seketaris">Seketaris</option>
-                                        <option value="waketum">Wakil Ketua Umum</option>
+                                        <option value="sekretaris">Seketaris</option>
+                                        <option value="wakil ketua umum">Wakil Ketua Umum</option>
                                     </select>
                                 </div>
                                 <div class="form-group form-show-validation">

@@ -25,7 +25,7 @@ class CoreManagementRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'jabatan' => 'required|in:ketua_umum,waketum,seketaris,bendahara,pembina',
+            'jabatan' => 'required|in:ketua umum,wakil ketua umum,sekretaris,bendahara,pembina',
             'photo' => 'required|mimes:png,jpg,jpeg'
         ];
     }
