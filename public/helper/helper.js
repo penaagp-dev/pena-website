@@ -90,6 +90,16 @@ function emailOrPasswordWrong() {
     });
 }
 
+function jabatanAlert() {
+    Swal.fire({
+        title: 'Peringatan',
+        text: 'Data dengan jabatan ini sudah ada silahkan pilih yang lain !',
+        icon: 'warning',
+        timer: 5000,
+        showConfirmButton: true
+    });
+}
+
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
         return this.optional(element) || /\.(jpg|jpeg|png)$/i.test(value);
