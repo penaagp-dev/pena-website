@@ -6,7 +6,7 @@
   <title>PENA Profile</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script>
-   let appUrl = '{{ env('APP_URL_BE') }}';
+   let appUrl = '{{ env('API_URL_BE') }}';
   </script>
 
   <!-- Google Font: Source Sans Pro -->
