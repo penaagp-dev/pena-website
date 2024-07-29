@@ -40,4 +40,14 @@ class RegisterCaController extends Controller
     {
         return $this->registerCaRepositories->deleteData($id);
     }
+
+    public function registerCaFe(RegisterCaRequest $request)
+    {
+        return $this->registerCaRepositories->registerCaFe($request);
+    }
+
+    public function verifyEmailExp($token)
+    {
+        return $this->registerCaRepositories->verifyEmailExp($token);
+    }
 }
