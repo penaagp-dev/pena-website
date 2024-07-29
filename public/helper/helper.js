@@ -100,6 +100,16 @@ function jabatanAlert() {
     });
 }
 
+function emailAlert() {
+    Swal.fire({
+        title: 'Peringatan',
+        text: 'Email sudah ada sebelumnya silahkan gunakan email lain !',
+        icon: 'warning',
+        timer: 5000,
+        showConfirmButton: true
+    });
+}
+
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
         return this.optional(element) || /\.(jpg|jpeg|png)$/i.test(value);
@@ -129,5 +139,21 @@ function insertLineBreaks(text, wordsPerLine) {
 function generatePreviewImg(previewContainerId){
     if ($(`#${previewContainerId} #preview`).length === 0) {
         $(`#${previewContainerId}`).html('<div class="text-center"><img src="" alt="" id="preview" class="mx-auto d-block pb-2" style="max-width: 200px; padding-top: 23px"></div>');
+    }
+}
+
+function generateFormStatus(statusContainerId) {
+    if ($(`#${statusContainerId} #status`).length === 0) {
+        $(`#${statusContainerId}`).html(
+            `<div class="form-group fill form-show-validation">
+                <label>Status</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>`
+        );
     }
 }
