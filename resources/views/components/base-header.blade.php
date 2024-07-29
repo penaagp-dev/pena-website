@@ -1,3 +1,5 @@
+@props(['headerTitle', 'headerAddButton', 'buttonAdd', 'modalId'])
+
 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold">{{ $headerTitle }}</h6>
     @if ($buttonAdd == 'true')
