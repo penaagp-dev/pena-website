@@ -61,6 +61,7 @@ class coremanagementService {
                 submitButton.attr('disabled', true)
                 const response = await axios.post(`${appUrl}/v1/core-management/create`, formData)
                 const responseData = await response.data
+                console.log(responseData)
                 if (responseData.status === 'success') {
                     successAlert().then(() => {
                         $('#coreManagementModal').modal('hide')
@@ -74,8 +75,9 @@ class coremanagementService {
             }
         } catch (error) {
             submitButton.attr('disabled', false)
-            if (error.response.data.data.jabatan == 'Jabatan sudah ada') {
-                warningAlert()
+            console.log(error)
+            if (error.response.data.message == 'Jabatan sudah ada') {
+                jabatanAlert()
             } else if (error.response.status == 422) {
                 warningAlert()
             } else {
