@@ -143,9 +143,10 @@ function generatePreviewImg(previewContainerId){
 }
 
 function generateFormStatus(statusContainerId) {
+    console.log('Generating form status for:', statusContainerId);
     if ($(`#${statusContainerId} #status`).length === 0) {
         $(`#${statusContainerId}`).html(
-            `<div class="form-group fill form-show-validation">
+            `<div class="form-group fill form-show-validation" id="form-status">
                 <label>Status</label>
                 <select name="status" id="status" class="form-control">
                     <option value="" selected disabled hidden>Choose here</option>
