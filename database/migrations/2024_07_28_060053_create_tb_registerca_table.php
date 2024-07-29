@@ -25,6 +25,8 @@ return new class extends Migration
             $table->text('reason_register');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->string('photo');
+            $table->string('email_token')->nullable();
+            $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
     }
