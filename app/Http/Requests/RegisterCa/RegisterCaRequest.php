@@ -41,7 +41,23 @@ class RegisterCaRequest extends FormRequest
                 'reason_register' => 'required',
                 'photo' => 'required|mimes:png,jpg,jpeg'
             ];
-        }else{
+        }else if($this->is('api/v1/register-ca')){
+            $rules = [
+                'name' => 'required',
+                'email' => 'required|unique:tb_registerca,email',
+                'phone' => 'required',
+                'date_of_birth' => 'required',
+                'religion' => 'required|in:islam,kristen,hindu,budha,konghucu',
+                'major' => 'required|in:Teknik informatika,Sistem informasi',
+                'semester' => 'required|in:1,3',
+                'gender' => 'required',
+                'phone' => 'required',
+                'address' => 'required',
+                'reason_register' => 'required',
+                'photo' => 'required|mimes:png,jpg,jpeg'
+            ];
+        }
+        else{
             $rules = [
                 'name' => 'required',
                 'email' => 'required|unique:tb_registerca,email,'.$this->id,
