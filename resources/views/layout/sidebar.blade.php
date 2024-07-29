@@ -29,6 +29,13 @@
                          <p>Pengurus Inti</p>
                      </a>
                  </li>
+                 <li class="nav-item ">
+                    <a href="{{ url('/cms/admin/register-ca') }}"
+                        class="nav-link {{ request()->is('cms/admin/register-ca') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>Data registrasi ca</p>
+                    </a>
+                </li>
 
 
 
