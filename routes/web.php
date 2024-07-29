@@ -16,6 +16,9 @@ Route::get('/cms/admin/register-ca', function() {
     return view('pages.registerca');
 });
 
+Route::post('api/v1/register-ca/', [RegisterCaController::class, 'registerCaFe']);
+Route::get('api/v1/register-ca/verify-email-exp/{token}', [RegisterCaController::class, 'verifyEmailExp'])->name('verify.email');
+
 Route::prefix('v1')->group(function() {
     Route::prefix('core-management')->controller(CoreManagementController::class)->group(function() {
         Route::get('/', 'getAllData');
