@@ -152,6 +152,26 @@ class registerCaService {
             console.log(error)
         }
     }
+
+    async deleteData(id) {
+        try {
+            deleteAlert().then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await axios.delete(`${appUrl}/v1/register-ca/delete/${id}`)
+                    const responseData = await response.data
+                    if (responseData.status === 'success') {
+                        successDeleteAlert().then(() => {
+                            this.getAllData()
+                        })
+                    } else {
+                        errorAlert()
+                    }
+                }
+            })
+        } catch (error) {
+            errorAlert()
+        }
+    }
 }
 
 export default registerCaService;
