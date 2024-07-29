@@ -135,8 +135,36 @@ $(document).ready(function () {
 
     $(document).on('click', '.edit-modal', function (e) {
         e.preventDefault()
-        generateFormStatus('form-status')
+        console.log('Edit modal clicked');
+        generateFormStatus('container-status')
         const id = $(this).data('id')
         registercaservice.getDataById(id, checkingEdit)
+    })
+
+    $(document).on('click', '.delete-confirm', function (e) {
+        e.preventDefault()
+        const id = $(this).data('id')
+        registercaservice.deleteData(id)
+    })
+
+    $('#registerCaModal').on('hidden.bs.modal', function () {
+        $('#id').val('')
+        $('#name').val('')
+        $('#date_of_birth').val('')
+        $('#email').val('')
+        $('#phone').val('')
+        $('#major').val('')
+        $('#semester').val('')
+        $('#gender').val('')
+        $('#religion').val('')
+        $('#reason_register').val('')
+        $('#address').val('')
+        $('#status').val('')
+        $('#photo').val('')
+        $('#modal-title').text('Tambah Data');
+        $('.form-control').removeClass('is-invalid').removeClass('is-valid')
+        $('.error').remove();
+        $('#preview').remove()
+        $('#form-status').remove()
     })
 });
