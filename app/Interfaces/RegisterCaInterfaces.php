@@ -11,4 +11,7 @@ interface RegisterCaInterfaces
     public function getDataById($id);
     public function updateData(RegisterCaRequest $request, $id);
     public function deleteData($id);
+    public function registerCaFe(RegisterCaRequest $request);
+    public function verifyEmailExp($token);
+    
 }
