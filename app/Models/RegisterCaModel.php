@@ -24,6 +24,8 @@ class RegisterCaModel extends Model
         'address',
         'reason_register',
         'status',
-        'photo'
+        'photo',
+        'email_token',
+        'token_expires_at'
     ];
 }
