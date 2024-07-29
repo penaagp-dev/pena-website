@@ -95,7 +95,7 @@
                                         name="photo" id="photo">
                                 </div>
                             </div>
-                            <div class="col-md-12" id="form-status">
+                            <div class="col-md-12" id="container-status">
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group fill form-show-validation">
