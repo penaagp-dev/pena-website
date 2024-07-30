@@ -190,15 +190,17 @@ const UserRegister = () => {
     useEffect(() => {
         redInput('tanggal lahir', false)
         redInput('agama', false)
+        
+        const container = getId('containerForm')
+        container.scrollIntoView({ block: 'start' });
     }, [])
 
     return (
         <>
-            <div className="flex items-center justify-center w-full min-h-screen bg-center bg-cover p-0" style={{backgroundImage: `url(${coverImg})`}}>
+            <div id='containerForm' className="flex items-center justify-center w-full min-h-screen bg-center bg-cover p-0" style={{backgroundImage: `url(${coverImg})`}}>
                 <div className="w-full max-h-fit sm:max-w-lg md:max-w-xl h-fit bg-transparent px-8 py-4 my-4 rounded-lg shadow-lg backdrop-blur-lg border overflow-hidden">
 
                     <h2 className="text-2xl font-bold mb-8 text-center text-gray-100">Register Form</h2>
-                    
                     <div>
                         <BaseInput
                             name='nama lengkap'
