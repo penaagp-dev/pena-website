@@ -15,7 +15,7 @@ const RegisterModal = ({show, onClose, alertMessage}) => {
 
     return (
         <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center transition-opacity duration-300 ${show ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-            <div className={`bg-white p-6 rounded shadow-lg w-1/3 transform transition-transform duration-300 ${show ? 'scale-100' : 'scale-95'}`}>
+            <div className={`bg-white p-6 rounded shadow-lg w-full sm:w-96 mx-4 transform transition-transform duration-300 ${show ? 'scale-100' : 'scale-95'}`}>
                 
                 <div id='loadingModal'>
                     <Loading/>
