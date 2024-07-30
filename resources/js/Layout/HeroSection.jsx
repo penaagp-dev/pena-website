@@ -1,6 +1,6 @@
 import React from 'react'
 import penaLogo from '../assets/img/pena.png'
-import heroSectionImg from '../assets/img/hero-section.jpeg'
+import heroSectionImg from '../assets/img/cover.webp'
 import BaseButton from '../components/BaseButton'
 import ToggleTheme from '../components/ToggleTheme'
 import NavMenu from '../components/NavMenu'
