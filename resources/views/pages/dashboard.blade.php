@@ -16,8 +16,7 @@
                         <div class="icon">
                             <i class="fa-regular fa-images"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -43,8 +42,7 @@
                         <div class="icon">
                             <i class="fa-solid fa-gear"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -57,8 +55,7 @@
                         <div class="icon">
                             <i class="fa-solid fa-user-plus"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -67,6 +64,7 @@
                     <div class="card">
                         <div class="card-body" style="height: 500px;">
                             <canvas id="myChart"></canvas>
+                            <div class="text-center" id="dataNotFound" hidden>Data not found</div>
                         </div>
                     </div>
                 </div>
@@ -85,10 +83,14 @@
             async getDataLineCarth() {
                 const response = await axios.get(`${appUrl}/v1/dashboard/line-chart`);
                 const responseData = response.data;
-                if (responseData.status === 'success') {
-                    this.chartJs(responseData);
+                if (responseData && responseData.status === 'success') {
+                    if (responseData.data) {
+                        this.chartJs(responseData);
+                    } else {
+                        $('#dataNotFound').removeAttr('hidden');
+                    }
                 } else {
-
+                    $('#dataNotFound').removeAttr('hidden');
                 }
             }
 
@@ -146,27 +148,27 @@
             }
 
             async getCountGender() {
-              try {
-                  const response = await axios.get(`${appUrl}/v1/dashboard/count-gender`)
-                  const responseData = response.data;
-                  console.log(responseData)
-                  $('#manCount').html(responseData.man)
-                  $('#womanCount').html(responseData.woman)
-              } catch (error) {
-                  console.log(error);
-              };
+                try {
+                    const response = await axios.get(`${appUrl}/v1/dashboard/count-gender`)
+                    const responseData = response.data;
+                    console.log(responseData)
+                    $('#manCount').html(responseData.man)
+                    $('#womanCount').html(responseData.woman)
+                } catch (error) {
+                    console.log(error);
+                };
             }
 
             async getCountRegister() {
-              try {
-                  const response = await axios.get(`${appUrl}/v1/dashboard/total-register`)
-                  const responseData = response.data;
-                  console.log(responseData)
-                  $('#registerCount').html(responseData.register)
-                  $('#pengurusCount').html(responseData.pengurus)
-              } catch (error) {
-                  console.log(error);
-              };
+                try {
+                    const response = await axios.get(`${appUrl}/v1/dashboard/total-register`)
+                    const responseData = response.data;
+                    console.log(responseData)
+                    $('#registerCount').html(responseData.register)
+                    $('#pengurusCount').html(responseData.pengurus)
+                } catch (error) {
+                    console.log(error);
+                };
             }
         }
     </script>
