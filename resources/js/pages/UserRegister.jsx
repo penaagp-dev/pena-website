@@ -1,10 +1,188 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import coverImg from '../assets/img/cover.webp'
+import BaseInput from '../components/Input/BaseInput'
+import SelectInput from '../components/Input/SelectInput'
+import CheckboxInput from '../components/Input/CheckboxInput'
+import TextareaInput from '../components/Input/TextareaInput'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import RegisterModal from '../components/RegisterModal'
+  
 const UserRegister = () => {
+    const [fullname, setFullname] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [dateOfBirth, setDateOfBirth] = useState('')
+    const [religion, setReligion] = useState('')
+    
+    const [major, setMajor] = useState('')
+    const [semester, setSemester] = useState('')
+    const [gender, setGender] = useState('')
+
+    const [photo, setPhoto] = useState('')
+    const [address, setAddress] = useState('')
+    const [reason, setReason] = useState('')
+
+    const [alertMessage, setAlertMessage] = useState('')
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const today = new Date().toISOString().split('T')[0];
+
+    
+    const openModal = (type) => {
+        const getId = id => document.getElementById(id)
+
+        getId('loadingModal').classList.add('hidden')
+        getId('successModal').classList.add('hidden')
+        getId('alertModal').classList.add('hidden')
+
+        type === 'loading' ? getId('loadingModal').classList.remove('hidden') : null
+        type === 'success' ? getId('successModal').classList.remove('hidden') : null
+        type === 'alert' ? getId('alertModal').classList.remove('hidden') : null
+
+        setIsModalOpen(true)
+    }
+
+    const closeModal = () => setIsModalOpen(false);
+
+    const handleInput = (e) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case 'nama lengkap': setFullname(value); break;
+            case 'email': setEmail(value); break;
+            case 'nomor whatsApp': if (/^\d*$/.test(value)) setPhone(value); break;
+            case 'tanggal lahir': setDateOfBirth(value); break;
+            case 'agama': setReligion(value); break;
+
+            case 'jurusan': setMajor(value); break;
+            case 'semester': setSemester(value); break;
+            case 'gender': setGender(value); break;
+
+            case 'alamat lengkap': setAddress(value); break;
+            case 'alasan bergabung': setReason(value); break;
+
+            default: break;
+        }
+    };
+
+    const handleInputFile = (e) => {
+        const imageSelect = e.target.files[0]
+        setPhoto(imageSelect)
+    };
+
+    
+    const checkValidation = () => {
+        if (!fullname || !email || !phone || !dateOfBirth || !religion || !major || !semester || !gender || !address || !reason || !photo) {
+            setAlertMessage('Periksa dan lengkapi data dirimu!')
+            return false
+        } else if (!email.includes('@gmail.com')) {
+            setAlertMessage('Email yang kamu masukan tidak valid!')
+            return false
+        } else if (phone.length < 12 || phone.length > 14) {
+            setAlertMessage('Periksa kembali nomor WhatsApp mu!')
+            return false
+        } {
+            return true
+        }
+    }
+
+    const executeRegisterCa = async () => {
+        const formData = new FormData();
+        formData.append('name', fullname)
+        formData.append('email', email)
+        formData.append('phone', phone)
+        formData.append('date_of_birth', dateOfBirth)
+        formData.append('religion', religion)
+
+        formData.append('major', major)
+        formData.append('semester', semester)
+        formData.append('gender', gender)
+
+        formData.append('photo', photo)
+        formData.append('address', address)
+        formData.append('reason_register', reason)
+
+        await axios.post('/api/v1/register-ca', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    }
+
+    const registerCa = async () => {
+        try {
+            const statusValidation = checkValidation()
+
+            if (statusValidation) {
+                openModal('loading')
+
+                await executeRegisterCa()   /* <-- send data */
+
+                closeModal()
+                openModal('success')
+            } else {
+                openModal('alert')
+            }
+
+        } catch (error) {
+            if (error.response.data.data.email[0]) {
+                setAlertMessage('Email sudah terdaftar! gunakan yang lain.')
+            } else {
+                setAlertMessage('Mohon hubungi panitia!')
+            }
+
+            openModal('alert')
+        }
+    }
+
+
+
     return (
-        <div>
-            <h1>halaman pendaftaran calon angota</h1>
-        </div>
+        <>
+            <div className="flex items-center justify-center w-full min-h-screen bg-center bg-cover p-0" style={{backgroundImage: `url(${coverImg})`}}>
+                <div className="w-full max-w-80 max-h-fit sm:max-w-md md:max-w-xl h-fit bg-transparent px-8 py-4 my-4 rounded-lg shadow-lg backdrop-blur-lg border overflow-hidden">
+
+                    <h2 className="text-2xl font-bold mb-8 text-center text-gray-100">Register Form</h2>
+                    
+                    <div>
+                        <BaseInput name='nama lengkap' onChange={handleInput} />
+                        <BaseInput name='email' type='email' onChange={handleInput} />
+                        <BaseInput name='nomor whatsApp' onChange={handleInput} value={phone} />
+                        <BaseInput name='tanggal lahir' type='date' onChange={handleInput} max={today} />
+
+                        <SelectInput name='agama' onChange={handleInput} value={religion}>
+                            <option value="islam">Islam</option>
+                            <option value="kristen">Kristen</option>
+                            <option value="kindu">Hindu</option>
+                            <option value="budha">Budha</option>
+                            <option value="konghucu">Konghucu</option>
+                        </SelectInput>
+
+                        <CheckboxInput onChange={handleInput} name='jurusan' value1='Teknik informatika' value2='Sistem informasi' />
+                        <CheckboxInput onChange={handleInput} name='semester' value1='1' value2='3' />
+                        <CheckboxInput onChange={handleInput} name='gender' value1='male' valueName1='laki-laki' value2='female' valueName2='perempuan' />
+                        
+                        <BaseInput onChange={handleInputFile} name='foto pribadi' type='file' />
+                        <BaseInput onChange={handleInput} name='alamat lengkap' />
+                        <TextareaInput onChange={handleInput} name='alasan bergabung' />
+
+                        <div className="flex justify-between pt-4">
+                            <Link to={'/'}>
+                                <button className="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 duration-200">
+                                    <i className="fa-solid fa-angle-left mr-2"></i>
+                                    <span>Back</span>
+                                </button>
+                            </Link>
+                            <button onClick={registerCa} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 duration-200" >
+                                <span>Submit</span>
+                                <i className="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <RegisterModal show={isModalOpen} onClose={closeModal} alertMessage={alertMessage} />
+        </>
     )
 }
 
