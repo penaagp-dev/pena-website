@@ -8,6 +8,16 @@ function successAlert() {
     })
 }
 
+function successLogin() {
+    return Swal.fire({
+        title: 'Success',
+        text: 'Login berhasil',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+    })
+}
+
 function successUpdateAlert() {
     return Swal.fire({
         title: 'Success',
