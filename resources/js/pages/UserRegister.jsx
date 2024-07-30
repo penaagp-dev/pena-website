@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import coverImg from '../assets/img/cover.webp'
 import BaseInput from '../components/Input/BaseInput'
 import SelectInput from '../components/Input/SelectInput'
@@ -25,11 +25,13 @@ const UserRegister = () => {
 
     const [alertMessage, setAlertMessage] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [alertTextEmail, setAlertTextEmail] = useState('')
+    const [alertTextPhoto, setAlertTextPhoto] = useState('')
     const today = new Date().toISOString().split('T')[0];
 
+    const getId = id => document.getElementById(id)
     
     const openModal = (type) => {
-        const getId = id => document.getElementById(id)
 
         getId('loadingModal').classList.add('hidden')
         getId('successModal').classList.add('hidden')
@@ -44,12 +46,16 @@ const UserRegister = () => {
 
     const closeModal = () => setIsModalOpen(false);
 
+    const redInput = (id, isActive = true) => {
+        getId(id).classList[isActive ? 'add' : 'remove']('ring-red-500')
+    }
+
     const handleInput = (e) => {
         const { name, value } = e.target;
         switch (name) {
             case 'nama lengkap': setFullname(value); break;
             case 'email': setEmail(value); break;
-            case 'nomor whatsApp': if (/^\d*$/.test(value)) setPhone(value); break;
+            case 'nomor whatsApp': if (/^\d*$/.test(value) && value.length <= 14) setPhone(value); break;
             case 'tanggal lahir': setDateOfBirth(value); break;
             case 'agama': setReligion(value); break;
 
@@ -66,18 +72,60 @@ const UserRegister = () => {
 
     const handleInputFile = (e) => {
         const imageSelect = e.target.files[0]
-        setPhoto(imageSelect)
+        let fileName = imageSelect.name.split('.')
+        let fileFormat = fileName.pop();
+
+        if (fileFormat === 'png' || fileFormat === 'jpg' || fileFormat === 'jpeg') {
+            setPhoto(imageSelect)
+            redInput('foto pribadi', false)
+            setAlertTextPhoto('')
+        } else {
+            setAlertTextPhoto('Gunakan file dengan format png, jpg, atau jpeg')
+        }
+
     };
 
+    const checkPerInput = (value, idInput) => {
+        const inputValue = value
+        !inputValue ? redInput(idInput) : redInput(idInput, false)
+        
+        if (idInput === 'email') {
+            !email.includes('@gmail.com') ? redInput(idInput) : redInput(idInput, false)
+            !email.includes('@gmail.com') ? setAlertTextEmail('Email tidak valid') : setAlertTextEmail('')
+        }
+
+    }
+
+    const handleCheckbox = (e, id1, id2) => {
+        handleInput(e)
+        redInput(id1, false)
+        redInput(id2, false)
+    }
     
     const checkValidation = () => {
+        !fullname ? redInput('nama lengkap') : null
+        !email ? redInput('email') : null
+        !phone ? redInput('nomor whatsApp') : null
+        !dateOfBirth ? redInput('tanggal lahir') : null
+        !religion ? redInput('agama') : null
+
+        if (!major) { redInput('Teknik informatika'); redInput('Sistem informasi') }
+        if (!semester) { redInput('1'); redInput('3') }
+        if (!gender) { redInput('male'); redInput('female') }
+
+        !photo ? redInput('foto pribadi') : null
+        !address ? redInput('alamat lengkap') : null
+        !reason ? redInput('alasan bergabung'): null
+
         if (!fullname || !email || !phone || !dateOfBirth || !religion || !major || !semester || !gender || !address || !reason || !photo) {
             setAlertMessage('Periksa dan lengkapi data dirimu!')
             return false
         } else if (!email.includes('@gmail.com')) {
+            setAlertTextEmail('Email tidak valid')
             setAlertMessage('Email yang kamu masukan tidak valid!')
             return false
         } else if (phone.length < 12 || phone.length > 14) {
+            redInput('nomor whatsApp')
             setAlertMessage('Periksa kembali nomor WhatsApp mu!')
             return false
         } {
@@ -111,7 +159,7 @@ const UserRegister = () => {
     const registerCa = async () => {
         try {
             const statusValidation = checkValidation()
-
+    
             if (statusValidation) {
                 openModal('loading')
 
@@ -124,7 +172,9 @@ const UserRegister = () => {
             }
 
         } catch (error) {
-            if (error.response.data.data.email[0]) {
+            if (error && !error.response.data.data.email[0]) {
+                setAlertMessage('Mohon hubungi panitia!')
+            } else if (error.response.data.data.email[0]) {
                 setAlertMessage('Email sudah terdaftar! gunakan yang lain.')
             } else {
                 setAlertMessage('Mohon hubungi panitia!')
@@ -134,7 +184,13 @@ const UserRegister = () => {
         }
     }
 
+    useEffect(() => { checkPerInput(dateOfBirth, 'tanggal lahir') }, [dateOfBirth])
+    useEffect(() => { checkPerInput(religion, 'agama') }, [religion])
 
+    useEffect(() => {
+        redInput('tanggal lahir', false)
+        redInput('agama', false)
+    }, [])
 
     return (
         <>
@@ -144,10 +200,33 @@ const UserRegister = () => {
                     <h2 className="text-2xl font-bold mb-8 text-center text-gray-100">Register Form</h2>
                     
                     <div>
-                        <BaseInput name='nama lengkap' onChange={handleInput} />
-                        <BaseInput name='email' type='email' onChange={handleInput} />
-                        <BaseInput name='nomor whatsApp' onChange={handleInput} value={phone} />
-                        <BaseInput name='tanggal lahir' type='date' onChange={handleInput} max={today} />
+                        <BaseInput
+                            name='nama lengkap'
+                            onChange={handleInput}
+                            onKeyUp={() => checkPerInput(fullname, 'nama lengkap')}
+                        />
+
+                        <BaseInput
+                            name='email'
+                            type='email'
+                            onChange={handleInput}
+                            onKeyUp={() => checkPerInput(email, 'email')}
+                            alertText={alertTextEmail}
+                        />
+
+                        <BaseInput
+                            name='nomor whatsApp'
+                            onChange={handleInput}
+                            value={phone}
+                            onKeyUp={() => checkPerInput(phone, 'nomor whatsApp')}
+                        />
+
+                        <BaseInput
+                            name='tanggal lahir'
+                            type='date'
+                            onChange={handleInput}
+                            max={today}
+                        />
 
                         <SelectInput name='agama' onChange={handleInput} value={religion}>
                             <option value="islam">Islam</option>
@@ -157,13 +236,47 @@ const UserRegister = () => {
                             <option value="konghucu">Konghucu</option>
                         </SelectInput>
 
-                        <CheckboxInput onChange={handleInput} name='jurusan' value1='Teknik informatika' value2='Sistem informasi' />
-                        <CheckboxInput onChange={handleInput} name='semester' value1='1' value2='3' />
-                        <CheckboxInput onChange={handleInput} name='gender' value1='male' valueName1='laki-laki' value2='female' valueName2='perempuan' />
+                        <CheckboxInput
+                            onChange={(e) => handleCheckbox(e, 'Teknik informatika', 'Sistem informasi')}
+                            name='jurusan'
+                            value1='Teknik informatika'
+                            value2='Sistem informasi'
+                        />
+
+                        <CheckboxInput
+                            onChange={(e) => handleCheckbox(e, '1', '3')}
+                            name='semester'
+                            value1='1'
+                            value2='3'
+                        />
                         
-                        <BaseInput onChange={handleInputFile} name='foto pribadi' type='file' />
-                        <BaseInput onChange={handleInput} name='alamat lengkap' />
-                        <TextareaInput onChange={handleInput} name='alasan bergabung' />
+                        <CheckboxInput
+                            onChange={(e) => handleCheckbox(e, 'male', 'female')}
+                            name='gender'
+                            value1='male'
+                            valueName1='laki-laki'
+                            value2='female'
+                            valueName2='perempuan'
+                        />
+                        
+                        <BaseInput
+                            name='foto pribadi'
+                            type='file'
+                            onChange={handleInputFile}
+                            alertText={alertTextPhoto}
+                        />
+
+                        <BaseInput
+                            name='alamat lengkap'
+                            onChange={handleInput}
+                            onKeyUp={() => checkPerInput(address, 'alamat lengkap')}
+                        />
+
+                        <TextareaInput
+                            name='alasan bergabung'
+                            onChange={handleInput}
+                            onKeyUp={() => checkPerInput(reason, 'alasan bergabung')}
+                        />
 
                         <div className="flex justify-between pt-4">
                             <Link to={'/'}>

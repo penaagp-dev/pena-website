@@ -9,7 +9,9 @@ const TextareaInput = (props) => {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white h-24"
+                onKeyUp={props.onKeyUp}
+                id={props.id || props.name}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none ring-2 focus:ring-blue-500 bg-white h-24"
             >
 
             </textarea>

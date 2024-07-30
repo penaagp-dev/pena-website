@@ -9,9 +9,14 @@ const BaseInput = (props) => {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
+                onKeyUp={props.onKeyUp}
                 max={props.max}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" required
+                id={props.id || props.name}
+                className='w-full px-3 py-2 border rounded-md ring-2 focus:outline-none focus:ring-blue-500 bg-white' required
             />
+            <p className='text-red-500 font-semibold text-sm'>
+                <i>{props.alertText}</i>
+            </p>
         </div>
     )
 }
