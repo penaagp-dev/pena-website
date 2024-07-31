@@ -6,8 +6,12 @@ const Gallery = () => {
     const [dataGallery, setDatGallery] = useState([])
 
     const getAllData = async () => {
-        const response = await axios.get('/v1/core-management')
-        setDatGallery(response.data.data)
+        try {
+            const response = await axios.get('/api/v1/core-management')
+            response.data.data ? setDatGallery(response.data.data) : setDatGallery('')
+        } catch (error) {
+            setDatGallery('')
+        }
     }
 
     useEffect(() => {
