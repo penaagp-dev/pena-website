@@ -34,7 +34,7 @@
 </nav>
 
 <script>
-const urlLogout = 'a31eae80-3df7-4676-84bf-8bec57a7ae0e/user/logout'
+const urlLogout = 'v1/logout'
 $(document).ready(function() {
   $('#logoutButton').click(function(e) {
     Swal.fire({
@@ -66,7 +66,7 @@ $(document).ready(function() {
           },
           success: function(response) {
             loadingSwal.close();
-            window.location.href = '/cms/login';
+            window.location.href = '/cms/admin/login';
           },
           error: function(xhr, status, error) {
             loadingSwal.close();
