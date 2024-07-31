@@ -1,7 +1,8 @@
+import React from "react";
+import RoutesTemplate from "./routes/Routes"
+
 export function App() {
     return (
-        <div>
-            <h1>Hello, world!</h1>
-        </div>
-    );
+        <RoutesTemplate/>
+    )
 }
