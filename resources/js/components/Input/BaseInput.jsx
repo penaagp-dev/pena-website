@@ -14,6 +14,9 @@ const BaseInput = (props) => {
                 id={props.id || props.name}
                 className='w-full px-3 py-2 border rounded-md ring-2 focus:outline-none focus:ring-blue-500 bg-white' required
             />
+            { props.note ? 
+                <p className='text-white text-sm italic mt-1'>*{props.note}</p>
+            : null}
             <p className='text-red-500 font-semibold text-sm'>
                 <i>{props.alertText}</i>
             </p>
