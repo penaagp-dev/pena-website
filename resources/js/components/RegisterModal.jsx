@@ -25,7 +25,7 @@ const RegisterModal = ({show, onClose, alertMessage}) => {
                 <div id='successModal' className='text-center'>
                     <i className="fa-solid fa-check text-6xl text-green-500"></i>
                     <p className='mt-4 mb-1 text-lg font-semibold'>Yeay, kamu berhasil mendaftar!</p>
-                    <p>Silahkan periksa <b><i>email</i></b> mu untuk bergabung ke grub WhatsApp!</p>
+                    <p>Silahkan periksa <b><i>Email</i></b> mu untuk bergabung ke grub WhatsApp! Link akan <b><i>expired dalam 5 menit!</i></b></p>
 
                     <Link to={'/'}>
                         {BackButton()}
