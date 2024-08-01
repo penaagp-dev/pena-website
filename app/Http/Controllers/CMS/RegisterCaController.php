@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\CMS;
 
+use App\Exports\DataCaExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterCa\RegisterCaRequest;
 use App\Repositories\RegisterCaRepositories;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RegisterCaController extends Controller
 {
@@ -49,5 +51,11 @@ class RegisterCaController extends Controller
     public function verifyEmailExp($token)
     {
         return $this->registerCaRepositories->verifyEmailExp($token);
+    }
+
+    public function export()
+    {
+        $filename = 'Data-CA-'.date('Y-m-d').'.xlsx';
+        return Excel::download(new DataCaExport, $filename);
     }
 }
