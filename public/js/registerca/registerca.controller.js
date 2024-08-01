@@ -147,6 +147,13 @@ $(document).ready(function () {
         registercaservice.deleteData(id)
     })
 
+
+    $('#export').on('click', function (e) {
+        console.log('Export clicked');
+        e.preventDefault()
+        registercaservice.exportData()
+    })
+
     $('#registerCaModal').on('hidden.bs.modal', function () {
         $('#id').val('')
         $('#name').val('')
