@@ -70,6 +70,7 @@ class registerCaService {
         try {
             const formData = new FormData(e.target)
             if (checkingEdit()) {
+                submitButton.attr('disabled', true)
                 const id = $('#id').val()
                 const response = await axios.post(`${appUrl}/v1/register-ca/update/${id}`, formData)
                 const responseData = await response.data
@@ -78,7 +79,9 @@ class registerCaService {
                         $('#registerCaModal').modal('hide')
                         this.getAllData()
                     })
+                    submitButton.attr('disabled', false)
                 } else {
+                    submitButton.attr('disabled', false)
                     errorAlert()
                 }
             } else {
