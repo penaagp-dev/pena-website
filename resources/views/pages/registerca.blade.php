@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <x-base-header headerTitle="Data calon anggota" buttonAdd="true" headerAddButton="Tambah Data"
-            modalId="#registerCaModal"></x-base-header>
+            modalId="#registerCaModal" buttonExport="true" exportId="export"></x-base-header>
         <x-base-body>
             <x-base-table initId="dataTable">
                 <x-slot name="thead">
