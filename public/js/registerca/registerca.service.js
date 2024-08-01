@@ -175,6 +175,18 @@ class registerCaService {
             errorAlert()
         }
     }
+
+    async exportData() {
+        try {
+            const result = await exportAlert();
+            if (result.isConfirmed) {
+                window.location.href = `${appUrl}/v1/register-ca/export`;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
 }
 
 export default registerCaService;
