@@ -214,6 +214,7 @@ const UserRegister = () => {
                             onChange={handleInput}
                             onKeyUp={() => checkPerInput(email, 'email')}
                             alertText={alertTextEmail}
+                            note='Gunakan Email aktif, link grub WhatsApp akan dikirim melalui Email yang kamu daftarkan'
                         />
 
                         <BaseInput
