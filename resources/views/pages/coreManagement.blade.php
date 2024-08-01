@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <x-base-header headerTitle="Pengurus Inti" buttonAdd="true" headerAddButton="Tambah Data"
-            modalId="#coreManagementModal"></x-base-header>
+            modalId="#coreManagementModal"  buttonExport="false"></x-base-header>
         <x-base-body>
             <x-base-table initId="dataTable">
                 <x-slot name="thead">
