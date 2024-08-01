@@ -80,6 +80,18 @@ function deleteAlert() {
     })
 }
 
+function exportAlert() {
+    return Swal.fire({
+        title: 'Export ?',
+        text: 'Hanya data dengan status approved yang akan di export',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Batal',
+        confirmButtonText: 'Ya',
+        reverseButtons: true,
+    })
+}
+
 function successDeleteAlert() {
     return Swal.fire({
         title: 'Success',
