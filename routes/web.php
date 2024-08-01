@@ -51,6 +51,7 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/get/{id}', 'getDataById');
             Route::post('/update/{id}', 'updateData');
             Route::delete('/delete/{id}', 'deleteData');
+            Route::get('/export', 'export');
         });
 
         Route::post('logout', [AuthController::class, 'logout']);
