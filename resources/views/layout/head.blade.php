@@ -37,6 +37,5 @@
 
   <!-- jQuery -->
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 </head>
 <body>
