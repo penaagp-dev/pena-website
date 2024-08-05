@@ -137,7 +137,7 @@ class RegisterCaRepositories implements RegisterCaInterfaces
                 $data->photo = ImageHandler::uploadImage($request->file('photo'), 'uploads/registerca', 'REGISTER-CA-');
             }
             $data->email_token = Str::random(32);
-            $data->expires_at = Carbon::now()->addMinutes(1);
+            $data->expires_at = Carbon::now()->addMinutes(5);
             
             $data->save();
             EmailHandler::sendWaLink($data->email, $data);

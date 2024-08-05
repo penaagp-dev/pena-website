@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $user =  User::create([
             'id' => 'c8846d0f-037a-4481-bdc0-43f9fe6bc3d7',
             'email' => 'adminpena@gmail.com',
-            'password' => Hash::make('123')
+            'password' => Hash::make('2C8Xm6UHL8j2gZQ')
         ]);
 
         $user->createToken('auth_token')->plainTextToken;
