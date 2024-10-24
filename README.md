@@ -30,7 +30,7 @@ php artisan key:generate
 ### Migration table and seeder
 
 ```bash
-php artisan migrate::fresh --seed
+php artisan migrate:fresh --seed
 ```
 
 ### Run Project
@@ -48,4 +48,13 @@ npm run dev
 
 ```bash
 docker-compose up -d
+```
+
+Enable this code in `vite.config.js`
+
+```bash
+ server: {
+        host: '0.0.0.0',
+        port: 5173
+    }
 ```
