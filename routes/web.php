@@ -34,6 +34,10 @@ Route::middleware(['auth', 'web'])->group(function () {
         return view('pages.inventaris');
     });
 
+    Route::get('/cms/admin/category', function () {
+        return view('pages.category');
+    });
+
     Route::prefix('v1')->group(function () {
         Route::prefix('dashboard')->controller(DashboardController::class)->group(function () {
             Route::get('/line-chart', 'dasboardChart');
