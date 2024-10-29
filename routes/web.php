@@ -1,10 +1,19 @@
 <?php
 
 use App\Http\Controllers\CMS\AuthController;
+use App\Http\Controllers\CMS\BorrowController;
 use App\Http\Controllers\CMS\CoreManagementController;
 use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\RegisterCaController;
 use Illuminate\Support\Facades\Route;
+
+Route::prefix('borrow')->controller(BorrowController::class)->group(function () {
+    Route::get('/', 'getAllData');
+    Route::post('/Create', 'CreateData');
+    Route::get('/get/{id}', 'getDataById');
+    Route::post('/update/{id}', 'updateData');
+    Route::delete('/delete/{id}', 'deleteData');
+});
 
 Route::post('v1/login', [AuthController::class, 'login']);
 
@@ -53,6 +62,8 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::delete('/delete/{id}', 'deleteData');
             Route::get('/export', 'export');
         });
+
+
 
         Route::post('logout', [AuthController::class, 'logout']);
     });
