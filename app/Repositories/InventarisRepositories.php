@@ -76,8 +76,9 @@ class InventarisRepositories implements InventarisInterfaces
             $data->status = $request->input('status');
             $data->is_condition = $request->input('is_condition');
             $data->description = $request->input('description');
+            $oldFile = $data->img_inventaris;
             if ($request->hasFile('img_inventaris')) {
-                $data->img_inventaris = ImageHandler::uploadImage($request->file('img_inventaris'), 'uploads/inventaris', 'INVENTARIS-BARANG', $data->photo);
+                $data->img_inventaris = ImageHandler::updateImage($request->file('img_inventaris'), 'uploads/inventaris', 'INVENTARIS-BARANG', $oldFile);
             }
             $data->save();
 
@@ -90,26 +91,22 @@ class InventarisRepositories implements InventarisInterfaces
     public function deleteData($id)
     {
         try {
-            // Cari data berdasarkan ID
             $data = $this->inventarisModel->find($id);
             if(!$data){
                 return $this->dataNotFound();
             }
 
-            // Buat jalur file
-            $file = public_path('uploads/inventaris/' . $data->photo);
+            $file = public_path('uploads/inventaris/' .$data->img_inventaris);
 
-            // Pastikan jalur yang ditargetkan adalah file, bukan direktori
-            if(file_exists($file) && is_file($file)){
-                unlink($file); // Hapus file jika benar-benar ada dan merupakan file
+
+            if(file_exists($file)){
+                unlink($file);
             }
-
-            // Hapus data dari database
             $data->delete();
             return $this->delete();
 
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), 500); // Tangani error
+            return $this->error($th->getMessage(), 500);
         }
     }
 
