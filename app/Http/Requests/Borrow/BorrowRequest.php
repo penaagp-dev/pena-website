@@ -24,27 +24,11 @@ class BorrowRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];
-        if ($this->is('borrow/create')) {
-            $rules = [
-                'name_borrow' => 'required',
-                'quantity' => 'required',
-                'description' => 'required'
-            ];
-        }elseif($this->is('api/borrow/create')){
-            $rules = [
-                'name_borrow' => 'required',
-                'quantity' => 'required',
-                'description' => 'required'
-            ];
-        }else{
-            $rules = [
-                'name_borrow' => 'required',
-                'quantity' => 'required',
-                'description' => 'required'
-            ];
-        }
-        return $rules;
+        return [ 
+            'name_borrow' => 'required',
+            'quantity' => 'required',
+            'description' => 'required'
+        ];
     }
         
     protected function failedValidation(Validator $validator)

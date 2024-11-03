@@ -9,24 +9,24 @@ use Illuminate\Http\Request;
 
 class BorrowController extends Controller
 {
-    protected $BorrowRepositories;
-    public function __construct(BorrowRepositories $BorrowInterface)
+    protected $borrowRepositories;
+    public function __construct(BorrowRepositories $borrowInterface)
     {
-        $this->BorrowRepositories = $BorrowInterface;
+        $this->borrowRepositories = $borrowInterface;
     }
     public function getAllData(){
-        return $this->BorrowRepositories->getAllData();
+        return $this->borrowRepositories->getAllData();
     }
     public function CreateData(BorrowRequest $request){
-        return $this->BorrowRepositories->CreateData($request);
+        return $this->borrowRepositories->CreateData($request);
     }
     public function getDataById($id){
-        return $this->BorrowRepositories->getDataById($id);
+        return $this->borrowRepositories->getDataById($id);
     }
     public function updateData(BorrowRequest $request, $id){
-        return $this->BorrowRepositories->updateData($request, $id);
+        return $this->borrowRepositories->updateData($request, $id);
     }
     public function deleteData($id){
-        return $this->BorrowRepositories->deleteData($id);
+        return $this->borrowRepositories->deleteData($id);
     }
 }

@@ -5,33 +5,34 @@ namespace App\Repositories;
 use App\Http\Requests\Borrow\BorrowRequest;
 use App\Interfaces\BorrowInterface;
 use App\Models\BorrowModel;
-use App\Models\RegisterCaModel;
 use App\Traits\HttpResponseTrait;
 
 class BorrowRepositories implements BorrowInterface
 {
-    protected $BorrowModel;
+    protected $borrowModel;
     // protected $RegisterCaModel;
     use HttpResponseTrait;
 
-    public function __construct(BorrowModel $BorrowModel)
+    public function __construct(BorrowModel $borrowModel)
     {
-        $this->BorrowModel = $BorrowModel;
+        $this->borrowModel = $borrowModel;
         // $this->RegisterCaModel = $RegisterCaModel;
     }
+    
     public function getAllData()
     {
-        $data = $this->BorrowModel->all();
+        $data = $this->borrowModel->all();
         if ($data->isEmpty()) {
             return $this->dataNotFound();
         }else {
             return $this->success($data, 'success get all data Borrow', 200);
         }
     }
+
     public function CreateData(BorrowRequest $request){
         try {
-            $data = new $this->BorrowModel;
-            $data->id_inventaris = $request->input('id_inventaris');
+            $data = new $this->borrowModel;
+            // $data->id_inventaris = $request->input('id_inventaris');
             $data->name_borrow = $request->input('name_borrow');
             $data->quantity = $request->input('quantity');
             $data->description = $request->input('description');
@@ -42,17 +43,19 @@ class BorrowRepositories implements BorrowInterface
             return $this->error($th->getMessage());
         }
     }
+
     public function getDataById($id){
-        $data = $this->BorrowModel->find($id);
+        $data = $this->borrowModel->find($id);
         if ($data) {
             return $this->success($data, 'success', 'success get data by id',);
         }else{
             return $this->dataNotFound();
         }
     }
+
     public function updateData(BorrowRequest $request, $id){
         try {
-            $data = $this->BorrowModel->find($id);
+            $data = $this->borrowModel->find($id);
             if (!$data) {
                 return $this->dataNotFound();
             }
@@ -66,10 +69,11 @@ class BorrowRepositories implements BorrowInterface
             return $this->error($th->getMessage());
         }
     }
+    
     public function deleteData($id)
     {
         try {
-            $data = $this->BorrowModel->find($id); 
+            $data = $this->borrowModel->find($id); 
             if (!$data) {
                 return $this->dataNotFound();
             }

@@ -15,7 +15,6 @@ class BorrowModel extends Model
         'id',
         'name_borrow',
         'quantity',
-        'description',
-         
+        'description',  
     ];
 }
