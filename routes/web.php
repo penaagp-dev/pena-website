@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\CMS\AuthController;
+use App\Http\Controllers\CMS\CategoryController;
 use App\Http\Controllers\CMS\CoreManagementController;
 use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\RegisterCaController;
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::post('v1/login', [AuthController::class, 'login']);
 
@@ -17,15 +20,23 @@ Route::get('api/v1/register-ca/verify-email-exp/{token}', [RegisterCaController:
 Route::get('api/v1/core-management', [CoreManagementController::class, 'getAllData']);
 
 
+Route::prefix('v1/category')->controller(CategoryController::class)->group(function(){
+    Route::get('/', 'getAllData');
+    Route::post('/create', 'createData');
+    Route::get('/get/{id}', 'getDataById');
+    Route::post('/update/{id}', 'updateData');
+    Route::delete('/delete/{id}', 'deleteData');
+});
+
 Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/cms/admin/', function () {
         return view('pages.dashboard');
     });
-    
+
     Route::get('/cms/admin/core-management', function () {
         return view('pages.coreManagement');
     });
-    
+
     Route::get('/cms/admin/register-ca', function () {
         return view('pages.registerca');
     });
@@ -54,8 +65,12 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/export', 'export');
         });
 
+
+
         Route::post('logout', [AuthController::class, 'logout']);
     });
+
+
 });
 
 Route::fallback(function () {
