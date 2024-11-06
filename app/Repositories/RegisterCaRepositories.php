@@ -138,7 +138,7 @@ class RegisterCaRepositories implements RegisterCaInterfaces
             }
             $data->email_token = Str::random(32);
             $data->expires_at = Carbon::now()->addMinutes(5);
-            
+
             $data->save();
             EmailHandler::sendWaLink($data->email, $data);
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Inventaris;
 
-use Illuminate\Validation\Rule;
+
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -20,50 +20,29 @@ class InventarisRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string,
      */
     public function rules(): array
     {
-        $rules = [];
+        if ($this->is('v1/inventaris-barang/create') || $this->is('api/v1/inventaris-barang')) {
+            return [
+                'name_inventaris' => 'required',
+                'stock' => 'required',
+                'location_item' => 'required',
+                'id_category' => 'required|uuid',
+                'status' => 'required|in:borrow,ready',
+                'is_condition' => 'required|boolean',
+                'description' => 'required',
+                'img_inventaris' => 'required|mimes:png,jpg,jpeg'
+            ];
+        }
 
-        if ($this->is('v1/inventaris-barang/create')) {
-            $rules = [
-                'name_inventaris' => 'required',
-                'stock' => 'required',
-                'location_item' => 'required',
-                'id_category' => 'required|uuid',
-                'status' => 'required|in:borrow,ready',
-                'is_condition' => 'required|boolean',
-                'description' => 'required',
-                'img_inventaris' => 'required|mimes:png,jpg,jpeg'
-            ];
-        }else if($this->is('api/v1/inventaris-barang')){
-            $rules = [
-                'name_inventaris' => 'required',
-                'stock' => 'required',
-                'location_item' => 'required',
-                'id_category' => 'required|uuid',
-                'status' => 'required|in:borrow,ready',
-                'is_condition' => 'required|boolean',
-                'description' => 'required',
-                'img_inventaris' => 'required|mimes:png,jpg,jpeg'
-            ];
-        }
-        else{
-            $rules = [
-                'name_inventaris' => 'required',
-                'stock' => 'required',
-                'location_item' => 'required',
-                'id_category' => 'required|uuid',
-                'status' => 'required|in:borrow,ready',
-                'is_condition' => 'required|boolean',
-                'description' => 'required',
-                'img_inventaris' => 'required|mimes:png,jpg,jpeg'
-            ];
-        }
-        return $rules;
+        return [];
     }
 
+    /**
+     * Customize the response for validation failures.
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

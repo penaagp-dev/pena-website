@@ -10,7 +10,7 @@ class InventarisModel extends Model
 {
     use HasFactory,HasUuids;
 
-    protected $table = 'inventaris_models';
+    protected $table = 'tb_inventaris';
     protected $fillable = [
         'id',
         'name_inventaris',
