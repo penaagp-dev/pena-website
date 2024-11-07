@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name_borrow');
             $table->string('quantity');
             $table->text('description');
+            $table->foreignUuid('id_inventaris')->constrained('tb_inventaris');
             $table->timestamps();
         });
     }

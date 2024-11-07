@@ -5,7 +5,6 @@ namespace App\Http\Controllers\CMS;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Borrow\BorrowRequest;
 use App\Repositories\BorrowRepositories;
-use Illuminate\Http\Request;
 
 class BorrowController extends Controller
 {

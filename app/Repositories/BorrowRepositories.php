@@ -41,7 +41,10 @@ class BorrowRepositories implements BorrowInterface
             $data->description = $request->input('description');
             $data->save();
             DB::commit();
-            // $inventaris = $this->inventarisModel->find($data->id_inventaris);
+            $inventaris = $this->inventarisModel->find($data->id_inventaris);
+            if ($inventaris) {
+                $inventaris->status = 'borrow';
+            }
             return $this->success($data, 'success', 'success create data');
         } catch (\Throwable $th) {
             DB::rollback();
