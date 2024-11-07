@@ -16,7 +16,7 @@ class CategoryRepositories implements CategoryInterface
     {
         $this->categoryModel = $categoryModel;
     }
-
+    
     public function getAllData()
     {
         $data = $this->categoryModel->all();

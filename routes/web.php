@@ -8,7 +8,6 @@ use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\RegisterCaController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::post('v1/login', [AuthController::class, 'login']);
 
 Route::get('/cms/admin/login', function () {
@@ -65,7 +64,6 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::post('/update/{id}', 'updateData');
             Route::delete('/delete/{id}', 'deleteData');
         });
-
         Route::prefix('category')->controller(CategoryController::class)->group(function(){
             Route::get('/', 'getAllData');
             Route::post('/create', 'createData');
@@ -76,8 +74,6 @@ Route::middleware(['auth', 'web'])->group(function () {
 
         Route::post('logout', [AuthController::class, 'logout']);
     });
-
-
 });
 
 Route::fallback(function () {
