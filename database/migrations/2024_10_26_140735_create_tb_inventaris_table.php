@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name_inventaris');
             $table->integer('stock');
             $table->string('location_item');
-            $table->foreignUuid('id_category')->constrained('tb_category');
+            $table->string('id_category');
             $table->enum('status', ['borrow','ready']);
             $table->boolean('is_condition');
             $table->text('description');

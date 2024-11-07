@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class InventarisModel extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory,HasUuids;
+
     protected $table = 'tb_inventaris';
     protected $fillable = [
+        'id',
         'name_inventaris',
         'stock',
         'location_item',
@@ -21,13 +22,4 @@ class InventarisModel extends Model
         'description',
         'img_inventaris'
     ];
-
-    /**
-     *
-     *
-     */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(CategoryModel::class, 'id_category', 'id');
-    }
 }
