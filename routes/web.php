@@ -83,12 +83,9 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::delete('/delete/{id}', 'deleteData');
         });
 
-
-
         Route::post('logout', [AuthController::class, 'logout']);
     });
 });
-
 
 
 Route::fallback(function () {

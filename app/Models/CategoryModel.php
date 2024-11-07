@@ -12,7 +12,10 @@ class CategoryModel extends Model
 {
     use HasFactory, HasUuids;
     protected $table = 'tb_category';
-    protected $fillable = ['name_category'];
+    protected $fillable = [
+        'id',
+        'name_category'
+    ];
 
     /**
      *
