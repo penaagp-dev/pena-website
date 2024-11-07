@@ -66,7 +66,6 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::delete('/delete/{id}', 'deleteData');
         });
 
-
         Route::prefix('inventaris-barang')->controller(InventarisController::class)->group(function (){
             Route::get('/', 'getAllData');
             Route::post('/create', 'createData');
@@ -78,8 +77,6 @@ Route::middleware(['auth', 'web'])->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
     });
 });
-
-
 
 Route::fallback(function () {
     return view('frontend');
