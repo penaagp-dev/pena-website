@@ -24,20 +24,16 @@ class InventarisRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->is('v1/inventaris-barang/create') || $this->is('api/v1/inventaris-barang')) {
-            return [
-                'name_inventaris' => 'required',
-                'stock' => 'required',
-                'location_item' => 'required',
-                'id_category' => 'required|uuid',
-                'status' => 'required|in:borrow,ready',
-                'is_condition' => 'required|boolean',
-                'description' => 'required',
-                'img_inventaris' => 'required|mimes:png,jpg,jpeg'
-            ];
-        }
-
-        return [];
+        return [
+            'name_inventaris' => 'required',
+            'stock' => 'required',
+            'location_item' => 'required',
+            'id_category' => 'required|uuid',
+            'status' => 'required|in:borrow,ready',
+            'is_condition' => 'required|boolean',
+            'description' => 'required',
+            'img_inventaris' => 'required|mimes:png,jpg,jpeg'
+        ];
     }
 
     /**

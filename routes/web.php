@@ -56,17 +56,19 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/export', 'export');
         });
 
+        Route::prefix('inventaris-barang')->controller(InventarisController::class)->group(function (){
+            Route::get('/', 'getAllData');
+            Route::post('/create', 'createData');
+            Route::get('/get/{id}', 'getDataById');
+            Route::post('update/{id}', 'updateData');
+            Route::delete('/delete/{id}', 'deleteData');
+        });
+
         Route::post('logout', [AuthController::class, 'logout']);
     });
 });
 
-Route::prefix('inventaris-barang')->controller(InventarisController::class)->group(function (){
-    Route::get('/', 'getAllData');
-    Route::post('/create', 'createData');
-    Route::get('/get/{id}', 'getDataById');
-    Route::post('update/{id}', 'updateData');
-    Route::delete('/delete/{id}', 'deleteData');
-});
+
 
 Route::fallback(function () {
     return view('frontend');
