@@ -95,7 +95,6 @@ Route::middleware(['auth', 'web'])->group(function () {
     });
 });
 
-
 Route::fallback(function () {
     return view('frontend');
 });

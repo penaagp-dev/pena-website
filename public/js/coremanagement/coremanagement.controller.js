@@ -84,7 +84,7 @@ $(document).ready(function () {
         coremanagementservice.deleteData(id)
     })
 
-    $('#inventarisModal').on('hidden.bs.modal', function () {
+    $('#coreManagementModal').on('hidden.bs.modal', function () {
         $('#id').val('')
         $('#name').val('')
         $('#jabatan').val('')
