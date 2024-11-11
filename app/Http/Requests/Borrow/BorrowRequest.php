@@ -25,6 +25,7 @@ class BorrowRequest extends FormRequest
     public function rules(): array
     {
         return [ 
+            'id_inventaris' => 'required|uuid',
             'name_borrow' => 'required',
             'quantity' => 'required',
             'description' => 'required'

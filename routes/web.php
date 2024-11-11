@@ -15,6 +15,29 @@ Route::get('/cms/admin/login', function () {
     return view('auth.login');
 })->name('login');
 
+Route::prefix('category')->controller(CategoryController::class)->group(function(){
+    Route::get('/', 'getAllData');
+    Route::post('/create', 'createData');
+    Route::get('/get/{id}', 'getDataById');
+    Route::post('/update/{id}', 'updateData');
+    Route::delete('/delete/{id}', 'deleteData');
+});
+
+Route::prefix('inventaris-barang')->controller(InventarisController::class)->group(function (){
+    Route::get('/', 'getAllData');
+    Route::post('/create', 'createData');
+    Route::get('/get/{id}', 'getDataById');
+    Route::post('update/{id}', 'updateData');
+    Route::delete('/delete/{id}', 'deleteData');
+});
+
+Route::prefix('borrow')->controller(BorrowController::class)->group(function () {
+    Route::get('/', 'getAllData');
+    Route::post('/Create', 'CreateData');
+    Route::get('/get/{id}', 'getDataById');
+    Route::post('/update/{id}', 'updateData');
+    Route::delete('/delete/{id}', 'deleteData');
+});
 
 Route::post('api/v1/register-ca/', [RegisterCaController::class, 'registerCaFe']);
 Route::get('api/v1/register-ca/verify-email-exp/{token}', [RegisterCaController::class, 'verifyEmailExp'])->name('verify.email');
@@ -59,29 +82,9 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/export', 'export');
         });
 
-        Route::prefix('category')->controller(CategoryController::class)->group(function(){
-            Route::get('/', 'getAllData');
-            Route::post('/create', 'createData');
-            Route::get('/get/{id}', 'getDataById');
-            Route::post('/update/{id}', 'updateData');
-            Route::delete('/delete/{id}', 'deleteData');
-        });
 
-        Route::prefix('inventaris-barang')->controller(InventarisController::class)->group(function (){
-            Route::get('/', 'getAllData');
-            Route::post('/create', 'createData');
-            Route::get('/get/{id}', 'getDataById');
-            Route::post('update/{id}', 'updateData');
-            Route::delete('/delete/{id}', 'deleteData');
-        });
 
-        Route::prefix('borrow')->controller(BorrowController::class)->group(function () {
-            Route::get('/', 'getAllData');
-            Route::post('/Create', 'CreateData');
-            Route::get('/get/{id}', 'getDataById');
-            Route::post('/update/{id}', 'updateData');
-            Route::delete('/delete/{id}', 'deleteData');
-        });
+
 
         Route::post('logout', [AuthController::class, 'logout']);
     });
