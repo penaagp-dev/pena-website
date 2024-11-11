@@ -24,6 +24,7 @@
             </x-base-table>
         </x-base-body>
     </div>
-
     <x-inventaris.inventaris-modal></x-inventaris.inventaris-modal>
+    <script type="module" src="{{ asset('js/inventaris/inventaris.controller.js') }}"></script>
+
 @endsection

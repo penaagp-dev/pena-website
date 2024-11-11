@@ -56,16 +56,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Deskripsi</label>
+                                    <textarea placeholder="Deskripsi" class="form-control" name="description" id="description" rows="3"></textarea>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group form-show-validation">
                                     <label for="photo">Gambar</label>
                                     <input type="file" class="form-control " style="height: 44px !important" name="img_inventaris" id="img_inventaris">
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Deskripsi</label>
-                                    <textarea placeholder="Deskripsi" class="form-control" name="description" id="description" rows="3"></textarea>
                             </div>
                         </div>
                     </div>

@@ -19,15 +19,18 @@ $(document).ready(function () {
               id_category: {
                   required:true
               },
-              is_condition: {
-                  required: true
+              status: {
+                  required:true
               },
-              img_inventaris: {
+              is_condition: {
                   required: true
               },
               description: {
                   required: true
-              }  
+              },  
+              img_inventaris: {
+                  required: true
+              }
           },
           messages: {
               name_inventaris: {
@@ -42,15 +45,18 @@ $(document).ready(function () {
               id_category: {
                   required: "Kategori tidak boleh kosong"
               },
+              status: {
+                  required: "Status tidak boleh kosong"
+              },
               is_condition: {
                   required: "Kondisi tidak boleh kosong"
+              },
+              description: {
+                  required: "Deskripsi tidak boleh kosong"
               },
               img_inventaris: {
                   required: "Gambar tidak boleh kosong",
                   fileExtension: "Format file harus jpg, jpeg, png",
-              },
-              description: {
-                  required: "Deskripsi tidak boleh kosong"
               }
           },
           highlight: function (element) {
@@ -96,6 +102,18 @@ $(document).ready(function () {
   $('#id_category').on('input', function () {
     $(this).valid()
   })
+
+  $('#status').on('input', function () {
+    $(this).valid()
+  })
+
+  $('#is_condition').on('input', function () {
+    $(this).valid()
+  })
+
+  $('#description').on('input', function () {
+    $(this).valid()
+  })
   
   $('#img_inventaris').on('change', function () {
       $(this).valid()
@@ -126,6 +144,9 @@ $(document).ready(function () {
       $('#stock').val('')
       $('#location_item').val('')
       $('#id_category').val('')
+      $('#status').val('')
+      $('#is_condition').val('')
+      $('#description').val('')
       $('#img_inventaris').val('')
       $('#modal-title').text('Tambah Data');
       $('.form-control').removeClass('is-invalid').removeClass('is-valid')

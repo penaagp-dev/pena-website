@@ -22,16 +22,19 @@ class inventarisService {
           tableBody += "<td>" + item.stock + "</td>";
           tableBody += "<td>" + item.location_item + "</td>";
           tableBody += "<td>" + item.id_category + "</td>";
+          tableBody += "<td>" + item.status + "</td>";
+          tableBody += "<td>" + item.is_condition + "</td>";
+          tableBody += "<td>" + item.description + "</td>";
           tableBody += `
           <td>
-              <a href="${appUrl}/uploads/coremanagement/${item.photo}" target="_blank">
-                  <img src="${appUrl}/uploads/coremanagement/${item.photo}" class="img-thumbnail" width="50" height="50">
+              <a href="${appUrl}/uploads/inventaris/${item.img_inventaris}" target="_blank">
+                  <img src="${appUrl}/uploads/inventaris/${item.img_inventaris}" class="img-thumbnail" width="50" height="50">
               </a>
           </td>
           `;
           tableBody +=
               "<td   class='text-center '>" +
-              "<button class='btn btn-outline-primary btn-sm edit-modal mr-1' data-toggle='modal' data-target='#coreManagementModal' data-id='" +
+              "<button class='btn btn-outline-primary btn-sm edit-modal mr-1' data-toggle='modal' data-target='#inventarisModal' data-id='" +
               item.id + "'><i class='fas fa-edit'></i></button>" +
               "<button type='submit' class='delete-confirm btn btn-outline-danger btn-sm' data-id='" +
               item.id + "'><i class='fas fa-trash-alt'></i></button>" +
@@ -43,21 +46,17 @@ class inventarisService {
       dataTable.rows.add($(tableBody)).draw();
   }
 
-  function categoryItem() {
-      
-  }
-
   async createData(e, checkingEdit) {
       let submitButton = $(e.target).find(':submit')
       try {
           const formData = new FormData(e.target)
           if (checkingEdit()) {
               const id = $('#id').val()
-              const response = await axios.post(`${appUrl}/v1/core-management/update/${id}`, formData)
+              const response = await axios.post(`${appUrl}/v1/item-inventaris/update/${id}`, formData)
               const responseData = await response.data
               if (responseData.status === 'success') {
                   successUpdateAlert().then(() => {
-                      $('#coreManagementModal').modal('hide')
+                      $('#inventarisModal').modal('hide')
                       this.getAllData()
                   })
               } else {
@@ -65,12 +64,12 @@ class inventarisService {
               }
           } else {
               submitButton.attr('disabled', true)
-              const response = await axios.post(`${appUrl}/v1/core-management/create`, formData)
+              const response = await axios.post(`${appUrl}/v1/item-inventaris/create`, formData)
               const responseData = await response.data
               console.log(responseData)
               if (responseData.status === 'success') {
                   successAlert().then(() => {
-                      $('#coreManagementModal').modal('hide')
+                      $('#inventarisModal').modal('hide')
                   })
                   this.getAllData()
                   submitButton.attr('disabled', false)
@@ -82,7 +81,7 @@ class inventarisService {
       } catch (error) {
           submitButton.attr('disabled', false)
           console.log(error)
-          if (error.response.data.message == 'Jabatan sudah ada') {
+          if (error.response.data.name_inventaris == 'Nama barang sudah ada') {
               jabatanAlert()
           } else if (error.response.status == 422) {
               warningAlert()
@@ -94,16 +93,19 @@ class inventarisService {
 
   async getDataById(id, checkingEdit) {
       try {
-          const response = await axios.get(`${appUrl}/v1/core-management/get/${id}`)
+          const response = await axios.get(`${appUrl}/v1/item-inventaris/get/${id}`)
           const responseData = await response.data
           $('#modal-title').html("Edit Data")
           $('#id').val(responseData.data.id)
-          $('#name').val(responseData.data.name)
-          $('#jabatan').val(responseData.data.jabatan)
+          $('#name_inventaris').val(responseData.data.name)
+          $('#stock').val(responseData.data.stock)
+          $('#location_item').val(responseData.data.location_item)
+          $('#status').val(responseData.data.status)
+          $('#is_condition').val(responseData.data.is_condition)
+          $('#description').val(responseData.data.description)
           generatePreviewImg('form-preview')
-          $('#preview').attr('src', `${appUrl}/uploads/coremanagement/${responseData.data.photo}`);
-
-          $('#photo').on('change', function () {
+          $('#preview').attr('src', `${appUrl}/uploads/inventaris/${responseData.data.img_inventaris}`);
+          $('#img_inventaris').on('change', function () {
               let file = this.files[0]
               let reader = new FileReader()
               reader.onload = function (e) {
@@ -114,7 +116,7 @@ class inventarisService {
               $(this).valid()
           })
 
-          const fileUrl = `${appUrl}/uploads/coremanagement/${responseData.data.photo}`
+          const fileUrl = `${appUrl}/uploads/inventaris/${responseData.data.img_inventaris}`
           const fileNames = fileUrl.split('/').pop()
           const blob = await fetch(fileUrl).then(r => r.blob());
           const file = new File([blob], fileNames, { type: blob.type });
@@ -132,7 +134,7 @@ class inventarisService {
       try {
           deleteAlert().then(async (result) => {
               if (result.isConfirmed) {
-                  const response = await axios.delete(`${appUrl}/v1/core-management/delete/${id}`)
+                  const response = await axios.delete(`${appUrl}/v1/item-inventaris/delete/${id}`)
                   const responseData = await response.data
                   if (responseData.status === 'success') {
                       successDeleteAlert().then(() => {
