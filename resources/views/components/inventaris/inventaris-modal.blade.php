@@ -42,7 +42,7 @@
                                     <label>Kategori</label>
                                     <select name="id_category" id="id_category" class="form-control">
                                         <option value="" selected disabled hidden>Choose here</option>
-                                        <option value="">Elektronik</option>
+                                        <!-- Kategori diambil dari tabel kategori -->
                                     </select>
                                 </div>
                             </div>
