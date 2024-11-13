@@ -52,6 +52,7 @@ class BorrowRepositories implements BorrowInterface
         }
     }
 
+    
     public function getDataById($id){
         $data = $this->borrowModel->find($id);
         if ($data) {
