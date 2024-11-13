@@ -8,7 +8,6 @@ use App\Models\BorrowModel;
 use App\Models\InventarisModel;
 use App\Traits\HttpResponseTrait;
 use Illuminate\Support\Facades\DB;
-use SebastianBergmann\Timer\NoActiveTimerException;
 
 class BorrowRepositories implements BorrowInterface
 {
@@ -24,12 +23,11 @@ class BorrowRepositories implements BorrowInterface
     
     public function getAllData()
     {
-        $data = $this->borrowModel->all();
-        $inventaris = $this->inventarisModel->where('status', 'borrow')->get();
-        if (!$data || !$inventaris) {
+        $data = $this->borrowModel->with('inventaris')->get();
+        if (!$data) {
             return $this->dataNotFound();
         }else {
-            return $this->success($data, $inventaris, 'success get all data Borrow', 200);
+            return $this->success($data, 'success get all data Borrow', 200);
         }
     }
 
