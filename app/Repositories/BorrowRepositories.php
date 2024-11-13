@@ -43,18 +43,7 @@ class BorrowRepositories implements BorrowInterface
             DB::commit();
             $inventaris = $this->inventarisModel->find($data->id_inventaris);
             if ($inventaris) {
-                $pengurangan = $inventaris->stock - $data->quantity;
-                if ($pengurangan < 0) {
-                    return response()->json([
-                        'code' => 402,
-                        'status' => 'error',
-                        'message' => 'barang di inventaris tidak cukup'
-                    ], 402);
-                }
                 $inventaris->status = 'borrow';
-                $inventaris->stock = $pengurangan;
-                $inventaris->save();
-                DB::commit();
             }
             return $this->success($data, 'success', 'success create data');
         } catch (\Throwable $th) {
