@@ -38,7 +38,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('/cms/admin/inventaris') }}"
-                        class="nav-link {{ request()->is('cms/admin/inventaris/') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('cms/admin/inventaris') ? 'active' : '' }}">
                         <i class="nav-icon fa-solid fa-user"></i>
                         <p>Inventaris Barang</p>
                     </a>
