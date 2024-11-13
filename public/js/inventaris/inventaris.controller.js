@@ -138,7 +138,7 @@ $(document).ready(function () {
       inventarisservice.deleteData(id)
   })
 
-  $('#coreManagementModal').on('hidden.bs.modal', function () {
+  $('#inventarisModal').on('hidden.bs.modal', function () {
       $('#id').val('')
       $('#name_inventaris').val('')
       $('#stock').val('')
