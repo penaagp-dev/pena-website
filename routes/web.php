@@ -87,6 +87,30 @@ Route::middleware(['auth', 'web'])->group(function () {
     });
 });
 
+    Route::prefix('category')->controller(CategoryController::class)->group(function(){
+        Route::get('/', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
+
+    Route::prefix('inventaris-barang')->controller(InventarisController::class)->group(function (){
+        Route::get('/', 'getAllData');
+        Route::post('/create', 'createData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
+
+    Route::prefix('borrow')->controller(BorrowController::class)->group(function () {
+        Route::get('/', 'getAllData');
+        Route::post('/Create', 'CreateData');
+        Route::get('/get/{id}', 'getDataById');
+        Route::post('/update/{id}', 'updateData');
+        Route::delete('/delete/{id}', 'deleteData');
+    });
+
 Route::fallback(function () {
     return view('frontend');
 });

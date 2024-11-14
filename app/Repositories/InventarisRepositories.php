@@ -6,17 +6,21 @@ use App\Helper\ImageHandler;
 use App\Http\Requests\Inventaris\InventarisRequest;
 use App\Interfaces\InventarisInterfaces;
 use App\Models\InventarisModel;
+use App\Models\CategoryModel;
 use App\Traits\HttpResponseTrait;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class InventarisRepositories implements InventarisInterfaces
 {
+    protected $categoryModel;
     protected $inventarisModel;
     use HttpResponseTrait;
 
-    public function __construct(InventarisModel $inventarisModel)
+    public function __construct(InventarisModel $inventarisModel, CategoryModel $categoryModel)
     {
+        $this->categoryModel = $categoryModel;
         $this->inventarisModel = $inventarisModel;
     }
 
@@ -32,7 +36,9 @@ class InventarisRepositories implements InventarisInterfaces
 
     public function createData(InventarisRequest $request)
     {
+
         try {
+            DB::beginTransaction();
             $data = new $this->inventarisModel;
             $data->name_inventaris = $request->input('name_inventaris');
             $data->stock = $request->input('stock');
@@ -45,9 +51,14 @@ class InventarisRepositories implements InventarisInterfaces
                 $data->img_inventaris = ImageHandler::uploadImage($request->file('img_inventaris'), 'uploads/inventaris', 'INVENTARIS-BARANG');
             }
             $data->save();
-
+            DB::commit();
+            $category = $this->inventarisModel->find($data->id_category);
+            if ($category) {
+                $category->status = 'inventaris';
+            }
             return $this->success($data, 'success', 'success create data inventaris barang');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $this->error($th->getMessage());
         }
     }
@@ -65,6 +76,7 @@ class InventarisRepositories implements InventarisInterfaces
     public function updateData(InventarisRequest $request, $id)
     {
         try {
+            DB::beginTransaction();
             $data = $this->inventarisModel->find($id);
             if(!$data){
                 return $this->dataNotFound();
@@ -81,9 +93,10 @@ class InventarisRepositories implements InventarisInterfaces
                 $data->img_inventaris = ImageHandler::updateImage($request->file('img_inventaris'), 'uploads/inventaris', 'INVENTARIS-BARANG', $oldFile);
             }
             $data->save();
-
+            DB::commit();
             return $this->success($data, 'success', 'success update data inventaris barang');
         } catch (\Throwable $th) {
+            DB::rollBack();
             return $this->error($th->getMessage());
         }
     }
