@@ -24,7 +24,7 @@ class CoreManagementRepositories implements CoreManagementInterfaces
         if ($data->isEmpty()) {
             return $this->dataNotFound();
         } else {
-            return $this->success($data, 'success get all data pengurus inti', 200);
+            return $this->success($data, 'success', 'success get all data pengurus inti');
         }
     }
 
