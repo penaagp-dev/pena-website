@@ -22,7 +22,6 @@ Route::post('api/v1/register-ca/', [RegisterCaController::class, 'registerCaFe']
 Route::get('api/v1/register-ca/verify-email-exp/{token}', [RegisterCaController::class, 'verifyEmailExp'])->name('verify.email');
 Route::get('api/v1/core-management', [CoreManagementController::class, 'getAllData']);
 
-
 Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/cms/admin/', function () {
         return view('pages.dashboard');
