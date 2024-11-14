@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class CoreManagementController extends Controller
 {
     protected $coreManagementRepositories;
+    
     public function __construct(CoreManagementRepositories $coreManagementRepositories)
     {
         $this->coreManagementRepositories = $coreManagementRepositories;
