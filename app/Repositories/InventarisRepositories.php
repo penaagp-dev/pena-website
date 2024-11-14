@@ -7,6 +7,7 @@ use App\Http\Requests\Inventaris\InventarisRequest;
 use App\Interfaces\InventarisInterfaces;
 use App\Models\InventarisModel;
 use App\Models\CategoryModel;
+use App\Models\BorrowModel;
 use App\Traits\HttpResponseTrait;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -26,8 +27,8 @@ class InventarisRepositories implements InventarisInterfaces
 
     public function getAllData()
     {
-        $data = $this->inventarisModel->all();
-        if($data->isEmpty()){
+        $data = $this->inventarisModel->with('category')->get();
+        if(!$data){
             return $this->dataNotFound();
         }else{
             return $this->success($data, 'success', 'success get all data inventaris barang');
@@ -44,7 +45,6 @@ class InventarisRepositories implements InventarisInterfaces
             $data->stock = $request->input('stock');
             $data->location_item = $request->input('location_item');
             $data->id_category = $request->input('id_category');
-            $data->status = $request->input('status');
             $data->is_condition = $request->input('is_condition');
             $data->description = $request->input('description');
             if ($request->hasFile('img_inventaris')) {
@@ -120,6 +120,25 @@ class InventarisRepositories implements InventarisInterfaces
 
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 500);
+        }
+    }
+
+    public function returnBorrow($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $data = $this->BorrowModel->find($id);
+            if(!$data) {
+                return $this->dataNotFound();
+            }
+
+            $inventaris = $this->inventarisModel->find($data->id_inventaris);
+            if(!$inventaris) {
+                return $this->dataNotFound();
+            }
+
+
         }
     }
 
