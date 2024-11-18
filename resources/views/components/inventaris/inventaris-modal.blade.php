@@ -1,7 +1,7 @@
     {{-- modal updert data --}}
-    <div class="modal fade" id="inventarisModal" tabindex="-1" role="dialog" aria-labelledby="coreManagementLabel"
+    <div class="modal fade" id="inventarisModal" tabindex="-1" role="dialog" aria-labelledby="inventarisModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" style="max-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modal-title">Tambah Data</h5>
@@ -56,16 +56,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-show-validation">
+                                    <label for="img_inventaris">Gambar</label>
+                                    <input type="file" class="form-control " style="height: 44px !important" name="img_inventaris" id="img_inventaris">
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Deskripsi</label>
                                     <textarea placeholder="Deskripsi" class="form-control" name="description" id="description" rows="3"></textarea>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-show-validation">
-                                    <label for="photo">Gambar</label>
-                                    <input type="file" class="form-control " style="height: 44px !important" name="img_inventaris" id="img_inventaris">
-                                </div>
                             </div>
                         </div>
                     </div>

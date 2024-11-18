@@ -12,7 +12,7 @@ class categoryService {
 
         let tableBody = '';
 
-        const response = await axios.get(`${appUrl}/v1/item_inventaris`);
+        const response = await axios.get(`${appUrl}/v1/category`);
         const responseData = await response.data;
 
         $.each(responseData.data, function (index, item) {

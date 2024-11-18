@@ -12,12 +12,13 @@ class inventarisService {
         let tableBody = '';
   
         // Ambil data kategori
-        const categoryResponse = await axios.get(`${appUrl}/category`);
+        const categoryResponse = await axios.get(`${appUrl}/v1/category`);
         const categories = categoryResponse.data.data;
   
         // Ambil data inventaris
         const response = await axios.get(`${appUrl}/v1/item-inventaris`);
         const responseData = await response.data;
+        console.log(responseData)
   
         $.each(responseData.data, function (index, item) {
             tableBody += "<tr>";
@@ -25,7 +26,7 @@ class inventarisService {
             tableBody += "<td>" + item.name_inventaris + "</td>";
             tableBody += "<td>" + item.stock + "</td>";
             tableBody += "<td>" + item.location_item + "</td>";
-            tableBody += "<td>" + item.id_category + "</td>";
+            tableBody += "<td>" + item.category.name_category + "</td>";
             tableBody += "<td>" + item.status + "</td>";
             tableBody += "<td>" + item.is_condition + "</td>";
             tableBody += "<td>" + item.description + "</td>";
@@ -114,17 +115,35 @@ class inventarisService {
             
             $('#modal-title').html("Edit Data");
             $('#id').val(responseData.data.id);
-            $('#name_inventaris').val(responseData.data.name);
+            $('#name_inventaris').val(responseData.data.name_inventaris);
             $('#stock').val(responseData.data.stock);
             $('#location_item').val(responseData.data.location_item);
-            $('#status').val(responseData.data.status);
             $('#is_condition').val(responseData.data.is_condition);
             $('#description').val(responseData.data.description);
-            $('#img_inventaris').val('');
             $('#preview').attr('src', `${appUrl}/uploads/inventaris/${responseData.data.img_inventaris}`);
+
+            $('#img_inventaris').on('change', function () {
+                let file = this.files[0]
+                let reader = new FileReader()
+                reader.onload = function (e) {
+                    generatePreviewImg('form-preview')
+                    $('#preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(file)
+                $(this).valid()
+            })
+
+            const fileUrl = `${appUrl}/uploads/inventaris/${responseData.data.img_inventaris}`
+            const fileNames = fileUrl.split('/').pop()
+            const blob = await fetch(fileUrl).then(r => r.blob());
+            const file = new File([blob], fileNames, { type: blob.type });
+            const fileList = new DataTransfer();
+            fileList.items.add(file);
+            $('#img_inventaris').prop('files', fileList.files);
+
   
             // Populate category dropdown
-            const categoryResponse = await axios.get(`${appUrl}/category`);
+            const categoryResponse = await axios.get(`${appUrl}/v1/category`);
             const categories = categoryResponse.data.data;
             this.populateCategoryDropdown(categories); // Populate the dropdown
             $('#id_category').val(responseData.data.id_category); // Select the current category

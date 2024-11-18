@@ -7,12 +7,12 @@ $(document).ready(function () {
     function validation() {
         $('#formTambah').validate({
             rules: {
-                name_categoty: {
+                name_category: {
                     required: true
                 }
             },
             messages: {
-                name_categoty: {
+                name_category: {
                     required: "Kategori tidak boleh kosong"
                 }
             },
@@ -56,7 +56,7 @@ $(document).ready(function () {
         categoryservice.deleteData(id)
     })
 
-    $('#inventarisModal').on('hidden.bs.modal', function () {
+    $('#categoryModal').on('hidden.bs.modal', function () {
         $('#id').val('')
         $('#name_category').val('')
         $('#modal-title').text('Tambah Data');

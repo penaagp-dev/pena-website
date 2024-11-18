@@ -1,5 +1,5 @@
     {{-- modal updert data --}}
-    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="coreManagementLabel"
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -12,14 +12,14 @@
                 <form id="formTambah">
                     <div class="modal-body">
                         @csrf
-                        <div class="row py-2">
+                        <div class="row">
                             <div class="col-md-12" id="form-preview">
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group fill form-show-validation">
                                     <input type="hidden" name="id" id="id" value="">
                                     <label>Nama Category </label>
-                                    <input id="name_inventaris" name="name_inventaris" type="text" class="form-control"
+                                    <input id="name_category" name="name_category" type="text" class="form-control"
                                         placeholder="Nama Barang" autocomplete="off">
                                 </div>
                             </div>

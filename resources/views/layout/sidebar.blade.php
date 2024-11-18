@@ -43,6 +43,16 @@
                         <p>Inventaris Barang</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('/cms/admin/category') }}"
+                        class="nav-link {{ request()->is('cms/admin/category') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>Kategori Barang</p>
+                    </a>
+                </li>
+                
+                
+                
 
              </ul>
          </nav>
