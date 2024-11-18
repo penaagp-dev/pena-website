@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InventarisModel extends Model
 {
     use HasFactory, HasUuids;
+    
     protected $table = 'tb_inventaris';
     protected $fillable = [
         'name_inventaris',
