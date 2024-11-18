@@ -15,8 +15,9 @@ class BorrowModel extends Model
     protected $fillable = [
         'id',
         'name_borrow',
+        'id_inventaris',
         'quantity',
-        'description',  
+        'description',
     ];
 
     public function inventaris(): belongsTo
