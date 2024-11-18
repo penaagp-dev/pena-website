@@ -36,6 +36,13 @@
                         <p>Data registrasi ca</p>
                     </a>
                 </li>
+                 <li class="nav-item ">
+                    <a href="{{ url('/cms/admin/user-management') }}"
+                        class="nav-link {{ request()->is('cms/admin/user-management') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>Data user management</p>
+                    </a>
+                </li>
 
 
 
