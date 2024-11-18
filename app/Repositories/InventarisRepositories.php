@@ -17,12 +17,14 @@ class InventarisRepositories implements InventarisInterfaces
 {
     protected $categoryModel;
     protected $inventarisModel;
+    protected $borrowModel;
     use HttpResponseTrait;
 
-    public function __construct(InventarisModel $inventarisModel, CategoryModel $categoryModel)
+    public function __construct(InventarisModel $inventarisModel, CategoryModel $categoryModel, BorrowModel $borrowModel)
     {
         $this->categoryModel = $categoryModel;
         $this->inventarisModel = $inventarisModel;
+        $this->borrowModel = $borrowModel;
     }
 
     public function getAllData()
@@ -101,6 +103,35 @@ class InventarisRepositories implements InventarisInterfaces
         }
     }
 
+    public function returnBorrow($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $data = $this->borrowModel->find($id);
+            if (!$data) {
+                return $this->dataNotFound();
+            }
+
+            $inventaris = $this->inventarisModel->find($data->id_inventaris);
+            if(!$inventaris) {
+                return $this->dataNotFound();
+            }
+
+            $inventaris->stock += $data->quantity;
+            $inventaris->status = 'ready';
+            $inventaris->save();
+
+            $data->delete();
+
+            DB::commit();
+            return $this->success(null, 'Success', 'Successfully returned borrowed item and updated stock');
+            } catch (\Throwable $th) {
+                DB::rollBack();
+                return $this->error($th->getMessage(), 500);
+            }
+    }
+
     public function deleteData($id)
     {
         try {
@@ -122,24 +153,4 @@ class InventarisRepositories implements InventarisInterfaces
             return $this->error($th->getMessage(), 500);
         }
     }
-
-    public function returnBorrow($id)
-    {
-        try {
-            DB::beginTransaction();
-
-            $data = $this->BorrowModel->find($id);
-            if(!$data) {
-                return $this->dataNotFound();
-            }
-
-            $inventaris = $this->inventarisModel->find($data->id_inventaris);
-            if(!$inventaris) {
-                return $this->dataNotFound();
-            }
-
-
-        }
-    }
-
 }
