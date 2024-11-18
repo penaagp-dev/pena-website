@@ -125,7 +125,7 @@ class InventarisRepositories implements InventarisInterfaces
             $data->delete();
 
             DB::commit();
-            return $this->success(null, 'Success', 'Successfully returned borrowed item and updated stock');
+            return $this->success($inventaris, 'Success', 'Successfully returned borrowed item and updated stock');
             } catch (\Throwable $th) {
                 DB::rollBack();
                 return $this->error($th->getMessage(), 500);
