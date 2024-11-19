@@ -26,7 +26,7 @@
                                     <label for="role">Role</label>
                                     <select name="role" id="role" class="form-control">
                                         <option value="" selected disabled hidden>Choose here</option>
-                                        <option value="super admin">Super Admin</option>
+                                        <option value="superadmin">Super Admin</option>
                                         <option value="inventaris">Inventaris</option>
                                     </select>
                                 </div>
@@ -34,6 +34,8 @@
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control " style="height: 44px !important"
                                         name="password" id="password">
+                                    <input type="checkbox" onclick="showPassword()" class="">
+                                    <label for="" style="font-size: 11px">Show password</label>
                                 </div>
                             </div>
                         </div>
@@ -47,3 +49,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function showPassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>

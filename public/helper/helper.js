@@ -132,6 +132,15 @@ function emailAlert() {
     });
 }
 
+function validationDeleteAlert(){
+    Swal.fire({
+        title: 'peringatan',
+        text: 'tidak bisa delete data sendiri',
+        icon: 'warning',
+        timer: 5000,
+    })
+}
+
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
         return this.optional(element) || /\.(jpg|jpeg|png)$/i.test(value);

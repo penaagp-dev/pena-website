@@ -82,6 +82,7 @@ class UserManagementRepositories implements UserManagementInterface
                 ], 422);
             }
             $data->delete();
+            return $this->delete();
         } catch (\Throwable $th) {
             return $this->error($th->getMessage());
         }

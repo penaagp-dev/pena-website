@@ -9,7 +9,6 @@
                 <tr>
                     <th>Email</th>
                     <th>Role</th>
-                    <th>Password</th>
                     <th>Aksi</th>
                 </tr>
             </x-slot>

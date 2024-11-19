@@ -87,7 +87,6 @@ class InventarisRepositories implements InventarisInterfaces
             $data->stock = $request->input('stock');
             $data->location_item = $request->input('location_item');
             $data->id_category = $request->input('id_category');
-            $data->status = $request->input('status');
             $data->is_condition = $request->input('is_condition');
             $data->description = $request->input('description');
             $oldFile = $data->img_inventaris;
