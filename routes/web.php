@@ -35,6 +35,14 @@ Route::middleware(['auth', 'web'])->group(function () {
         return view('pages.registerca');
     });
 
+    Route::get('/cms/admin/inventaris', function () {
+        return view('pages.inventaris');
+    });
+
+    Route::get('/cms/admin/category', function () {
+        return view('pages.category');
+    });
+
     Route::get('/cms/admin/user-management', function(){
         return view('pages.userManagement');
     });

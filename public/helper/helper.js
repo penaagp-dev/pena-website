@@ -132,10 +132,10 @@ function emailAlert() {
     });
 }
 
-function validationDeleteAlert(){
+function minimumPasswordAlert(){
     Swal.fire({
         title: 'peringatan',
-        text: 'tidak bisa delete data sendiri',
+        text: 'password minimal 8 karakter',
         icon: 'warning',
         timer: 5000,
     })

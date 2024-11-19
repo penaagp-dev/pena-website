@@ -33,7 +33,7 @@
                                 <div class="form-group form-show-validation">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control " style="height: 44px !important"
-                                        name="password" id="password">
+                                        placeholder="Masukkan password" name="password" id="password">
                                     <input type="checkbox" onclick="showPassword()" class="">
                                     <label for="" style="font-size: 11px">Show password</label>
                                 </div>

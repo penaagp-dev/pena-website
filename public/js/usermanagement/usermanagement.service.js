@@ -67,9 +67,11 @@ class UsermanagementService {
         } catch (error) {
             submitButton.attr('disabled', false)
             console.log(error)
-            if (error.response.data.message == 'Email sudah ada') {
+            if (error.response.data.data.email == 'The email has already been taken.') {
                 emailAlert()
-            } else if (error.response.status == 422) {
+            }else if (error.response.data.data.password == 'The password field must be at least 8 characters.'){
+                minimumPasswordAlert()
+            }else if (error.response.status == 422) {
                 warningAlert()
             } else {
                 errorAlert()
@@ -110,7 +112,7 @@ class UsermanagementService {
                     }
                 } catch (error) {
                     if (error.response.data.message === 'tidak bisa delete data') {
-                        validationDeleteAlert()
+                        failedDeleteDataLoginAlert()
                     } else {
                         errorAlert()
                     }
