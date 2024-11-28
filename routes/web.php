@@ -98,6 +98,7 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/get/{id}', 'getDataById');
             Route::post('/update/{id}', 'updateData');
             Route::delete('/delete/{id}', 'deleteData');
+            Route::post('/changePassword', 'changePassword');
         });
 
         Route::post('logout', [AuthController::class, 'logout']);

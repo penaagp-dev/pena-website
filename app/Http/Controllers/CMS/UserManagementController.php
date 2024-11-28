@@ -35,4 +35,7 @@ class UserManagementController extends Controller
     public function deleteData($id){
         return $this->userManagementRepositories->deleteData($id);
     }
+    public function changePassword(UserManagementRequest $request){
+        return $this->userManagementRepositories->changePassword($request);
+    }
 }
