@@ -5,9 +5,8 @@ namespace App\Http\Requests\UserManagement;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-
-use function Ramsey\Uuid\v1;
 
 class UserManagementRequest extends FormRequest
 {
@@ -31,13 +30,16 @@ class UserManagementRequest extends FormRequest
         if ($this->is('v1/user-management/create')) {
             $rules = [
                 'email' => 'required|unique:users,email',
-                'password' => 'required|min:8',
                 'role' => 'required|in:superadmin,inventaris'
             ];
-        }else {
+        } elseif ($this->is('v1/user-management/changePassword')) {
+            $rules = [
+                'password' => 'required|min:8|confirmed',
+                'password_confirmation' => 'required'
+            ];
+        } else {
             $rules = [
                 'email' => ['required', Rule::unique('users', 'email')->ignore($this->route('id'), 'id'),],
-                'password' => 'required|min:8',
                 'role' => 'required|in:superadmin,inventaris'
             ];
         }

@@ -7,6 +7,8 @@ use App\Interfaces\UserManagementInterface;
 use App\Models\User;
 use App\Traits\HttpResponseTrait;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class UserManagementRepositories implements UserManagementInterface
 {
@@ -32,7 +34,7 @@ class UserManagementRepositories implements UserManagementInterface
         try {
             $data = new $this->user;
             $data->email = $request->input('email');
-            $data->password = $request->input('password');
+            $data->password = Hash::make('Admin12345678');
             $data->role = $request->input('role');
             $data->save();
 
@@ -58,7 +60,7 @@ class UserManagementRepositories implements UserManagementInterface
                 return $this->dataNotFound();
             }
             $data->email = $request->input('email');
-            $data->password = $request->input('password');
+            $data->password = Hash::make('Admin12345678');
             $data->role = $request->input('role');
             $data->save();
 
@@ -85,5 +87,21 @@ class UserManagementRepositories implements UserManagementInterface
         } catch (\Throwable $th) {
             return $this->error($th->getMessage());
         }
+    }
+
+    public function changePassword(UserManagementRequest $request)
+    {
+        $data = $this->user->find(Auth::user()->id);
+        $checkPassword = Hash::check($request->passwordold, $data->password);
+        if (!$checkPassword) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'password lama anda salah'
+            ]);
+        }
+        $data->password = Hash::make($request->input('password'));
+        $data->save();
+        Auth::guard('web')->logout();
+        return $this->success($data, 'success', 'success update password'); 
     }
 }
