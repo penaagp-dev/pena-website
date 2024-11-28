@@ -11,4 +11,5 @@ interface UserManagementInterface
     public function getDataById($id);
     public function updateData(UserManagementRequest $request, $id);
     public function deleteData($id);
+    public function changePassword(UserManagementRequest $request);
 }
