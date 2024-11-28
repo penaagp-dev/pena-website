@@ -43,6 +43,10 @@ Route::middleware(['auth', 'web'])->group(function () {
         return view('pages.category');
     });
 
+    Route::get('/cms/admin/user-management', function(){
+        return view('pages.userManagement');
+    });
+
     Route::prefix('v1')->group(function () {
         Route::prefix('dashboard')->controller(DashboardController::class)->group(function () {
             Route::get('/line-chart', 'dasboardChart');

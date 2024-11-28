@@ -50,10 +50,13 @@
                         <p>Kategori Barang</p>
                     </a>
                 </li>
-                
-                
-                
-
+                <li class="nav-item">
+                    <a href="{{ url('/cms/admin/user-management') }}"
+                        class="nav-link {{ request()->is('cms/admin/user-management') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>Data User Management</p>
+                    </a>
+                </li>
              </ul>
          </nav>
          <!-- /.sidebar-menu -->
