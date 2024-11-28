@@ -39,6 +39,10 @@ Route::middleware(['auth', 'web'])->group(function () {
         return view('pages.inventaris');
     });
 
+    Route::get('/cms/admin/borrow', function () {
+        return view('pages.borrow');
+    });
+
     Route::get('/cms/admin/category', function () {
         return view('pages.category');
     });
