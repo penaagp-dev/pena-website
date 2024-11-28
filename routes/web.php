@@ -29,23 +29,23 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     Route::get('/cms/admin/core-management', function () {
         return view('pages.coreManagement');
-    })->middleware();
+    })->middleware('role:superadmin');
 
     Route::get('/cms/admin/register-ca', function () {
         return view('pages.registerca');
-    });
+    })->middleware('role:superadmin');
 
     Route::get('/cms/admin/inventaris', function () {
         return view('pages.inventaris');
-    });
+    })->middleware('role:inventaris');
 
     Route::get('/cms/admin/category', function () {
         return view('pages.category');
-    });
+    })->middleware('role:inventaris');
 
     Route::get('/cms/admin/user-management', function(){
         return view('pages.userManagement');
-    });
+    })->middleware('role:inventaris');
 
     Route::prefix('v1')->group(function () {
         Route::prefix('dashboard')->controller(DashboardController::class)->group(function () {
