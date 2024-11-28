@@ -41,4 +41,8 @@ class InventarisController extends Controller
     {
         return $this->inventarisRepositories->deleteData($id);
     }
+
+    public function returnBorrow($id){
+        return $this->inventarisRepositories->returnBorrow($id);
+    }
 }
