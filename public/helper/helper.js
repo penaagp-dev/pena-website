@@ -132,6 +132,15 @@ function emailAlert() {
     });
 }
 
+function minimumPasswordAlert(){
+    Swal.fire({
+        title: 'peringatan',
+        text: 'password minimal 8 karakter',
+        icon: 'warning',
+        timer: 5000,
+    })
+}
+
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
         return this.optional(element) || /\.(jpg|jpeg|png)$/i.test(value);
