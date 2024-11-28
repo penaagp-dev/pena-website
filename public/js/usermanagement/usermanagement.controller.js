@@ -13,9 +13,6 @@ $(document).ready(function () {
                 role: {
                     required: true
                 },
-                password: {
-                    required: true
-                }
             },
             messages: {
                 email: {
@@ -23,9 +20,6 @@ $(document).ready(function () {
                 },
                 role: {
                     required: "Role tidak boleh kosong"
-                },
-                password: {
-                    required: "Password tidak boleh kosong"
                 },
             },
             highlight: function (element) {
@@ -52,9 +46,7 @@ $(document).ready(function () {
     $('#role').on('input', function () {
         $(this).valid()
     })
-    $('#password').on('input', function () {
-        $(this).valid()
-    })
+
 
     function checkingEdit() {
         return $('#id').val() ? true : false
@@ -79,7 +71,6 @@ $(document).ready(function () {
         $('#id').val('')
         $('#email').val('')
         $('#role').val('')
-        $('#password').val('')
         $('#modal-title').text('Tambah Data');
         $('.form-control').removeClass('is-invalid').removeClass('is-valid')
         $('.error').remove();

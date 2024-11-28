@@ -88,7 +88,6 @@ class UsermanagementService {
             $('#id').val(responseData.data.id)
             $('#email').val(responseData.data.email)
             $('#role').val(responseData.data.role)
-            $('#password').val(responseData.data.password)
 
             checkingEdit()
         } catch (error) {

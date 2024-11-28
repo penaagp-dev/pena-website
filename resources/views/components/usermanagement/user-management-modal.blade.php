@@ -32,10 +32,7 @@
                                 </div>
                                 <div class="form-group form-show-validation">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control " style="height: 44px !important"
-                                        placeholder="Masukkan password" name="password" id="password">
-                                    <input type="checkbox" onclick="showPassword()" class="">
-                                    <label for="" style="font-size: 11px">Show password</label>
+                                    <input type="text" class="form-control" style="height: 44px !important" value="Admin12345678" name="password" id="password" disabled>
                                 </div>
                             </div>
                         </div>
@@ -49,14 +46,3 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function showPassword() {
-            var x = document.getElementById("password");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
