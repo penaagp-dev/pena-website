@@ -29,7 +29,7 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     Route::get('/cms/admin/core-management', function () {
         return view('pages.coreManagement');
-    });
+    })->middleware();
 
     Route::get('/cms/admin/register-ca', function () {
         return view('pages.registerca');
