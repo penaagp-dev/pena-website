@@ -35,6 +35,14 @@ Route::middleware(['auth', 'web'])->group(function () {
         return view('pages.registerca');
     });
 
+    Route::get('/cms/admin/inventaris', function () {
+        return view('pages.inventaris');
+    });
+
+    Route::get('/cms/admin/category', function () {
+        return view('pages.category');
+    });
+
     Route::prefix('v1')->group(function () {
         Route::prefix('dashboard')->controller(DashboardController::class)->group(function () {
             Route::get('/line-chart', 'dasboardChart');
@@ -66,15 +74,16 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::post('/update/{id}', 'updateData');
             Route::delete('/delete/{id}', 'deleteData');
         });
-        
-        Route::prefix('inventaris-barang')->controller(InventarisController::class)->group(function (){
+
+        Route::prefix('item-inventaris')->controller(InventarisController::class)->group(function (){
             Route::get('/', 'getAllData');
             Route::post('/create', 'createData');
             Route::get('/get/{id}', 'getDataById');
             Route::post('update/{id}', 'updateData');
             Route::delete('/delete/{id}', 'deleteData');
+            Route::post('/returnborrow/{id}', 'returnBorrow');
         });
-        
+
         Route::prefix('borrow')->controller(BorrowController::class)->group(function () {
             Route::get('/', 'getAllData');
             Route::post('/Create', 'CreateData');

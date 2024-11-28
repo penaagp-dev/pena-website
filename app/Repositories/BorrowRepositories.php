@@ -20,7 +20,7 @@ class BorrowRepositories implements BorrowInterface
         $this->borrowModel = $borrowModel;
         $this->inventarisModel = $inventarisModel;
     }
-    
+
     public function getAllData()
     {
         $data = $this->borrowModel->with('inventaris')->get();
@@ -92,11 +92,11 @@ class BorrowRepositories implements BorrowInterface
             return $this->error($th->getMessage());
         }
     }
-    
+
     public function deleteData($id)
     {
         try {
-            $data = $this->borrowModel->find($id); 
+            $data = $this->borrowModel->find($id);
             if (!$data) {
                 return $this->dataNotFound();
             }

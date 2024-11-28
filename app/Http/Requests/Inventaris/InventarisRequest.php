@@ -29,7 +29,6 @@ class InventarisRequest extends FormRequest
             'stock' => 'required',
             'location_item' => 'required',
             'id_category' => 'required|uuid',
-            'status' => 'required|in:borrow,ready',
             'is_condition' => 'required|boolean',
             'description' => 'required',
             'img_inventaris' => 'required|mimes:png,jpg,jpeg'
