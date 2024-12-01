@@ -3,9 +3,9 @@
     Gallery
 @endsection --}}
 @section('content')
-    <div class="card">
+    <div class="card" id="changePassword">
         <x-base-header headerTitle="Ganti password" buttonAdd="false" headerAddButton="Tambah Data"
-            modalId="#coreManagementModal"  buttonExport="false"></x-base-header>
+        buttonExport="false"></x-base-header>
         <x-base-body>
             <x-base-table initId="dataTable">
                 <x-slot name="thead">
@@ -17,22 +17,19 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group fill form-show-validation">
-                                        <input type="hidden" name="id" id="id" value="">
                                         <label>Password lama</label>
-                                        <input id="name" name="name" type="text" class="form-control"
-                                            placeholder="Nama anda" autocomplete="off">
+                                        <input id="passwordold" name="passwordold" type="text" class="form-control"
+                                            placeholder="Masukkan password lama anda" autocomplete="off">
                                     </div>
                                     <div class="form-group fill form-show-validation">
-                                        <input type="hidden" name="id" id="id" value="">
                                         <label>Password baru</label>
-                                        <input id="name" name="name" type="text" class="form-control"
-                                            placeholder="Nama anda" autocomplete="off">
+                                        <input id="password" name="password" type="text" class="form-control"
+                                            placeholder="masukan password baru anda" autocomplete="off">
                                     </div>
                                     <div class="form-group fill form-show-validation">
-                                        <input type="hidden" name="id" id="id" value="">
                                         <label>Konfirmasi password</label>
-                                        <input id="name" name="name" type="text" class="form-control"
-                                            placeholder="Nama anda" autocomplete="off">
+                                        <input id="password_confirmation" name="password_confirmation" type="text" class="form-control"
+                                            placeholder="konfirmasi password anda" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -47,6 +44,5 @@
         </x-base-body>
     </div>
 
-    <x-coremanagement.core-management-modal></x-coremanagement.core-management-modal>
-    <script type="module" src="{{ asset('js/coremanagement/coremanagement.controller.js') }}"></script>
+    <script type="module" src="{{ asset('js/changepassword/changepassword.controller.js') }}"></script>
 @endsection

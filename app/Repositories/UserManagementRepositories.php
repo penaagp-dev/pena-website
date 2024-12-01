@@ -96,9 +96,10 @@ class UserManagementRepositories implements UserManagementInterface
         $checkPassword = Hash::check($request->passwordold, $data->password);
         if (!$checkPassword) {
             return response()->json([
+                'code' => 422,
                 'status' => 'error',
                 'message' => 'password lama anda salah'
-            ]);
+            ], 422);
         }
         $data->password = Hash::make($request->input('password'));
         $data->save();
