@@ -141,6 +141,24 @@ function minimumPasswordAlert(){
     })
 }
 
+function oldPasswordAlert(){
+    Swal.fire({
+        title: 'peringatan',
+        text: 'password lama anda salah',
+        icon: 'warning',
+        timer: 5000,
+    })
+}
+
+function confirmPasswordAlert(){
+    Swal.fire({
+        title: 'peringatan',
+        text: 'password harus sama',
+        icon: 'warning',
+        timer: 5000,
+    })
+}
+
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
         return this.optional(element) || /\.(jpg|jpeg|png)$/i.test(value);

@@ -47,6 +47,10 @@ Route::middleware(['auth', 'web'])->group(function () {
         return view('pages.userManagement');
     })->middleware('role:inventaris');
 
+    Route::get('/cms/admin/change-password', function () {
+        return view('pages.changePassword');
+    });
+
     Route::prefix('v1')->group(function () {
         Route::prefix('dashboard')->controller(DashboardController::class)->group(function () {
             Route::get('/line-chart', 'dasboardChart');
