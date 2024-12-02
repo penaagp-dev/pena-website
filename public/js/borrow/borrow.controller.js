@@ -1,4 +1,4 @@
-import borrowService from "./brrow.service.js";
+import borrowService from "./borrow.service.js";
 
 $(document).ready(function () {
     const borrowservice = new borrowService()
