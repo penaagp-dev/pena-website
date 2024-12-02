@@ -1,5 +1,5 @@
     {{-- modal updert data --}}
-    <div class="modal fade" id="coreManagementModal" tabindex="-1" role="dialog" aria-labelledby="coreManagementLabel"
+    <div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="coreManagementLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -17,25 +17,26 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group fill form-show-validation">
-                                    <input type="hidden" name="id" id="id" value="">
-                                    <label>Nama</label>
-                                    <input id="name" name="name" type="text" class="form-control"
-                                        placeholder="Nama anda" autocomplete="off">
-                                </div>
-                                <div class="form-group fill form-show-validation">
-                                    <label>Jabatan</label>
-                                    <select name="jabatan" id="jabatan" class="form-control">
+                                    <input type="hidden" id="id" name="id">
+                                    <label>Nama Barang</label>
+                                    <select name="id_inventaris" id="id_inventaris" class="form-control">
                                         <option value="" selected disabled hidden>Choose here</option>
-                                        <option value="ketua umum">Ketua Umum</option>
-                                        <option value="pembina">Pembina</option>
-                                        <option value="bendahara">Bendahara</option>
-                                        <option value="sekretaris">Seketaris</option>
-                                        <option value="wakil ketua umum">Wakil Ketua Umum</option>
                                     </select>
                                 </div>
+
                                 <div class="form-group form-show-validation">
-                                    <label for="photo">Gambar</label>
-                                    <input type="file" class="form-control " style="height: 44px !important" name="photo" id="photo">
+                                    <label for="name_borrow">Nama Peminjam</label>
+                                    <input type="text" class="form-control " name="name_borrow" id="name_borrow">
+                                </div>
+
+                                <div class="form-group form-show-validation">
+                                    <label for="quantity">Jumlah</label>
+                                    <input type="number" class="form-control" name="quantity" id="quantity">
+                                </div>
+
+                                <div class="form-group form-show-validation">
+                                    <label for="description">Deskripsi</label>
+                                    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
