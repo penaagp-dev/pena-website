@@ -18,6 +18,28 @@ function successLogin() {
     })
 }
 
+function returnAlert() {
+    return Swal.fire({
+        title: 'Success',
+        text: 'Success Mengembalikan',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+    })
+}
+
+
+function successReturnAlert() {
+    return Swal.fire({
+        title: 'Success',
+        text: 'Success Mengembalikan',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+    })
+}
+
+
 function successUpdateAlert() {
     return Swal.fire({
         title: 'Success',
