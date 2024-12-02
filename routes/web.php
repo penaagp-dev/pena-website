@@ -29,15 +29,15 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     Route::get('/cms/admin/core-management', function () {
         return view('pages.coreManagement');
-    });
+    })->middleware('role:superadmin');
 
     Route::get('/cms/admin/register-ca', function () {
         return view('pages.registerca');
-    });
+    })->middleware('role:superadmin');
 
     Route::get('/cms/admin/inventaris', function () {
         return view('pages.inventaris');
-    });
+    })->middleware('role:inventaris');
 
     Route::get('/cms/admin/borrow', function () {
         return view('pages.borrow');
@@ -45,6 +45,14 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     Route::get('/cms/admin/category', function () {
         return view('pages.category');
+    })->middleware('role:inventaris');
+
+    Route::get('/cms/admin/user-management', function(){
+        return view('pages.userManagement');
+    })->middleware('role:inventaris');
+
+    Route::get('/cms/admin/change-password', function () {
+        return view('pages.changePassword');
     });
 
     Route::prefix('v1')->group(function () {

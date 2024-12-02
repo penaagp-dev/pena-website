@@ -84,6 +84,7 @@ class UserManagementRepositories implements UserManagementInterface
                 ], 422);
             }
             $data->delete();
+            return $this->delete();
         } catch (\Throwable $th) {
             return $this->error($th->getMessage());
         }
@@ -95,13 +96,14 @@ class UserManagementRepositories implements UserManagementInterface
         $checkPassword = Hash::check($request->passwordold, $data->password);
         if (!$checkPassword) {
             return response()->json([
+                'code' => 422,
                 'status' => 'error',
                 'message' => 'password lama anda salah'
-            ]);
+            ], 422);
         }
         $data->password = Hash::make($request->input('password'));
         $data->save();
         Auth::guard('web')->logout();
-        return $this->success($data, 'success', 'success update password'); 
+        return $this->success($data, 'success', 'success update password');
     }
 }
