@@ -37,19 +37,19 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     Route::get('/cms/admin/inventaris', function () {
         return view('pages.inventaris');
-    })->middleware('role:inventaris');
+    })->middleware('role:inventaris,superadmin');
 
     Route::get('/cms/admin/borrow', function () {
         return view('pages.borrow');
-    });
+    })->middleware('role:inventaris,superadmin');
 
     Route::get('/cms/admin/category', function () {
         return view('pages.category');
-    })->middleware('role:inventaris');
+    })->middleware('role:inventaris,superadmin');
 
     Route::get('/cms/admin/user-management', function(){
         return view('pages.userManagement');
-    })->middleware('role:inventaris');
+    })->middleware('role:superadmin');
 
     Route::get('/cms/admin/change-password', function () {
         return view('pages.changePassword');
