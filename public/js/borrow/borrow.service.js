@@ -1,5 +1,4 @@
 class borrowService {
-
     async getAllData() {
         $('#dataTable').DataTable().destroy();
         $("#dataTable tbody").empty();
@@ -123,11 +122,10 @@ class borrowService {
             console.log(error)
         }
 
-        // Populate category dropdown
         const borrowResponse = await axios.get(`${appUrl}/v1/item-inventaris`);
         const borrow = borrowResponse.data.data;
-        this.populateBorrowDropdown(borrow); // Populate the dropdown
-        $('#id_inventaris').val(responseData.data.id_inventaris); // Select the current category
+        this.populateBorrowDropdown(borrow);
+        $('#id_inventaris').val(responseData.data.id_inventaris);
     }
 
     async returnBorrow(id) {
@@ -139,8 +137,8 @@ class borrowService {
                     const responseData = await response.data
                     if (responseData.status === 'success') {
                         successReturnAlert().then(() => {
-                            this.getAllData()
-                        })
+                            this.getAllData();
+                        });
                     }
                 } else {
                     errorAlert()

@@ -29,7 +29,7 @@ class InventarisRequest extends FormRequest
             'stock' => 'required',
             'location_item' => 'required',
             'id_category' => 'required|uuid',
-            'is_condition' => 'required|boolean',
+            'is_condition' => 'required|string|in:Baik,Rusak',
             'description' => 'required',
             'img_inventaris' => 'required|mimes:png,jpg,jpeg'
         ];
