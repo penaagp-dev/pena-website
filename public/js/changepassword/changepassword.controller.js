@@ -6,26 +6,34 @@ $(document).ready(function () {
     function validation() {
         $('#formTambah').validate({
             rules: {
+                password: {
+                    password: true
+                },
                 passwordold: {
                     required: true,
+                    // passwordold: true
                 },
                 password: {
                     required: true
                 },
                 password_confirmation: {
-                    required: true,
+                    password_confirmation: true,
                 }
             },
             messages: {
+                password: {
+                    password: "password tidak boleh kosong"
+                },
                 passwordold: {
                     required: "password lama tidak boleh kosong",
+                    // passwordold: "password lama tidak cocok"
                 },
                 password: {
                     required: "password tidak boleh kosong"
                 },
                 password_confirmation: {
-                    required: "Password harus sama",
-                }
+                    password_confirmation: "Password harus sama",
+                },
             },
             highlight: function (element) {
                 $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid');
@@ -36,7 +44,7 @@ $(document).ready(function () {
             },
             errorPlacement: function (error, element) {
                 error.addClass('text-danger');
-                
+
                 if (element.parent('.input-group').length) {
                     error.insertAfter(element.parent());
                 } else {
@@ -49,6 +57,7 @@ $(document).ready(function () {
     validation()
 
     $('#passwordold').on('input', function () {
+            console.log($('#passwordold').length);
         $(this).valid()
     })
 

@@ -24,13 +24,13 @@ class BorrowRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [ 
+        return [
             'name_borrow' => 'required',
-            'quantity' => 'required',
+            'quantity' => ['required', 'integer', 'min:1'],
             'description' => 'required'
         ];
     }
-        
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

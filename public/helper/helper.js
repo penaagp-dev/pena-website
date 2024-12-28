@@ -188,7 +188,6 @@ function borrowAlert(){
         timer: 5000,
     })
 }
-<<<<<<< HEAD
 
 function warningDeleteCategoryAlert() {
     Swal.fire({
@@ -199,8 +198,15 @@ function warningDeleteCategoryAlert() {
         showConfirmButton: true
     });
 }
-=======
->>>>>>> e68741b0efa6a51c81e6a41072f9189bcd296636
+
+function minimumStock(){
+    Swal.fire({
+        title: 'peringatan',
+        text: 'jumlah tidak boleh 0 atau kurang dari 0',
+        icon: 'warning',
+        timer: 5000,
+    })
+}
 
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
