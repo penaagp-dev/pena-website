@@ -11,7 +11,10 @@ $(document).ready(function () {
                 },
                 passwordold: {
                     required: true,
-                    passwordold: true
+                    // passwordold: true
+                },
+                password: {
+                    required: true
                 },
                 password_confirmation: {
                     password_confirmation: true,
@@ -22,7 +25,11 @@ $(document).ready(function () {
                     password: "password tidak boleh kosong"
                 },
                 passwordold: {
-                    passwordold: "password lama tidak boleh kosong"
+                    required: "password lama tidak boleh kosong",
+                    // passwordold: "password lama tidak cocok"
+                },
+                password: {
+                    required: "password tidak boleh kosong"
                 },
                 password_confirmation: {
                     password_confirmation: "Password harus sama",
@@ -37,8 +44,12 @@ $(document).ready(function () {
             },
             errorPlacement: function (error, element) {
                 error.addClass('text-danger');
-                error.addClass('text-sm')
-                error.insertAfter(element);
+
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
             }
         });
     }

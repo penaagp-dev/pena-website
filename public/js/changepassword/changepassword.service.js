@@ -31,7 +31,10 @@ class changePasswordService {
             console.log(error)
             if (error.response.data.message == 'password lama anda salah') {
                 oldPasswordAlert()
-            } else if(error.response.data.data.password == 'The password field confirmation does not match.'){
+            } else if (error.response.data.data.password == 'The password field must be at least 8 characters.') {
+                minimumPasswordAlert()
+            }
+             else if(error.response.data.data.password == 'The password field confirmation does not match.'){
                 confirmPasswordAlert()
             } else if (error.response.status == 422) {
                 warningAlert()

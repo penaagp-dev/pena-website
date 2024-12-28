@@ -62,6 +62,13 @@ class UserManagementRepositories implements UserManagementInterface
             $data->email = $request->input('email');
             $data->password = Hash::make('Admin12345678');
             $data->role = $request->input('role');
+            if ($data->id === Auth::user()->id) {
+                return response()->json([
+                    'code' => 422,
+                    'status' => 'error',
+                    'message' => 'tidak bisa update data sendiri',
+                ], 422);
+            }
             $data->save();
 
             return $this->success($data, 'success', 'success update data user');

@@ -155,23 +155,27 @@ class inventarisService {
     }
 
     async deleteData(id) {
-        try {
-            deleteAlert().then(async (result) => {
+        deleteAlert().then(async (result) => {
+            try {
                 if (result.isConfirmed) {
-                    const response = await axios.delete(`${appUrl}/v1/item-inventaris/delete/${id}`);
-                    const responseData = await response.data;
+                    const response = await axios.delete(`${appUrl}/v1/item-inventaris/delete/${id}`)
+                    const responseData = await response.data
+                    console.log(response);
+
                     if (responseData.status === 'success') {
                         successDeleteAlert().then(() => {
-                            this.getAllData();
-                        });
-                    } else {
-                        errorAlert();
+                            this.getAllData()
+                        })
                     }
                 }
-            });
-        } catch (error) {
-            errorAlert();
-        }
+            } catch (error) {
+                if (error.response.data.message === 'barang masih di pinjam') {
+                    borrowAlert()
+                } else {
+                    errorAlert()
+                }
+            }
+        })
     }
   }
 
