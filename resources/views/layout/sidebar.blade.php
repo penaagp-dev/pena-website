@@ -39,28 +39,28 @@
                  <li class="nav-item">
                      <a href="{{ url('/cms/admin/inventaris') }}"
                          class="nav-link {{ request()->is('cms/admin/inventaris') ? 'active' : '' }}">
-                         <i class="nav-icon fa-solid fa-user"></i>
+                         <i class="nav-icon fa-solid fa-cart-flatbed"></i>
                          <p>Inventaris Barang</p>
                      </a>
                  </li>
                  <li class="nav-item">
                      <a href="{{ url('/cms/admin/category') }}"
                          class="nav-link {{ request()->is('cms/admin/category') ? 'active' : '' }}">
-                         <i class="nav-icon fa-solid fa-user"></i>
+                         <i class="nav-icon fa-solid fa-th-large"></i>
                          <p>Kategori Barang</p>
                      </a>
                  </li>
                  <li class="nav-item">
                      <a href="{{ url('/cms/admin/borrow') }}"
                          class="nav-link {{ request()->is('cms/admin/borrow') ? 'active' : '' }}">
-                         <i class="nav-icon fa-solid fa-user"></i>
+                         <i class="nav-icon fa-solid fa-clipboard"></i>
                          <p>Peminjaman</p>
                      </a>
                  </li>
                  <li class="nav-item">
                      <a href="{{ url('/cms/admin/user-management') }}"
                          class="nav-link {{ request()->is('cms/admin/user-management') ? 'active' : '' }}">
-                         <i class="nav-icon fa-solid fa-user"></i>
+                         <i class="nav-icon fa-solid fa-user-gear"></i>
                          <p>Data User Management</p>
                      </a>
                  </li>

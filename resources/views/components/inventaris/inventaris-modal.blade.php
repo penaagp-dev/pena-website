@@ -26,8 +26,8 @@
                             <div class="col-md-6">
                                 <div class="form-group fill form-show-validation">
                                     <label>Jumlah</label>
-                                    <input id="stock" name="stock" type="text" class="form-control"
-                                        placeholder="Jumlah Barang" autocomplete="off">
+                                    <input id="stock" name="stock" type="number" class="form-control"
+                                        placeholder="Jumlah Barang" autocomplete="off" min="1" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -51,8 +51,8 @@
                                     <label>Kondisi</label>
                                     <select name="is_condition" id="is_condition" class="form-control">
                                         <option value="" selected disabled hidden>Choose here</option>
-                                        <option value="1">Baik</option>
-                                        <option value="0">Rusak</option>
+                                        <option value="Baik" {{ old('is_condition') == 'Baik' ? 'selected' : '' }}>Baik</option>
+                                        <option value="Rusak" {{ old('is_condition') == 'Rusak' ? 'selected' : '' }}>Rusak</option>
                                     </select>
                                 </div>
                             </div>
