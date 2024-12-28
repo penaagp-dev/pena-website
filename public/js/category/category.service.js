@@ -68,9 +68,7 @@ class categoryService {
         } catch (error) {
             submitButton.attr('disabled', false)
             console.log(error)
-            if (error.response.data.name_category == 'Nama kategori sudah ada') {
-                jabatanAlert()
-            } else if (error.response.status == 422) {
+           if (error.response.status == 422) {
                 warningAlert()
             } else {
                 errorAlert()
@@ -99,18 +97,22 @@ class categoryService {
                 if (result.isConfirmed) {
                     const response = await axios.delete(`${appUrl}/v1/category/delete/${id}`)
                     const responseData = await response.data
+                    console.log('Response : ', responseData)
                     if (responseData.status === 'success') {
                         successDeleteAlert().then(() => {
                             this.getAllData()
                         })
+                    } else if (responseData.status === 'error') {
+                        warningDeleteCategoryAlert()
                     } else {
                         errorAlert()
                     }
                 }
             })
         } catch (error) {
-            errorAlert()
-        }
+            console.log('Error response: ', error)  
+            errorAlert();
+        };
     }
 }
 

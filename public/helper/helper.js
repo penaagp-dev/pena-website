@@ -189,6 +189,16 @@ function borrowAlert(){
     })
 }
 
+function warningDeleteCategoryAlert() {
+    Swal.fire({
+        title: 'Peringatan',
+        text: 'Data sedang digunakan pada inventaris!',
+        icon: 'warning',
+        timer: 5000,
+        showConfirmButton: true
+    });
+}
+
 function minimumStock(){
     Swal.fire({
         title: 'peringatan',
