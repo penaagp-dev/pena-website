@@ -8,7 +8,6 @@ $(document).ready(function () {
             rules: {
                 passwordold: {
                     required: true,
-                    // passwordold: true
                 },
                 password: {
                     required: true
@@ -20,7 +19,6 @@ $(document).ready(function () {
             messages: {
                 passwordold: {
                     required: "password lama tidak boleh kosong",
-                    // passwordold: "password lama tidak cocok"
                 },
                 password: {
                     required: "password tidak boleh kosong"
@@ -38,8 +36,12 @@ $(document).ready(function () {
             },
             errorPlacement: function (error, element) {
                 error.addClass('text-danger');
-                error.addClass('text-sm')
-                error.insertAfter(element);
+                
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
             }
         });
     }

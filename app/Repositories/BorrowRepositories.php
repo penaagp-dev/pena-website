@@ -39,8 +39,6 @@ class BorrowRepositories implements BorrowInterface
             $data->name_borrow = $request->input('name_borrow');
             $data->quantity = $request->input('quantity');
             $data->description = $request->input('description');
-            $data->save();
-            DB::commit();
             $inventaris = $this->inventarisModel->find($data->id_inventaris);
             if ($inventaris) {
                 $pengurangan = $inventaris->stock - $data->quantity;
@@ -54,8 +52,9 @@ class BorrowRepositories implements BorrowInterface
                 $inventaris->status = 'borrow';
                 $inventaris->stock = $pengurangan;
                 $inventaris->save();
-                DB::commit();
             }
+            $data->save();
+            DB::commit();
             return $this->success($data, 'success', 'success create data');
         } catch (\Throwable $th) {
             DB::rollback();

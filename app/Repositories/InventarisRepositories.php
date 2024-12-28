@@ -139,6 +139,14 @@ class InventarisRepositories implements InventarisInterfaces
                 return $this->dataNotFound();
             }
 
+            if ($data->status === 'borrow') {
+                return response()->json([
+                    'code' => 422,
+                    'status' => 'error',
+                    'message' => 'barang masih di pinjam',
+                ], 422);
+            }
+
             $file = public_path('uploads/inventaris/' .$data->img_inventaris);
 
 
