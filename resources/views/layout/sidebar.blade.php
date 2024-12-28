@@ -14,7 +14,7 @@
          <nav class="mt-2">
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                  data-accordion="false">
-
+                 @if (auth()->user()->role == 'superadmin')
                  <li class="nav-item ">
                      <a href="{{ url('/cms/admin') }}"
                          class="nav-link {{ request()->is('cms/admin') ? 'active' : '' }}">
@@ -64,6 +64,43 @@
                          <p>Data User Management</p>
                      </a>
                  </li>
+                 @else
+                 <li class="nav-item ">
+                    <a href="{{ url('/cms/admin') }}"
+                        class="nav-link {{ request()->is('cms/admin') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-home"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="{{ url('/cms/admin/register-ca') }}"
+                        class="nav-link {{ request()->is('cms/admin/register-ca') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>Data registrasi ca</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/cms/admin/inventaris') }}"
+                        class="nav-link {{ request()->is('cms/admin/inventaris') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>Inventaris Barang</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/cms/admin/category') }}"
+                        class="nav-link {{ request()->is('cms/admin/category') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>Kategori Barang</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/cms/admin/borrow') }}"
+                        class="nav-link {{ request()->is('cms/admin/borrow') ? 'active' : '' }}">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                        <p>Peminjaman</p>
+                    </a>
+                </li>
+                 @endif
              </ul>
          </nav>
          <!-- /.sidebar-menu -->
