@@ -8,7 +8,8 @@ $(document).ready(function () {
         $('#formTambah').validate({
             rules: {
                 email: {
-                    required: true
+                    required: true,
+                    email: true
                 },
                 role: {
                     required: true
@@ -16,7 +17,8 @@ $(document).ready(function () {
             },
             messages: {
                 email: {
-                    required: "Email Tidak Boleh Kosong"
+                    required: "Email Tidak Boleh Kosong",
+                    email: "email tidak valid"
                 },
                 role: {
                     required: "Role tidak boleh kosong"
