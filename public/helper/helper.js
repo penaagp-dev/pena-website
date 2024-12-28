@@ -180,6 +180,14 @@ function confirmPasswordAlert(){
         timer: 5000,
     })
 }
+function borrowAlert(){
+    Swal.fire({
+        title: 'peringatan',
+        text: 'barang masih di pinjam',
+        icon: 'warning',
+        timer: 5000,
+    })
+}
 
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
