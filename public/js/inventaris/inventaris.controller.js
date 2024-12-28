@@ -27,7 +27,7 @@ $(document).ready(function () {
                 },
                 img_inventaris: {
                     required: true,
-                    fileExtension: "png, jpg, jpeg"
+                    fileExtension: true                
                 }
             },
             messages: {

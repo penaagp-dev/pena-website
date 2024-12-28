@@ -181,6 +181,16 @@ function confirmPasswordAlert(){
     })
 }
 
+function warningDeleteCategoryAlert() {
+    Swal.fire({
+        title: 'Peringatan',
+        text: 'Data sedang digunakan pada inventaris!',
+        icon: 'warning',
+        timer: 5000,
+        showConfirmButton: true
+    });
+}
+
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
         return this.optional(element) || /\.(jpg|jpeg|png)$/i.test(value);
