@@ -188,6 +188,7 @@ function borrowAlert(){
         timer: 5000,
     })
 }
+<<<<<<< HEAD
 
 function warningDeleteCategoryAlert() {
     Swal.fire({
@@ -198,6 +199,8 @@ function warningDeleteCategoryAlert() {
         showConfirmButton: true
     });
 }
+=======
+>>>>>>> e68741b0efa6a51c81e6a41072f9189bcd296636
 
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
