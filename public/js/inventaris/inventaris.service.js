@@ -2,24 +2,24 @@ class inventarisService {
     async getAllData() {
         $('#dataTable').DataTable().destroy();
         $("#dataTable tbody").empty();
-  
+
         let dataTable = $('#dataTable').DataTable({
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
         })
-  
+
         let tableBody = '';
-  
+
         // Ambil data kategori
         const categoryResponse = await axios.get(`${appUrl}/v1/category`);
         const categories = categoryResponse.data.data;
-  
+
         // Ambil data inventaris
         const response = await axios.get(`${appUrl}/v1/item-inventaris`);
         const responseData = await response.data;
         console.log(responseData)
-  
+
         $.each(responseData.data, function (index, item) {
             tableBody += "<tr>";
             tableBody += "<td>" + (index + 1) + "</td>";
@@ -30,40 +30,40 @@ class inventarisService {
             tableBody += "<td>" + item.status + "</td>";
             tableBody += "<td>" + item.is_condition + "</td>";
             tableBody += "<td>" + item.description + "</td>";
-            tableBody += ` 
+            tableBody += `
             <td>
                 <a href="${appUrl}/uploads/inventaris/${item.img_inventaris}" target="_blank">
                     <img src="${appUrl}/uploads/inventaris/${item.img_inventaris}" class="img-thumbnail" width="50" height="50">
                 </a>
             </td>`;
-            tableBody += 
+            tableBody +=
                 "<td class='text-center'>" +
-                "<button class='btn btn-outline-primary btn-sm edit-modal mr-1' data-toggle='modal' data-target='#inventarisModal' data-id='" + 
+                "<button class='btn btn-outline-primary btn-sm edit-modal mr-1' data-toggle='modal' data-target='#inventarisModal' data-id='" +
                 item.id + "'><i class='fas fa-edit'></i></button>" +
-                "<button type='submit' class='delete-confirm btn btn-outline-danger btn-sm' data-id='" + 
+                "<button type='submit' class='delete-confirm btn btn-outline-danger btn-sm' data-id='" +
                 item.id + "'><i class='fas fa-trash-alt'></i></button>" +
                 "</td>";
             tableBody += "</tr>";
         });
-  
+
         dataTable.clear().draw();
         dataTable.rows.add($(tableBody)).draw();
-  
+
         // Set kategori pada dropdown
         this.populateCategoryDropdown(categories);
     }
-  
+
     // Fungsi untuk mengisi dropdown kategori
     populateCategoryDropdown(categories) {
         const categorySelect = $('#id_category');
         categorySelect.empty();
-        categorySelect.append('<option value="" selected disabled hidden>Choose here</option>'); 
-  
+        categorySelect.append('<option value="" selected disabled hidden>Choose here</option>');
+
         $.each(categories, function(index, category) {
             categorySelect.append(`<option value="${category.id}">${category.name_category}</option>`);
         });
     }
-  
+
     async createData(e, checkingEdit) {
         let submitButton = $(e.target).find(':submit');
         try {
@@ -98,8 +98,8 @@ class inventarisService {
         } catch (error) {
             submitButton.attr('disabled', false);
             console.log(error);
-            if (error.response.data.name_inventaris == 'Nama barang sudah ada') {
-                jabatanAlert();
+            if (error.response.data.data.stock == 'The stock field must be at least 1.') {
+                minimumStock();
             } else if (error.response.status == 422) {
                 warningAlert();
             } else {
@@ -107,12 +107,12 @@ class inventarisService {
             }
         };
     }
-  
+
     async getDataById(id, checkingEdit) {
         try {
             const response = await axios.get(`${appUrl}/v1/item-inventaris/get/${id}`);
             const responseData = await response.data;
-            
+
             $('#modal-title').html("Edit Data");
             $('#id').val(responseData.data.id);
             $('#name_inventaris').val(responseData.data.name_inventaris);
@@ -141,19 +141,19 @@ class inventarisService {
             fileList.items.add(file);
             $('#img_inventaris').prop('files', fileList.files);
 
-  
+
             // Populate category dropdown
             const categoryResponse = await axios.get(`${appUrl}/v1/category`);
             const categories = categoryResponse.data.data;
             this.populateCategoryDropdown(categories); // Populate the dropdown
             $('#id_category').val(responseData.data.id_category); // Select the current category
-  
+
             checkingEdit();
         } catch (error) {
             console.log(error);
         }
     }
-  
+
     async deleteData(id) {
         try {
             deleteAlert().then(async (result) => {
@@ -174,6 +174,5 @@ class inventarisService {
         }
     }
   }
-  
+
   export default inventarisService;
-  

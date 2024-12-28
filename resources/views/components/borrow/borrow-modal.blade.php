@@ -29,9 +29,10 @@
                                     <input type="text" class="form-control " name="name_borrow" id="name_borrow">
                                 </div>
 
-                                <div class="form-group form-show-validation">
+                                <div class="form-group fill form-show-validation">
                                     <label for="quantity">Jumlah</label>
-                                    <input type="number" class="form-control" name="quantity" id="quantity">
+                                    <input id="quantity" name="quantity" type="number" class="form-control"
+                                        placeholder="Jumlah quantity" autocomplete="off" min="1" required>
                                 </div>
 
                                 <div class="form-group form-show-validation">

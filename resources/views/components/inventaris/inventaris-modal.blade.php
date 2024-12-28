@@ -27,7 +27,7 @@
                                 <div class="form-group fill form-show-validation">
                                     <label>Jumlah</label>
                                     <input id="stock" name="stock" type="number" class="form-control"
-                                        placeholder="Jumlah Barang" autocomplete="off">
+                                        placeholder="Jumlah Barang" autocomplete="off" min="1" required>
                                 </div>
                             </div>
                             <div class="col-md-6">

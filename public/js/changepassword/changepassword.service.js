@@ -25,7 +25,7 @@ class changePasswordService {
                 submitButton.attr('disabled', false)
             } else {
                 errorAlert()
-            }     
+            }
         } catch (error) {
             submitButton.attr('disabled', false)
             console.log(error)

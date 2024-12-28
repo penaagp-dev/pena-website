@@ -13,7 +13,6 @@ class borrowService {
 
         const response = await axios.get(`${appUrl}/v1/borrow`);
         const responseData = await response.data;
-        console.log(responseData);
 
         $.each(responseData.data, function (index, item) {
             tableBody += "<tr>";
@@ -24,18 +23,17 @@ class borrowService {
             tableBody += "<td>" + item.description + "</td>";
             tableBody +=
                 "<td   class='text-center '>" +
-                "<button class='btn btn-outline-warning btn-sm edit-modal mr-1' data-toggle='modal' data-target='#borrowModal' data-id='" +
-                item.id + "'><i class='fas fa-edit'></i></button>" +
                 "<button class='return-confirm btn btn-outline-primary btn-sm' data-id='" +
                 item.id + "'><i class='fas fa-arrow-left'></i></button>" +
                 "</td>";
             tableBody += "</tr>";
         });
 
+
         dataTable.clear().draw();
         dataTable.rows.add($(tableBody)).draw();
-
     }
+
 
     async getdropdowninventaris () {
         // Ambil data inventaris
@@ -85,7 +83,10 @@ class borrowService {
                     })
                     this.getAllData()
                     submitButton.attr('disabled', false)
-                } else {
+                } else if (responseData.message == 'cek your validation') {
+                    minimumStock();
+                }
+                 else {
                     errorAlert()
                     submitButton.attr('disabled', false)
                 }
@@ -94,7 +95,7 @@ class borrowService {
             submitButton.attr('disabled', false)
             console.log(error)
             if (error.response.data.id_inventaris == 'Nama Barang sudah ada') {
-                jabatanAlert()
+                minimumStock();
             } else if (error.response.status == 422) {
                 warningAlert()
             } else {
@@ -121,31 +122,25 @@ class borrowService {
         } catch (error) {
             console.log(error)
         }
-
-        const borrowResponse = await axios.get(`${appUrl}/v1/item-inventaris`);
-        const borrow = borrowResponse.data.data;
-        this.populateBorrowDropdown(borrow);
-        $('#id_inventaris').val(responseData.data.id_inventaris);
     }
 
     async returnBorrow(id) {
         try {
             returnAlert().then(async (result) => {
                 if (result.isConfirmed) {
-                    const response = await axios.post(`${appUrl}/v1/item-inventaris/returnborrow/${id}`)
-                    console.log('Response:', response);
-                    const responseData = await response.data
+                    const response = await axios.post(`${appUrl}/v1/item-inventaris/returnborrow/${id}`);
+                    const responseData = response.data;
+                    console.log(responseData);
                     if (responseData.status === 'success') {
-                        successReturnAlert().then(() => {
-                            this.getAllData();
-                        });
+                        successReturnAlert()
+                        this.getAllData
                     }
                 } else {
-                    errorAlert()
+                    errorAlert();
                 }
-            })
+            });
         } catch (error) {
-            errorAlert()
+            errorAlert();
         }
     }
 }

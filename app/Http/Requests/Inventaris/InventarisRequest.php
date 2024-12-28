@@ -26,7 +26,7 @@ class InventarisRequest extends FormRequest
     {
         return [
             'name_inventaris' => 'required',
-            'stock' => 'required',
+            'stock' => ['required', 'integer', 'min:1'],
             'location_item' => 'required',
             'id_category' => 'required|uuid',
             'is_condition' => 'required|string|in:Baik,Rusak',

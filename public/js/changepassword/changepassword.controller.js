@@ -6,28 +6,27 @@ $(document).ready(function () {
     function validation() {
         $('#formTambah').validate({
             rules: {
+                password: {
+                    password: true
+                },
                 passwordold: {
                     required: true,
-                    // passwordold: true
-                },
-                password: {
-                    required: true
+                    passwordold: true
                 },
                 password_confirmation: {
-                    required: true,
+                    password_confirmation: true,
                 }
             },
             messages: {
-                passwordold: {
-                    required: "password lama tidak boleh kosong",
-                    // passwordold: "password lama tidak cocok"
-                },
                 password: {
-                    required: "password tidak boleh kosong"
+                    password: "password tidak boleh kosong"
+                },
+                passwordold: {
+                    passwordold: "password lama tidak boleh kosong"
                 },
                 password_confirmation: {
-                    required: "Password harus sama",
-                }
+                    password_confirmation: "Password harus sama",
+                },
             },
             highlight: function (element) {
                 $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid');
@@ -47,6 +46,7 @@ $(document).ready(function () {
     validation()
 
     $('#passwordold').on('input', function () {
+            console.log($('#passwordold').length);
         $(this).valid()
     })
 

@@ -181,6 +181,15 @@ function confirmPasswordAlert(){
     })
 }
 
+function minimumStock(){
+    Swal.fire({
+        title: 'peringatan',
+        text: 'jumlah tidak boleh 0 atau kurang dari 0',
+        icon: 'warning',
+        timer: 5000,
+    })
+}
+
 $(document).ready(function () {
     $.validator.addMethod("fileExtension", function (value, element) {
         return this.optional(element) || /\.(jpg|jpeg|png)$/i.test(value);
