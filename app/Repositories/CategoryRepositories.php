@@ -69,14 +69,8 @@ class CategoryRepositories implements CategoryInterface
             if (!$data) {
                 return $this->dataNotFound();
             }
-
-            $isUsed = $this->inventarisModel->where('id_category', $id)->exists();
-            if ($isUsed) {
-                return $this->error('Kategori ini sedang digunakan oleh inventaris, tidak dapat dihapus.', 400);
-            }
-
             $data->delete();
-            return $this->delete();
+            return $this->success($data, 'success', 'success delete data');
         } catch (\Throwable $th) {
             return response()->json(['status' => 'error',
             'message' => 'Data sedang digunakan', 500]);
