@@ -92,27 +92,28 @@ class categoryService {
     }
 
     async deleteData(id) {
-        try {
-            deleteAlert().then(async (result) => {
+        deleteAlert().then(async (result) => {
+            try {
                 if (result.isConfirmed) {
                     const response = await axios.delete(`${appUrl}/v1/category/delete/${id}`)
                     const responseData = await response.data
-                    console.log('Response : ', responseData)
+                    console.log(responseData);
+
                     if (responseData.status === 'success') {
                         successDeleteAlert().then(() => {
                             this.getAllData()
                         })
-                    } else if (responseData.status === 'error') {
-                        warningDeleteCategoryAlert()
-                    } else {
-                        errorAlert()
                     }
                 }
-            })
-        } catch (error) {
-            console.log('Error response: ', error)  
-            errorAlert();
-        };
+            } catch (error) {
+                console.log('Error: ', error)
+                if (error.response.data.message === 'Data kategori masih digunakan oleh inventaris') {
+                    warningDeleteCategoryAlert()
+                } else {
+                    errorAlert()
+                }
+            }
+        })
     }
 }
 
