@@ -7,32 +7,26 @@ $(document).ready(function () {
         $('#formTambah').validate({
             rules: {
                 password: {
-                    password: true
+                    required: true
                 },
                 passwordold: {
                     required: true,
                     // passwordold: true
                 },
-                password: {
-                    required: true
-                },
                 password_confirmation: {
-                    password_confirmation: true,
+                    required: true,
                 }
             },
             messages: {
                 password: {
-                    password: "password tidak boleh kosong"
+                    required: "password tidak boleh kosong"
                 },
                 passwordold: {
                     required: "password lama tidak boleh kosong",
                     // passwordold: "password lama tidak cocok"
                 },
-                password: {
-                    required: "password tidak boleh kosong"
-                },
                 password_confirmation: {
-                    password_confirmation: "Password harus sama",
+                    required: "Password harus sama",
                 },
             },
             highlight: function (element) {
@@ -56,8 +50,12 @@ $(document).ready(function () {
 
     validation()
 
-    $('#passwordold').on('input', function () {
-            console.log($('#passwordold').length);
+    // $('#passwordold').on('input', function () {
+    //         console.log($('#passwordold').length);
+    //     $(this).valid()
+    // })
+
+    $(document).on('input', '#password_confirmation, #password, #passwordold', function () {
         $(this).valid()
     })
 
@@ -68,5 +66,11 @@ $(document).ready(function () {
     $("#formTambah").submit(function (e) {
         e.preventDefault();
         changepasswordservice.createData(e)
+    })
+
+    $('#formTambah').on('reset', function () {
+        $('#password_confirmation').removeClass('is-valid').removeClass('is-invalid ')
+        $('#password').removeClass('is-valid').removeClass('is-invalid ')
+        $('#passwordold').removeClass('is-valid').removeClass('is-invalid ')
     })
 });
