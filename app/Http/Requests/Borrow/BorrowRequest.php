@@ -34,9 +34,9 @@ class BorrowRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'status' => 'not validate',
-            'message' => 'cek your validation',
-            'data' => $validator->errors()
-        ]));
+            'status' => "not validate",
+            'message' => 'Check your validation',
+            'data' => $validator->errors(),
+        ], 422));
     }
 }
