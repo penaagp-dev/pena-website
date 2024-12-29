@@ -49,15 +49,12 @@ class InventarisRepositories implements InventarisInterfaces
             $data->id_category = $request->input('id_category');
             $data->is_condition = $request->input('is_condition');
             $data->description = $request->input('description');
+            $data->status = 'ready';
             if ($request->hasFile('img_inventaris')) {
                 $data->img_inventaris = ImageHandler::uploadImage($request->file('img_inventaris'), 'uploads/inventaris', 'INVENTARIS-BARANG');
             }
             $data->save();
             DB::commit();
-            $category = $this->inventarisModel->find($data->id_category);
-            if ($category) {
-                $category->status = 'inventaris';
-            }
             return $this->success($data, 'success', 'success create data inventaris barang');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -139,13 +136,13 @@ class InventarisRepositories implements InventarisInterfaces
                 return $this->dataNotFound();
             }
 
-            if ($data->status === 'borrow') {
-                return response()->json([
-                    'code' => 422,
-                    'status' => 'error',
-                    'message' => 'barang masih di pinjam',
-                ], 422);
-            }
+            // if ($data->status === 'borrow') {
+            //     return response()->json([
+            //         'code' => 422,
+            //         'status' => 'error',
+            //         'message' => 'barang masih di pinjam',
+            //     ], 422);
+            // }
 
             $file = public_path('uploads/inventaris/' .$data->img_inventaris);
 
