@@ -69,9 +69,7 @@ class borrowService {
                         $('#borrowModal').modal('hide')
                         this.getAllData()
                     })
-                } else {
-                    errorAlert()
-                }
+                } 
             } else {
                 submitButton.attr('disabled', true)
                 const response = await axios.post(`${appUrl}/v1/borrow/Create`, formData)
@@ -83,13 +81,7 @@ class borrowService {
                     })
                     this.getAllData()
                     submitButton.attr('disabled', false)
-                } else if (responseData.message == 'cek your validation') {
-                    minimumStock();
-                }
-                 else {
-                    errorAlert()
-                    submitButton.attr('disabled', false)
-                }
+                } 
             }
         } catch (error) {
             submitButton.attr('disabled', false)
