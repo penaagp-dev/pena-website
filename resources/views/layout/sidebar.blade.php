@@ -72,31 +72,24 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item ">
-                    <a href="{{ url('/cms/admin/register-ca') }}"
-                        class="nav-link {{ request()->is('cms/admin/register-ca') ? 'active' : '' }}">
-                        <i class="nav-icon fa-solid fa-user"></i>
-                        <p>Data registrasi ca</p>
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a href="{{ url('/cms/admin/inventaris') }}"
                         class="nav-link {{ request()->is('cms/admin/inventaris') ? 'active' : '' }}">
-                        <i class="nav-icon fa-solid fa-user"></i>
+                        <i class="nav-icon fa-solid fa-cart-flatbed"></i>
                         <p>Inventaris Barang</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('/cms/admin/category') }}"
                         class="nav-link {{ request()->is('cms/admin/category') ? 'active' : '' }}">
-                        <i class="nav-icon fa-solid fa-user"></i>
+                        <i class="nav-icon fa-solid fa-th-large"></i>
                         <p>Kategori Barang</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('/cms/admin/borrow') }}"
                         class="nav-link {{ request()->is('cms/admin/borrow') ? 'active' : '' }}">
-                        <i class="nav-icon fa-solid fa-user"></i>
+                        <i class="nav-icon fa-solid fa-clipboard"></i>
                         <p>Peminjaman</p>
                     </a>
                 </li>
