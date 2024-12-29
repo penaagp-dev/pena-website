@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Models\BorrowModel;
 use App\Models\CoreManagementModal;
+use App\Models\InventarisModel;
 use App\Models\RegisterCaModel;
 use App\Traits\HttpResponseTrait;
 use Carbon\Carbon;
@@ -52,10 +54,14 @@ class DashboardController extends Controller
     public function totalRegister(){
         $count = CoreManagementModal::count();
         $register = RegisterCaModel::count();
+        $inventaris = InventarisModel::count();
+        $borrow = BorrowModel::count();
 
         return response()->json([
             'pengurus' => $count ?? 0,
             'register' => $register ?? 0,
+            'inventaris' => $inventaris ?? 0,
+            'borrow' => $borrow ?? 0,
         ]);
     }
 }
