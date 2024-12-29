@@ -6,69 +6,128 @@
 
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3 id="womanCount"></h3>
-                            <p>Perempuan</p>
+                @if (Auth::user()->role == 'superadmin')
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3 id="womanCount"></h3>
+                                <p>Perempuan</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-regular fa-images"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                        <div class="icon">
-                            <i class="fa-regular fa-images"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3 id="manCount"></h3>
-                            <p>Laki - Laki</p>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3 id="manCount"></h3>
+                                <p>Laki - Laki</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-solid fa-newspaper"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-newspaper"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3 id="pengurusCount"></h3>
-                            <p>Pengurus Inti</p>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3 id="pengurusCount"></h3>
+                                <p>Pengurus Inti</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-solid fa-gear"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-gear"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3 id="registerCount"></h3>
-                            <p>Total Pendaftar</p>
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3 id="registerCount"></h3>
+                                <p>Total Pendaftar</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-solid fa-user-plus"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-user-plus"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                @else
+                    <div class="col-lg-6 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3 id="inventarisCount"></h3>
+                                <p>Total barang</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-regular fa-images"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3 id="borrowCount"></h3>
+                                <p>Total barang di pinjam</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-regular fa-images"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">More info <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                @endif
+
             </div>
-            <div class="row">
-                <div class="col-lg-12 mb-4 order-0">
-                    <div class="card">
-                        <div class="card-body" style="height: 500px;">
-                            <canvas id="myChart"></canvas>
-                            <div class="text-center" id="dataNotFound" hidden>Data not found</div>
+            @if (Auth::user()->role == 'superadmin')
+                <div class="row">
+                    <div class="col-lg-12 mb-4 order-0">
+                        <div class="card">
+                            <div class="card-body" style="height: 500px;">
+                                <canvas id="myChart"></canvas>
+                                <div class="text-center" id="dataNotFound" hidden>Data not found</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div>
+                    <div class="col-lg-12 mb-4 order-0">
+                        <div class="card">
+                            <div class="d-flex align-items-end row">
+                                <div class="col-sm-7">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-primary">Selamat datang di sistem PENA <b>{{ auth()->user()->email }}</b> 🎉</h5>
+                                        <p class="mb-4"></b></p>
+                                        <i class="fa-sharp fa-solid fa-face-smile text-warning"></i>
+                                        <a href="javascript:;" class="">Enjoy your work !!!</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 text-center text-sm-left">
+                                    <div class="card-body pb-0 px-0 px-md-4">
+                                        <img class="img-fluid mb-4" src="{{ asset('assets/img/package.svg') }}" alt="Responsive image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
     </section>
 
     <script>
@@ -166,6 +225,8 @@
                     console.log(responseData)
                     $('#registerCount').html(responseData.register)
                     $('#pengurusCount').html(responseData.pengurus)
+                    $('#inventarisCount').html(responseData.inventaris)
+                    $('#borrowCount').html(responseData.borrow)
                 } catch (error) {
                     console.log(error);
                 };
