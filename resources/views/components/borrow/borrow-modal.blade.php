@@ -26,7 +26,7 @@
 
                                 <div class="form-group form-show-validation">
                                     <label for="name_borrow">Nama Peminjam</label>
-                                    <input type="text" class="form-control " name="name_borrow" id="name_borrow">
+                                    <input type="text" class="form-control " name="name_borrow" id="name_borrow" placeholder="Nama peminjam">
                                 </div>
 
                                 <div class="form-group fill form-show-validation">
@@ -37,7 +37,7 @@
 
                                 <div class="form-group form-show-validation">
                                     <label for="description">Deskripsi</label>
-                                    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="input disini"></textarea>
                                 </div>
                             </div>
                         </div>
