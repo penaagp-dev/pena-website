@@ -86,8 +86,8 @@ class borrowService {
         } catch (error) {
             submitButton.attr('disabled', false)
             console.log(error)
-            if (error.response.data.id_inventaris == 'Nama Barang sudah ada') {
-                minimumStock();
+            if (error.response.data.message == 'barang di inventaris tidak cukup') {
+                alertBorrowCount();
             } else if (error.response.status == 422) {
                 warningAlert()
             } else {
@@ -117,23 +117,26 @@ class borrowService {
     }
 
     async returnBorrow(id) {
-        try {
-            returnAlert().then(async (result) => {
+        confirmReturnAlert().then(async (result) => {
+            try {
                 if (result.isConfirmed) {
-                    const response = await axios.post(`${appUrl}/v1/item-inventaris/returnborrow/${id}`);
-                    const responseData = response.data;
-                    console.log(responseData);
+                    const response = await axios.post(`${appUrl}/v1/item-inventaris/returnborrow/${id}`)
+                    const responseData = await response.data
+                    console.log('Response : ', responseData);
                     if (responseData.status === 'success') {
-                        successReturnAlert()
-                        this.getAllData
+                        successReturnAlert().then(() => {
+                            reloadBrowser()
+                            this.getAllData
+                        })
+                    } else {
+                        errorAlert();
                     }
-                } else {
-                    errorAlert();
                 }
-            });
-        } catch (error) {
-            errorAlert();
-        }
+            } catch (error) {
+                console.log('Error: ', error)
+                errorAlert()
+            }
+        })
     }
 }
 

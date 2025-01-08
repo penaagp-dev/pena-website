@@ -115,13 +115,17 @@ class InventarisRepositories implements InventarisInterfaces
             }
 
             $inventaris->stock += $data->quantity;
-            $inventaris->status = 'ready';
-            $inventaris->save();
 
+            $activeBorrow = $this->borrowModel->where('id_inventaris', $inventaris->id)->count();
+            if ($activeBorrow <= 1) {
+                $inventaris->status = 'ready';
+            }
+                
+            $inventaris->save();
             $data->delete();
 
             DB::commit();
-            return $this->success($inventaris, 'Success', 'Successfully returned borrowed item and updated stock');
+            return $this->success($inventaris, 'success', 'Successfully returned borrowed item and updated stock');
             } catch (\Throwable $th) {
                 DB::rollBack();
                 return $this->error($th->getMessage(), 500);
@@ -136,24 +140,23 @@ class InventarisRepositories implements InventarisInterfaces
                 return $this->dataNotFound();
             }
 
-            // if ($data->status === 'borrow') {
-            //     return response()->json([
-            //         'code' => 422,
-            //         'status' => 'error',
-            //         'message' => 'barang masih di pinjam',
-            //     ], 422);
-            // }
-
             $file = public_path('uploads/inventaris/' .$data->img_inventaris);
-
-
+            
             if(file_exists($file)){
                 unlink($file);
             }
             $data->delete();
             return $this->delete();
-
+            
         } catch (\Throwable $th) {
+            $isUsed = $this->borrowModel->where('id_inventaris', $id)->exists();
+            if ($isUsed) {
+                return response()->json([
+                    'code' => 422,
+                    'status' => 'error',
+                    'message' => 'Barang sedang dipinjam'
+                ], 422);
+            }
             return $this->error($th->getMessage(), 500);
         }
     }

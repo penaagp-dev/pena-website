@@ -160,16 +160,18 @@ class inventarisService {
                 if (result.isConfirmed) {
                     const response = await axios.delete(`${appUrl}/v1/item-inventaris/delete/${id}`)
                     const responseData = await response.data
-                    console.log(response);
-
+                    console.log('Response : ', response);
                     if (responseData.status === 'success') {
                         successDeleteAlert().then(() => {
                             this.getAllData()
                         })
+                    } else {
+                        errorAlert()
                     }
                 }
             } catch (error) {
-                if (error.response.data.message === 'barang masih di pinjam') {
+                console.log('error :', error)
+                if (error.response.data.message === 'Barang sedang dipinjam') {
                     borrowAlert()
                 } else {
                     errorAlert()

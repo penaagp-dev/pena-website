@@ -33,13 +33,22 @@ class CategoryRepositories implements CategoryInterface
     public function createData(CategoryRequest $request)
     {
         try {
+            
             $data = new $this->categoryModel;
+            // Melakukan cek data yang duplikasi pada Database
+            $exists = $this->categoryModel->where('name_category', $request->input('name_category'))->exists();
+            if ($exists) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Nama kategori sudah ada',
+                ], 422);
+            }
             $data->name_category = $request->input('name_category');
             $data->save();
-
+            
             return $this->success($data, 'success', 'success create data');
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage());
+            return $this->error($th->getMessage(), 500);
         }
     }
 
@@ -76,7 +85,10 @@ class CategoryRepositories implements CategoryInterface
             if (!$data) {
                 return $this->dataNotFound();
             }
-
+            
+            $data->delete();
+            return $this->success($data, 'success', 'success delete data');
+        } catch (\Throwable $th) {
             $isUsed = $this->inventoryModel->where('id_category', $id)->exists();
             if ($isUsed) {
                 return response()->json([
@@ -85,11 +97,7 @@ class CategoryRepositories implements CategoryInterface
                     'message' => 'Data kategori masih digunakan oleh inventaris'
                 ], 422);
             }
-
-            $data->delete();
-            return $this->success($data, 'success', 'success delete data');
-        } catch (\Throwable $th) {
-            return $this->error($th->getMessage());
+            return $this->error($th->getMessage(), 500);
         }
     }
 }

@@ -67,8 +67,10 @@ class categoryService {
             }
         } catch (error) {
             submitButton.attr('disabled', false)
-            console.log(error)
-           if (error.response.status == 422) {
+            console.log('Response error : ', error)
+           if (error.response.data.message == 'Nama kategori sudah ada') {
+                categoryAlert()
+            } else if(error.response.status == 422) {
                 warningAlert()
             } else {
                 errorAlert()
@@ -103,6 +105,8 @@ class categoryService {
                         successDeleteAlert().then(() => {
                             this.getAllData()
                         })
+                    } else {
+                        errorAlert()
                     }
                 }
             } catch (error) {

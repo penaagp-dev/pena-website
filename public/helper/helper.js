@@ -18,17 +18,6 @@ function successLogin() {
     })
 }
 
-function returnAlert() {
-    return Swal.fire({
-        title: 'Success',
-        text: 'Success Mengembalikan',
-        icon: 'success',
-        showCancelButton: false,
-        confirmButtonText: 'OK',
-    })
-}
-
-
 function successReturnAlert() {
     return Swal.fire({
         title: 'Success',
@@ -93,7 +82,19 @@ function warningAlert() {
 function deleteAlert() {
     return Swal.fire({
         title: 'Hapus ?',
-        text: 'Anda tidak dapat mengembalikan  ini',
+        text: 'Anda tidak dapat mengembalikan ini',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Batal',
+        confirmButtonText: 'Ya',
+        reverseButtons: true,
+    })
+}
+
+function confirmReturnAlert() {
+    return Swal.fire({
+        title: 'Kembalikan ?',
+        text: 'Anda ingin mengembalikan barang ini',
         icon: 'warning',
         showCancelButton: true,
         cancelButtonText: 'Batal',
@@ -138,6 +139,16 @@ function jabatanAlert() {
     Swal.fire({
         title: 'Peringatan',
         text: 'Data dengan jabatan ini sudah ada silahkan pilih yang lain !',
+        icon: 'warning',
+        timer: 5000,
+        showConfirmButton: true
+    });
+}
+
+function categoryAlert() {
+    Swal.fire({
+        title: 'Peringatan',
+        text: 'Nama kategori sudah ada isi dengan nama yang lain !',
         icon: 'warning',
         timer: 5000,
         showConfirmButton: true
@@ -206,6 +217,21 @@ function minimumStock(){
         icon: 'warning',
         timer: 5000,
     })
+}
+
+function alertBorrowCount(){
+    Swal.fire({
+        title: 'peringatan',
+        text: 'jumlah barang diinventaris tidak mencukupi',
+        icon: 'warning',
+        timer: 3000,
+    })
+}
+
+
+
+function reloadBrowser() {
+    window.location.reload();
 }
 
 $(document).ready(function () {
