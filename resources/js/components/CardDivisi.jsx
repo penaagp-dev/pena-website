@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CardGallery = (props) => {
+const CardDivisi = (props) => {
   return (
     <div className="relative bg-cover bg-red-200 transition-transform transform hover:scale-105 w-full h-64 sm:h-80 lg:h-96 rounded-lg bg-center"
         style={{backgroundImage: `url(${props.picture})`}}
@@ -10,7 +10,7 @@ const CardGallery = (props) => {
                 <h4 className="text-slate-700 text-lg font-bold capitalize">{props.name}</h4>
                 <p className="text-slate-700 capitalize">{props.subname}</p>
                 <a href={props.sublink} 
-                    className="inline-flex items-center px-2 py-2 mt-2 bg-cyan-500 text-white font-medium rounded-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+                    className="inline-flex items-center px-2 py-2 mt-2 bg-cyan-500 text-white font-normal rounded-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
                     <span>Cek Profile</span>
                   </a>
             </div>
@@ -19,4 +19,4 @@ const CardGallery = (props) => {
   )
 }
 
-export default CardGallery
+export default CardDivisi

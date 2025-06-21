@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('tb_coremanagement', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->enum('jabatan', ['ketua umum', 'wakil ketua umum', 'sekretaris', 'bendahara', 'pembina']);
+            $table->enum('jabatan', ['ketua umum', 'wakil ketua umum', 'sekretaris', 'bendahara', 'pembina','learning','entrepreneur']);
             $table->string('photo');
+            $table->string('link');
             $table->timestamps();
         });
     }

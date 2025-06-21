@@ -1,6 +1,8 @@
 @extends('layout.base')
 
 @section('content')
+    <x-category.category-modal></x-category.category-modal>
+    <script type="module" src="{{ asset('js/category/category.controller.js') }}"></script>
     <div class="card">
         <x-base-header headerTitle="Inventaris Barang" buttonAdd="true" headerAddButton="Tambah Data" 
             modalId="#inventarisModal" buttonExport="false" exportId="exportInventaris">

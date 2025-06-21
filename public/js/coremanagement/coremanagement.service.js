@@ -20,6 +20,7 @@ class coremanagementService {
             tableBody += "<td>" + (index + 1) + "</td>";
             tableBody += "<td>" + item.name + "</td>";
             tableBody += "<td>" + item.jabatan + "</td>";
+            tableBody += "<td><a href='https://" + item.link + "'>Lihat</a></td>";
             tableBody += `
             <td>
                 <a href="${appUrl}/uploads/coremanagement/${item.photo}" target="_blank">
@@ -95,6 +96,7 @@ class coremanagementService {
             $('#id').val(responseData.data.id)
             $('#name').val(responseData.data.name)
             $('#jabatan').val(responseData.data.jabatan)
+            $('#link').val(responseData.data.link)
             generatePreviewImg('form-preview')
             $('#preview').attr('src', `${appUrl}/uploads/coremanagement/${responseData.data.photo}`);
 

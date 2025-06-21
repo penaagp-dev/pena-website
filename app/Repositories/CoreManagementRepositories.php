@@ -45,6 +45,7 @@ class CoreManagementRepositories implements CoreManagementInterfaces
                 if ($request->hasFile('photo')) {
                     $data->photo = ImageHandler::uploadImage($request->file('photo'), 'uploads/coremanagement', 'PENGURUS-INTI-');
                 }
+                $data->link = $request->input('link');
                 $data->save();
                 return $this->success($data, 'success','success create data pengurus inti');
             }
@@ -86,6 +87,7 @@ class CoreManagementRepositories implements CoreManagementInterfaces
                 if($request->hasFile('photo')){
                     $data->photo = ImageHandler::updateImage($request->File('photo'), 'uploads/coremanagement', 'PENGURUS-INTI-', $data->photo);
                 }
+                $data->link = $request ->input('link');
                 $data->save();
 
                 return $this->success($data,'success', 'success update data');

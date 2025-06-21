@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import HeroSection from '../Layout/HeroSection'
 import About from '../Layout/About'
 import Gallery from '../Layout/Gallery'
+import Divisi from '../Layout/Divisi'
 import VisiMisi from '../Layout/VisiMisi'
 import JoinsUs from '../Layout/JoinsUs'
 import Footer from '../Layout/Footer'
 
 const Home = () => {
-
     const windowScroll = () => {
         window.onscroll = function() {
             const pathname = window.location.pathname
@@ -66,6 +66,7 @@ const Home = () => {
         <About/>
         <JoinsUs/>        
         <Gallery/>
+        <Divisi/>
         <VisiMisi/>
         <Footer/>
         

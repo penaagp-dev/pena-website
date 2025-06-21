@@ -31,11 +31,17 @@
                                         <option value="bendahara">Bendahara</option>
                                         <option value="sekretaris">Seketaris</option>
                                         <option value="wakil ketua umum">Wakil Ketua Umum</option>
+                                        <option value="learning">Learning</option>
+                                        <option value="entrepreneur">Entrepreneur</option>
                                     </select>
                                 </div>
                                 <div class="form-group form-show-validation">
                                     <label for="photo">Gambar</label>
                                     <input type="file" class="form-control " style="height: 44px !important" name="photo" id="photo">
+                                </div>
+                                <div class="form-group form-show-validation">
+                                    <label for="link">Link</label>
+                                    <input type="link" class="form-control" style="height: 44px !important" name="link" id="link">
                                 </div>
                             </div>
                         </div>

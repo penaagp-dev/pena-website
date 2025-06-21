@@ -11,6 +11,6 @@ class CoreManagementModal extends Model
     use HasFactory, HasUuids;
     protected $table = 'tb_coremanagement';
     protected $fillable = [
-        'name', 'jabatan', 'photo'
+        'name', 'jabatan', 'photo', 'link'
     ];
 }
