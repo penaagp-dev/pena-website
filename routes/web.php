@@ -8,7 +8,6 @@ use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\InventarisController;
 use App\Http\Controllers\CMS\RegisterCaController;
 use App\Http\Controllers\CMS\UserManagementController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -119,9 +118,5 @@ Route::middleware(['auth', 'web'])->group(function () {
 });
 
 Route::fallback(function () {
-    if (Request::is('uploads/*')) {
-        abort(404);
-    }
-
     return view('frontend');
 });
