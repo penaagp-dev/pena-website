@@ -8,6 +8,7 @@ use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\InventarisController;
 use App\Http\Controllers\CMS\RegisterCaController;
 use App\Http\Controllers\CMS\UserManagementController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,7 +48,7 @@ Route::middleware(['auth', 'web'])->group(function () {
         return view('pages.category');
     })->middleware('role:inventaris,superadmin');
 
-    Route::get('/cms/admin/user-management', function(){
+    Route::get('/cms/admin/user-management', function () {
         return view('pages.userManagement');
     })->middleware('role:superadmin');
 
@@ -79,7 +80,7 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/export', 'export');
         });
 
-        Route::prefix('category')->controller(CategoryController::class)->group(function(){
+        Route::prefix('category')->controller(CategoryController::class)->group(function () {
             Route::get('/', 'getAllData');
             Route::post('/create', 'createData');
             Route::get('/get/{id}', 'getDataById');
@@ -87,7 +88,7 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::delete('/delete/{id}', 'deleteData');
         });
 
-        Route::prefix('item-inventaris')->controller(InventarisController::class)->group(function (){
+        Route::prefix('item-inventaris')->controller(InventarisController::class)->group(function () {
             Route::get('/', 'getAllData');
             Route::post('/create', 'createData');
             Route::get('/get/{id}', 'getDataById');
@@ -118,5 +119,9 @@ Route::middleware(['auth', 'web'])->group(function () {
 });
 
 Route::fallback(function () {
+    if (Request::is('uploads/*')) {
+        abort(404);
+    }
+
     return view('frontend');
 });
