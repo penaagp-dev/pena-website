@@ -118,9 +118,5 @@ Route::middleware(['auth', 'web'])->group(function () {
 });
 
 Route::fallback(function () {
-    if (preg_match('#^/uploads/#', $_SERVER['REQUEST_URI'])) {
-        abort(404);
-    }
-
     return view('frontend');
 });
