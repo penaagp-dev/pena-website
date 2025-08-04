@@ -118,5 +118,8 @@ Route::middleware(['auth', 'web'])->group(function () {
 });
 
 Route::fallback(function () {
+    if (str_starts_with(request()->path(), 'uploads/')) {
+        abort(404);
+    }
     return view('frontend');
 });
