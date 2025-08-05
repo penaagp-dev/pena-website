@@ -32,7 +32,7 @@ const Divisi = () => {
                 <h2 className="text-2xl font-bold text-cyan-500 uppercase pb-8">Divisi</h2>
             </div>
             <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {dataDivisi.map((item) => (
+                {dataDivisi && dataDivisi.map((item) => (
                     <CardDivisi
                         key={item.id}
                         name={item.name}
