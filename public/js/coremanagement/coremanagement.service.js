@@ -20,7 +20,7 @@ class coremanagementService {
             tableBody += "<td>" + (index + 1) + "</td>";
             tableBody += "<td>" + item.name + "</td>";
             tableBody += "<td>" + item.jabatan + "</td>";
-            tableBody += "<td><a href='https://" + item.link + "'>Lihat</a></td>";
+            tableBody += "<td><a href='https://" + item.link + "'>" + item.link + "</a></td>";
             tableBody += `
             <td>
                 <a href="${appUrl}/uploads/coremanagement/${item.photo}" target="_blank">

@@ -13,8 +13,8 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Jabatan</th>
-                        <th>Gambar</th>
                         <th>link</th>
+                        <th>Gambar</th>
                         <th>Aksi</th>
                     </tr>
                 </x-slot>
