@@ -31,13 +31,13 @@ const Divisi = () => {
             <div className="mx-auto text-center">
                 <h2 className="text-2xl font-bold text-cyan-500 uppercase pb-8">Divisi</h2>
             </div>
-            <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0 place-items-center">
                 {dataDivisi && dataDivisi.map((item) => (
                     <CardDivisi
                         key={item.id}
                         name={item.name}
                         subname={item.jabatan}
-                        sublink={item.link}
+                        sublink={`https://${item.link}`}
                         picture={`/uploads/coremanagement/${item.photo}`}
                     />
                 ))}

@@ -16,6 +16,9 @@ $(document).ready(function () {
                 photo: {
                     required: true,
                     fileExtension: true
+                },
+                link: {
+                    required: true
                 }
             },
             messages: {
@@ -28,6 +31,9 @@ $(document).ready(function () {
                 photo: {
                     required: "Photo tidak boleh kosong",
                     fileExtension: "Format file harus jpg, jpeg, png"
+                },
+                link: {
+                    required: "Link tidak boleh kosong"
                 }
             },
             highlight: function (element) {
@@ -89,6 +95,7 @@ $(document).ready(function () {
         $('#name').val('')
         $('#jabatan').val('')
         $('#photo').val('')
+        $('#link').val('')
         $('#modal-title').text('Tambah Data');
         $('.form-control').removeClass('is-invalid').removeClass('is-valid')
         $('.error').remove();
