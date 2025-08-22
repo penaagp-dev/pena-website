@@ -37,7 +37,7 @@ const Gallery = () => {
                         name={item.name}
                         subname={item.jabatan}
                         picture={'/uploads/coremanagement/'+item.photo}
-                        sublink={item.link}
+                        sublink={`https://${item.link}`}
                     />
                 ))}
             </div>
