@@ -234,7 +234,7 @@ const UserRegister = () => {
                         <SelectInput name='agama' onChange={handleInput} value={religion}>
                             <option value="islam">Islam</option>
                             <option value="kristen">Kristen</option>
-                            <option value="kindu">Hindu</option>
+                            <option value="hindu">Hindu</option>
                             <option value="budha">Budha</option>
                             <option value="konghucu">Konghucu</option>
                         </SelectInput>
