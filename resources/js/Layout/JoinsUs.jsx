@@ -12,7 +12,7 @@ const JoinsUs = () => {
                 <p className="text-lg mb-8 text-white">
                     Bergabung untuk kembangkan skill IT mu dan buka peluang karier di dunia teknologi!
                 </p>
-                <Link to={'/wait'}>
+                <Link to={'/register'}>
                     <BaseButton title="Yeah, Aku Siap" />
                 </Link>
             </div>
