@@ -47,7 +47,7 @@ const HeroSection = () => {
                 <div className="text-center mx-auto">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider">PENA</h1>
                     <p className="font-light text-xl sm:text-2xl md:text-3xl mt-5">Programming Engineering & Networking Adhi Guna</p>
-                    <Link to={'/wait'}>
+                    <Link to={'/register'}>
                         <BaseButton title='Join Us' />
                     </Link>
                 </div>
