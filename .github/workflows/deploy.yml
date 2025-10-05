@@ -64,64 +64,64 @@ jobs:
         run: docker push "$ARTIFACT_REGISTRY:$APP_TAG"
 
 
-  # helming:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/labeler@v4
-  #       with:
-  #         repo-token: ${{ secrets.GITHUB_TOKEN }}
-  #     - name: Set up Helm
-  #       uses: azure/setup-helm@v1
-  #       with:
-  #         version: 'v3.14.4'
-  #     - name: Setup Manifest Blue Green
-  #       run: |
-  #         sed -e "s|{{ARTIFACT_REGISTRY}}|$ARTIFACT_REGISTRY|g" \
-  #             -e "s|{{AUTO_PROMOTE}}|$AUTO_PROMOTE|g" \
-  #             -e "s|{{DELAY_PROMOTE}}|$DELAY_PROMOTE|g" \
-  #             -e "s|{{RESOURCE_CPU}}|$RESOURCE_CPU|g" \
-  #             -e "s|{{RESOURCE_MEMORY}}|$RESOURCE_MEMORY|g" \
-  #             -e "s|{{RESOURCE_LIMIT_MEMORY}}|$RESOURCE_LIMIT_MEMORY|g" \
-  #             -e "s|{{RESOURCE_LIMIT_CPU}}|$RESOURCE_LIMIT_CPU|g" \
-  #             -e "s|{{MEMORY_AVERAGE}}|$MEMORY_AVERAGE|g" \
-  #             -e "s|{{CPU_AVERAGE}}|$CPU_AVERAGE|g" \
-  #             -e "s|{{MAX_REPLICAS}}|$MAX_REPLICAS|g" \
-  #             -e "s|{{MIN_REPLICAS}}|$MIN_REPLICAS|g" \
-  #             -e "s|{{HPA_ENABLE}}|$HPA_ENABLE|g" \
-  #             -e "s|{{APP_PORT}}|$APP_PORT|g" \
-  #             -e "s|{{TARGET_PORT}}|$TARGET_PORT|g" \
-  #             -e "s|{{REPLICA_COUNT}}|$REPLICA|g" \
-  #             -e "s|{{APP_NAME}}|$CHART|g" \
-  #             -e "s|{{NAMESPACE}}|$NAMESPACE|g" \
-  #             -e "s|{{TAGS}}|$APP_TAG|g" \
-  #             -e "s|{{DOMAIN}}|$DOMAIN|g" \
-  #             -e "s|{{GREEN_DOMAIN}}|$GREEN_DOMAIN|g" \
-  #             -e "s|{{INTL_DOMAIN}}|$INTL_DOMAIN|g" \
-  #             -e "s|{{IS_PUBLIC}}|$IS_PUBLIC|g" \
-  #             -e "s|{{INGRESS}}|$INGRESS|g" \
-  #             -e "s|{{SSL}}|$SSL|g" \
-  #             -e "s|{{SSL_REDIRECT}}|$SSL_REDIRECT|g" \
-  #             -e "s|{{FORCE_SSL_REDIRECT}}|$FORCE_SSL_REDIRECT|g" \
-  #             deployment/helm/devstag/values.yaml.tpl > deployment/helm/devstag/values.yaml
-  #         sed -e "s|{{VERSION}}|$APP_TAG|g" \
-  #             -e "s|{{CHART_NAME}}|$CHART|g" \
-  #             deployment/helm/devstag/Chart.yaml.tpl > deployment/helm/devstag/Chart.yaml
-  #         rm -rf deployment/helm/devstag/values.yaml.tpl
-  #         rm -rf deployment/helm/devstag/Chart.yaml.tpl
+  helming:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: 'v3.14.4'
+      - name: Setup Manifest Blue Green
+        run: |
+          sed -e "s|{{ARTIFACT_REGISTRY}}|$ARTIFACT_REGISTRY|g" \
+              -e "s|{{AUTO_PROMOTE}}|$AUTO_PROMOTE|g" \
+              -e "s|{{DELAY_PROMOTE}}|$DELAY_PROMOTE|g" \
+              -e "s|{{RESOURCE_CPU}}|$RESOURCE_CPU|g" \
+              -e "s|{{RESOURCE_MEMORY}}|$RESOURCE_MEMORY|g" \
+              -e "s|{{RESOURCE_LIMIT_MEMORY}}|$RESOURCE_LIMIT_MEMORY|g" \
+              -e "s|{{RESOURCE_LIMIT_CPU}}|$RESOURCE_LIMIT_CPU|g" \
+              -e "s|{{MEMORY_AVERAGE}}|$MEMORY_AVERAGE|g" \
+              -e "s|{{CPU_AVERAGE}}|$CPU_AVERAGE|g" \
+              -e "s|{{MAX_REPLICAS}}|$MAX_REPLICAS|g" \
+              -e "s|{{MIN_REPLICAS}}|$MIN_REPLICAS|g" \
+              -e "s|{{HPA_ENABLE}}|$HPA_ENABLE|g" \
+              -e "s|{{APP_PORT}}|$APP_PORT|g" \
+              -e "s|{{TARGET_PORT}}|$TARGET_PORT|g" \
+              -e "s|{{REPLICA_COUNT}}|$REPLICA|g" \
+              -e "s|{{APP_NAME}}|$CHART|g" \
+              -e "s|{{NAMESPACE}}|$NAMESPACE|g" \
+              -e "s|{{TAGS}}|$APP_TAG|g" \
+              -e "s|{{DOMAIN}}|$DOMAIN|g" \
+              -e "s|{{GREEN_DOMAIN}}|$GREEN_DOMAIN|g" \
+              -e "s|{{INTL_DOMAIN}}|$INTL_DOMAIN|g" \
+              -e "s|{{IS_PUBLIC}}|$IS_PUBLIC|g" \
+              -e "s|{{INGRESS}}|$INGRESS|g" \
+              -e "s|{{SSL}}|$SSL|g" \
+              -e "s|{{SSL_REDIRECT}}|$SSL_REDIRECT|g" \
+              -e "s|{{FORCE_SSL_REDIRECT}}|$FORCE_SSL_REDIRECT|g" \
+              deployment/helm/devstag/values.yaml.tpl > deployment/helm/devstag/values.yaml
+          sed -e "s|{{VERSION}}|$APP_TAG|g" \
+              -e "s|{{CHART_NAME}}|$CHART|g" \
+              deployment/helm/devstag/Chart.yaml.tpl > deployment/helm/devstag/Chart.yaml
+          rm -rf deployment/helm/devstag/values.yaml.tpl
+          rm -rf deployment/helm/devstag/Chart.yaml.tpl
 
-  #     - name: Helm Registry Auth
-  #       run: echo "${{ secrets.REGISTRY_PASSWORD }}" | helm registry login -u admin --password-stdin $REGISTRY_HOST
+      - name: Helm Registry Auth
+        run: echo "${{ secrets.REGISTRY_PASSWORD }}" | helm registry login -u admin --password-stdin $REGISTRY_HOST
 
-  #     - name: Create helm package
-  #       run: helm package deployment/helm/devstag
+      - name: Create helm package
+        run: helm package deployment/helm/devstag
 
-  #     - name: Push Helm packages
-  #       run: helm push $CHART-$APP_TAG.tgz oci://$ARTIFACT_HELM
+      - name: Push Helm packages
+        run: helm push $CHART-$APP_TAG.tgz oci://$ARTIFACT_HELM
 
   # deploy:
-  #   runs-on: [self-hosted, kaj-devstag-runner]
+  #   runs-on: [self-hosted, gnm-runner]
   #   needs: helming
   #   steps:
   #     - uses: actions/checkout@v2
