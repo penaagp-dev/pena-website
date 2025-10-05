@@ -130,7 +130,7 @@ jobs:
         run: kubectl config use-context $KUBERNETES
 
       - name: Helm install
-        run: 
+        run: |
           echo "${{ secrets.REGISTRY_PASSWORD }}" | helm registry login -u admin --password-stdin $REGISTRY_HOST
           helm upgrade --install $CHART oci://$ARTIFACT_HELM/$CHART --version $APP_TAG -n $NAMESPACE
 
