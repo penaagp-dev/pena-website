@@ -104,10 +104,10 @@ jobs:
               -e "s|{{SSL}}|$SSL|g" \
               -e "s|{{SSL_REDIRECT}}|$SSL_REDIRECT|g" \
               -e "s|{{FORCE_SSL_REDIRECT}}|$FORCE_SSL_REDIRECT|g" \
-              deployment/helm/devstag/values.yaml.tpl > deployment/helm/values.yaml
+              deployment/helm/values.yaml.tpl > deployment/helm/values.yaml
           sed -e "s|{{VERSION}}|$APP_TAG|g" \
               -e "s|{{CHART_NAME}}|$CHART|g" \
-              deployment/helm/devstag/Chart.yaml.tpl > deployment/helm/Chart.yaml
+              deployment/helm/Chart.yaml.tpl > deployment/helm/Chart.yaml
           rm -rf deployment/helm/values.yaml.tpl
           rm -rf deployment/helm/Chart.yaml.tpl
 
