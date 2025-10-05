@@ -10,7 +10,7 @@ replicaCount: 1
 
 image:
   repository: meongbego/pena-web
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: "prd"
 
 service:
