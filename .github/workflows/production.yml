@@ -120,16 +120,18 @@ jobs:
       - name: Push Helm packages
         run: helm push $CHART-$APP_TAG.tgz oci://$ARTIFACT_HELM
 
-  # deploy:
-  #   runs-on: [self-hosted, gnm-runner]
-  #   needs: helming
-  #   steps:
-  #     - uses: actions/checkout@v2
+  deploy:
+    runs-on: [self-hosted, gnm-runner]
+    needs: helming
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Kubectl set
-  #       run: kubectl config use-context $KUBERNETES
+      - name: Kubectl set
+        run: kubectl config use-context $KUBERNETES
 
-  #     - name: Helm install
-  #       run: helm upgrade --install $CHART oci://$ARTIFACT_HELM/$CHART --version $APP_TAG -n $NAMESPACE
+      - name: Helm install
+        run: 
+          echo "${{ secrets.REGISTRY_PASSWORD }}" | helm registry login -u admin --password-stdin $REGISTRY_HOST
+          helm upgrade --install $CHART oci://$ARTIFACT_HELM/$CHART --version $APP_TAG -n $NAMESPACE
 
   
