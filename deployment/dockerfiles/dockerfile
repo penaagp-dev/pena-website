@@ -46,7 +46,6 @@ WORKDIR /var/www/html
 USER root
 COPY . .
 
-# Install Node.js from NodeSource repository
 RUN apt-get update && \
     apt-get install -y curl && \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
@@ -60,4 +59,5 @@ RUN composer update \
     && chown -R www-data:www-data /var/www/html \
     && npm install \
     && npm run build
+
 USER www-data
