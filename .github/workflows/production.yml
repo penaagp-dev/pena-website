@@ -58,7 +58,7 @@ jobs:
         run: docker build --no-cache -t "$ARTIFACT_REGISTRY:$APP_TAG" -f deployment/dockerfiles/dockerfile .
 
       - name: Registry Auth
-        run: echo "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" | docker login -u meongbego --password-stdin
+        run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login -u admin --password-stdin $REGISTRY_HOST
 
       - name: Push
         run: docker push "$ARTIFACT_REGISTRY:$APP_TAG"
