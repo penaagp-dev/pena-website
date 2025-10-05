@@ -20,3 +20,4 @@ yarn-error.log
 /.vscode
 local
 /public/uploads
+prd-pena-web-*.tgz
