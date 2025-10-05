@@ -1,0 +1,135 @@
+name: Main Deployment - Gunamaya
+
+on:
+  push:
+    branches:
+      - "main"
+
+env:
+  CHART: prd-pena-web
+  REGISTRY_HOST: "registry.penpod.id"
+  ARTIFACT_REGISTRY: "registry.penpod.id/pena/pena-web"
+  ARTIFACT_HELM: "registry.bakso.my.id/kaj-dev-helm-package"
+  APP_TAG: prd
+  APP_PORT: 80
+  TARGET_PORT: 80
+  NAMESPACE: "dev"
+  DOMAIN: "pena.penpod.id"
+  IS_PUBLIC: true
+  INGRESS: "ingress"
+  SSL: false
+  SSL_REDIRECT: "false"
+  FORCE_SSL_REDIRECT: "false"
+  REPLICA: 1
+  HPA_ENABLE: false
+  MIN_REPLICAS: 1
+  MAX_REPLICAS: 2
+  CPU_AVERAGE: 60
+  MEMORY_AVERAGE: 60
+  RESOURCE_CPU: 50m
+  RESOURCE_MEMORY: 128Mi
+  RESOURCE_LIMIT_CPU: 1000m
+  RESOURCE_LIMIT_MEMORY: 3072Mi
+  AUTO_PROMOTE: true
+  DELAY_PROMOTE: 3
+  KUBERNETES: ${{ secrets.GUNAMAYA_KUBE }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate env
+        run: |
+          sudo apt update && sudo apt install gpg wget
+          wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+          gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+          sudo apt update && sudo apt install vault
+          export VAULT_ADDR=https://vault.gunamaya.id
+          vault login token=${{ secrets.VAULT_TOKEN }}
+          sh deployment/env-prd.sh
+
+      - name: Build
+        run: docker build --no-cache -t "$ARTIFACT_REGISTRY:$APP_TAG" -f deployment/dockerfiles/dockerfile .
+
+      - name: Registry Auth
+        run: echo "${{ secrets.DOCKER_REGISTRY_PASSWORD }}" | docker login -u meongbego --password-stdin
+
+      - name: Push
+        run: docker push "$ARTIFACT_REGISTRY:$APP_TAG"
+
+
+  # helming:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/labeler@v4
+  #       with:
+  #         repo-token: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Set up Helm
+  #       uses: azure/setup-helm@v1
+  #       with:
+  #         version: 'v3.14.4'
+  #     - name: Setup Manifest Blue Green
+  #       run: |
+  #         sed -e "s|{{ARTIFACT_REGISTRY}}|$ARTIFACT_REGISTRY|g" \
+  #             -e "s|{{AUTO_PROMOTE}}|$AUTO_PROMOTE|g" \
+  #             -e "s|{{DELAY_PROMOTE}}|$DELAY_PROMOTE|g" \
+  #             -e "s|{{RESOURCE_CPU}}|$RESOURCE_CPU|g" \
+  #             -e "s|{{RESOURCE_MEMORY}}|$RESOURCE_MEMORY|g" \
+  #             -e "s|{{RESOURCE_LIMIT_MEMORY}}|$RESOURCE_LIMIT_MEMORY|g" \
+  #             -e "s|{{RESOURCE_LIMIT_CPU}}|$RESOURCE_LIMIT_CPU|g" \
+  #             -e "s|{{MEMORY_AVERAGE}}|$MEMORY_AVERAGE|g" \
+  #             -e "s|{{CPU_AVERAGE}}|$CPU_AVERAGE|g" \
+  #             -e "s|{{MAX_REPLICAS}}|$MAX_REPLICAS|g" \
+  #             -e "s|{{MIN_REPLICAS}}|$MIN_REPLICAS|g" \
+  #             -e "s|{{HPA_ENABLE}}|$HPA_ENABLE|g" \
+  #             -e "s|{{APP_PORT}}|$APP_PORT|g" \
+  #             -e "s|{{TARGET_PORT}}|$TARGET_PORT|g" \
+  #             -e "s|{{REPLICA_COUNT}}|$REPLICA|g" \
+  #             -e "s|{{APP_NAME}}|$CHART|g" \
+  #             -e "s|{{NAMESPACE}}|$NAMESPACE|g" \
+  #             -e "s|{{TAGS}}|$APP_TAG|g" \
+  #             -e "s|{{DOMAIN}}|$DOMAIN|g" \
+  #             -e "s|{{GREEN_DOMAIN}}|$GREEN_DOMAIN|g" \
+  #             -e "s|{{INTL_DOMAIN}}|$INTL_DOMAIN|g" \
+  #             -e "s|{{IS_PUBLIC}}|$IS_PUBLIC|g" \
+  #             -e "s|{{INGRESS}}|$INGRESS|g" \
+  #             -e "s|{{SSL}}|$SSL|g" \
+  #             -e "s|{{SSL_REDIRECT}}|$SSL_REDIRECT|g" \
+  #             -e "s|{{FORCE_SSL_REDIRECT}}|$FORCE_SSL_REDIRECT|g" \
+  #             deployment/helm/devstag/values.yaml.tpl > deployment/helm/devstag/values.yaml
+  #         sed -e "s|{{VERSION}}|$APP_TAG|g" \
+  #             -e "s|{{CHART_NAME}}|$CHART|g" \
+  #             deployment/helm/devstag/Chart.yaml.tpl > deployment/helm/devstag/Chart.yaml
+  #         rm -rf deployment/helm/devstag/values.yaml.tpl
+  #         rm -rf deployment/helm/devstag/Chart.yaml.tpl
+
+  #     - name: Helm Registry Auth
+  #       run: echo "${{ secrets.REGISTRY_PASSWORD }}" | helm registry login -u admin --password-stdin $REGISTRY_HOST
+
+  #     - name: Create helm package
+  #       run: helm package deployment/helm/devstag
+
+  #     - name: Push Helm packages
+  #       run: helm push $CHART-$APP_TAG.tgz oci://$ARTIFACT_HELM
+
+  # deploy:
+  #   runs-on: [self-hosted, kaj-devstag-runner]
+  #   needs: helming
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Kubectl set
+  #       run: kubectl config use-context $KUBERNETES
+
+  #     - name: Helm install
+  #       run: helm upgrade --install $CHART oci://$ARTIFACT_HELM/$CHART --version $APP_TAG -n $NAMESPACE
+
+  
