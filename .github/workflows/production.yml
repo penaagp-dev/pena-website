@@ -104,18 +104,18 @@ jobs:
               -e "s|{{SSL}}|$SSL|g" \
               -e "s|{{SSL_REDIRECT}}|$SSL_REDIRECT|g" \
               -e "s|{{FORCE_SSL_REDIRECT}}|$FORCE_SSL_REDIRECT|g" \
-              deployment/helm/devstag/values.yaml.tpl > deployment/helm/devstag/values.yaml
+              deployment/helm/devstag/values.yaml.tpl > deployment/helm/values.yaml
           sed -e "s|{{VERSION}}|$APP_TAG|g" \
               -e "s|{{CHART_NAME}}|$CHART|g" \
-              deployment/helm/devstag/Chart.yaml.tpl > deployment/helm/devstag/Chart.yaml
-          rm -rf deployment/helm/devstag/values.yaml.tpl
-          rm -rf deployment/helm/devstag/Chart.yaml.tpl
+              deployment/helm/devstag/Chart.yaml.tpl > deployment/helm/Chart.yaml
+          rm -rf deployment/helm/values.yaml.tpl
+          rm -rf deployment/helm/Chart.yaml.tpl
 
       - name: Helm Registry Auth
         run: echo "${{ secrets.REGISTRY_PASSWORD }}" | helm registry login -u admin --password-stdin $REGISTRY_HOST
 
       - name: Create helm package
-        run: helm package deployment/helm/devstag
+        run: helm package deployment/helm
 
       - name: Push Helm packages
         run: helm push $CHART-$APP_TAG.tgz oci://$ARTIFACT_HELM
