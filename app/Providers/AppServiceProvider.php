@@ -7,6 +7,7 @@ use App\Interfaces\RegisterCaInterfaces;
 use App\Repositories\CoreManagementRepositories;
 use App\Repositories\RegisterCaRepositories;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Force HTTPS in production
+       if (config('app.env') !== 'local') {
+            URL::forceScheme('https');
+        }
     }
 }
