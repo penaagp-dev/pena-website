@@ -2,15 +2,15 @@ name: Main Deployment - Gunamaya
 
 on:
   push:
-    branches:
-      - "main"
+    tags:
+      - "**"
 
 env:
   CHART: prd-pena-web
   REGISTRY_HOST: "registry.penpod.id"
-  ARTIFACT_REGISTRY: "registry.penpod.id/pena/pena-web"
-  ARTIFACT_HELM: "registry.bakso.my.id/kaj-dev-helm-package"
-  APP_TAG: prd
+  ARTIFACT_REGISTRY: "meongbego/pena-web"
+  ARTIFACT_HELM: "registry.bakso.my.id/pena"
+  APP_TAG: ${{ github.ref_name }}
   APP_PORT: 80
   TARGET_PORT: 80
   NAMESPACE: "dev"
