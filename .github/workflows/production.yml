@@ -13,7 +13,7 @@ env:
   APP_TAG: ${{ github.ref_name }}
   APP_PORT: 80
   TARGET_PORT: 80
-  NAMESPACE: "dev"
+  NAMESPACE: "prd"
   DOMAIN: "pena.penpod.id"
   IS_PUBLIC: true
   INGRESS: "ingress"
