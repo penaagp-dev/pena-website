@@ -18,7 +18,7 @@ Route::get('/cms/admin/login', function () {
 })->name('login');
 
 
-Route::post('api/v1/register-ca/', [RegisterCaController::class, 'registerCaFe']);
+Route::post('api/v1/register-ca', [RegisterCaController::class, 'registerCaFe'])->middleware('throttle:1,1');
 Route::get('api/v1/register-ca/verify-email-exp/{token}', [RegisterCaController::class, 'verifyEmailExp'])->name('verify.email');
 Route::get('api/v1/core-management', [CoreManagementController::class, 'getAllData']);
 
