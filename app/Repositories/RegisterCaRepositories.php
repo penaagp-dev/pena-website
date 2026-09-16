@@ -160,7 +160,7 @@ class RegisterCaRepositories implements RegisterCaInterfaces
                 return view('emails.expiredEmail');
             }
 
-            return redirect('https://chat.whatsapp.com/E6tlTnEuG7a3tVOIh8guuZ');
+            return redirect('https://chat.whatsapp.com/Gu2rmdMv1vE2LNuuFGvwAY');
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), 500);
         }

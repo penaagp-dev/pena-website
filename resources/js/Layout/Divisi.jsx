@@ -42,7 +42,7 @@ const Divisi = () => {
                     />
                 ))}
             </div>
-            {!dataDivisi || dataDivisi.length === 0 ? <p className='text-center text-white'>Data tidak ditemukan</p> : null}
+            {!dataDivisi || dataDivisi.length === 0 ? <p className='text-center text-slate-900 dark:text-white'>Data tidak ditemukan</p> : null}
         </div>
     )
 }

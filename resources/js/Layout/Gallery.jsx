@@ -41,7 +41,7 @@ const Gallery = () => {
                     />
                 ))}
             </div>
-            {!dataGallery || dataGallery.length === 0 ? <p className='text-center text-white'>Data tidak ditemukan</p> : null}
+            {!dataGallery || dataGallery.length === 0 ? <p className='text-center text-slate-900 dark:text-white'>Data tidak ditemukan</p> : null}
         </div>
     )
 }
